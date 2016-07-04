@@ -1,0 +1,22 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhear22/Angular-Playground.git"
+  },
+  "author": "McKay Heares",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mhear22/Angular-Playground/issues"
+  },
+  "homepage": "https://github.com/mhear22/Angular-Playground#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
