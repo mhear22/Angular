@@ -1,16 +1,18 @@
-var gulp = require('gulp');
-var webserver = require('gulp-webserver');
-var del = require('del');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var include = require('gulp-include-source');
+var	gulp 		= require('gulp'),
+	webserver 	= require('gulp-webserver'),
+	del 		= require('del'),
+	concat 		= require('gulp-concat'),
+	uglify 		= require('gulp-uglify'),
+	include 	= require('gulp-include-source');
 
 
-gulp.task('release',['build','minify']);
-gulp.task('default',['build']);
-gulp.task('run', ['build', 'webserver']);
+gulp
+.task('release',['build','minify'])
+.task('default',['build'])
+.task('run', ['build', 'webserver'])
+.task('build',['clean','move'])
 
-gulp.task('webserver', function () {
+.task('webserver', function () {
 	gulp.src('./')
 		.pipe(webserver({
 			livereload: true,
@@ -22,23 +24,20 @@ gulp.task('webserver', function () {
 			host: 'localhost',
 			port: 8080,
 			fallback: 'index.html'
-		}))
+		}));
 })
 
-gulp.task('build',['clean','move'], function () {
-});
-
-gulp.task('move', function () {
+.task('move', function () {
 	gulp
 		.src(['src/**/*'])
 		.pipe(gulp.dest('dev'));
-});
+})
 
-gulp.task('clean', function () {
+.task('clean', function () {
 	del('dev/**/*');
-});
+})
 
-gulp.task('minify', function () {
+.task('minify', function () {
 	gulp.src('src/**/*.js')
 		.pipe(concat('a.js'))
 		.pipe(uglify())
