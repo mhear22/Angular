@@ -5,14 +5,15 @@ var	gulp 		= require('gulp'),
 	concat 		= require('gulp-concat'),
 	uglify 		= require('gulp-uglify'),
 	inject	 	= require('gulp-inject'),
-	runSequ		= require('run-sequence');
+	runSequ		= require('run-sequence'),
+	cleanCss 	= require('gulp-clean-css');
 
 gulp
 .task('default',['build:develop'])
 .task('run', ['build:develop', 'webserver'])
 
 .task('build:release', function () {
-	runSequ('clean:release','move:release','minify','inject:release')
+	runSequ('clean:release','move:release',['minify:js', 'minify:css'],'inject:release')
 })
 
 .task('build:develop', function () {
@@ -37,13 +38,13 @@ gulp
 
 .task('move:develop', function () {
 	return gulp
-		.src(['src/**/*'])
+		.src(['./src/**/*'])
 		.pipe(gulp.dest('dev'));
 })
 
 .task('move:release', function () {
 	return gulp
-		.src(['src/**/*.css'],['src/**/*.html'])
+		.src(['./src/**/*.html'])
 		.pipe(gulp.dest('dist'));
 })
 
@@ -64,16 +65,23 @@ gulp
 })
 
 .task('clean:develop', function () {
-	return del('dev/**/*');
+	del('./dev/**/*');
 })
 
 .task('clean:release', function () {
-	return del('dist/**/*');
+	del('./dist/**/*');
 })
 
-.task('minify', function () {
-	return gulp.src('dist/**/*.js')
+.task('minify:js', function () {
+	return gulp.src('./src/**/*.js')
 		.pipe(concat('a.js'))
 		.pipe(uglify())
+		.pipe(gulp.dest('dist'));
+})
+
+.task('minify:css', function () {
+	return gulp.src('./src/**/*.css')
+		.pipe(concat('c.css'))
+		.pipe(cleanCss())
 		.pipe(gulp.dest('dist'));
 })
