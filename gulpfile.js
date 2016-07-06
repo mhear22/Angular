@@ -3,14 +3,14 @@ var	gulp 		= require('gulp'),
 	del 		= require('del'),
 	concat 		= require('gulp-concat'),
 	uglify 		= require('gulp-uglify'),
-	include 	= require('gulp-include-source');
+	inject	 	= require('gulp-inject');
 
 
 gulp
 .task('release',['build','minify'])
 .task('default',['build'])
 .task('run', ['build', 'webserver'])
-.task('build',['clean','move'])
+.task('build',['clean','move', 'inject'])
 
 .task('webserver', function () {
 	gulp.src('./')
@@ -31,6 +31,15 @@ gulp
 	gulp
 		.src(['src/**/*'])
 		.pipe(gulp.dest('dev'));
+
+})
+
+.task('inject', function () {
+	var target = gulp.src('./dev/index.html');
+	var source = gulp.src(['./src/**/*.js'], {read: false});
+	return target
+		.pipe(inject(source));
+	
 })
 
 .task('clean', function () {
