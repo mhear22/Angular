@@ -5,8 +5,9 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 
 
-gulp.task('release',['build','minify','webserver']);
-gulp.task('default',['build','webserver']);
+gulp.task('release',['build','minify']);
+gulp.task('default',['build']);
+gulp.task('run', ['build', 'webserver']);
 
 gulp.task('webserver', function () {
 	gulp.src('./')
