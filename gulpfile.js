@@ -3,6 +3,7 @@ var webserver = require('gulp-webserver');
 var del = require('del');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var include = require('gulp-include-source');
 
 
 gulp.task('release',['build','minify']);

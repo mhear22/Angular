@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/mhear22/Angular-Playground#readme",
   "devDependencies": {
+    "del": "^2.2.1",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
+    "gulp-include-source": "0.0.5",
     "gulp-uglify": "^1.5.4",
-    "gulp-webserver": "^0.9.1",
-    "del" : "^2.2.1"
+    "gulp-webserver": "^0.9.1"
   }
 }
