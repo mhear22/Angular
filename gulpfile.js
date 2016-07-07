@@ -17,22 +17,17 @@ gulp
 })
 
 .task('build:develop', function () {
-	runSequ('clean:develop','move:develop','inject:develop');
+	runSequ('clean:develop','move:develop','depend','inject:develop');
 })
 
 
 .task('webserver', function () {
-	gulp.src('./')
+	gulp.src('./dev')
 		.pipe(webserver({
 			livereload: true,
-			directoryListing: {
-				enable: true,
-				path:"./dev"
-			},
 			open: true,
 			host: 'localhost',
 			port: 8080,
-			fallback: 'index.html'
 		}));
 })
 
@@ -48,20 +43,26 @@ gulp
 		.pipe(gulp.dest('dist'));
 })
 
+.task('depend', function () {
+	return gulp
+		.src(['./node_modules/angular/angular.js'])
+		.pipe(gulp.dest('dev'))
+})
+
 .task('inject:develop', function () {
 	var target = gulp.src('./dev/index.html');
 	var source = gulp.src(['./dev/**/*.js', './dev/**/*.css'], {read: false});
 	return target
-		.pipe(inject(source))
-		.pipe(gulp.dest('dev'));
+		.pipe(inject(source,{relative: true}))
+		.pipe(gulp.dest('./dev'));
 })
 
 .task('inject:release', function () {
 	var target = gulp.src('./dist/index.html');
 	var source = gulp.src(['./dist/**/*.js', './dist/**/*.css'], {read: false});
 	return target
-		.pipe(inject(source))
-		.pipe(gulp.dest('dist'));
+		.pipe(inject(source,{relative: true}))
+		.pipe(gulp.dest('./dist'));
 })
 
 .task('clean:develop', function () {
