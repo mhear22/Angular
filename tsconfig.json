@@ -1,0 +1,13 @@
+{
+	"files": [
+		"src/main.js"
+	],
+	"compilerOptions": {
+		"noImplicitAny": true,
+		"allowJs": true,
+		"target": "es5",
+		"watch": true,
+		"module": "commonjs",
+		"sourceMap": true
+	}
+}

@@ -6,7 +6,9 @@ var	gulp 		= require('gulp'),
 	uglify 		= require('gulp-uglify'),
 	inject	 	= require('gulp-inject'),
 	runSequ		= require('run-sequence'),
-	cleanCss 	= require('gulp-clean-css');
+	cleanCss 	= require('gulp-clean-css'),
+	tsc 		= require('gulp-typescript'),
+	project 	= tsc.createProject("tsconfig.json");
 
 gulp
 .task('default',['build:develop'])
