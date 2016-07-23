@@ -8,12 +8,29 @@ var	gulp 		= require('gulp'),
 	runSequ		= require('run-sequence'),
 	cleanCss 	= require('gulp-clean-css'),
 	tsc 		= require('gulp-typescript'),
+	tsify 		= require('tsify'),
+	source		= require('vinyl-source-stream'),
+	browserify	= require('browserify'),
 	project 	= tsc.createProject("tsconfig.json");
 
 gulp
 .task('default',['develop'])
-.task('run', ['build:develop', 'webserver'])
+.task('run', ['build:develop',])
 
+
+.task('host:develop',['develop'], function () {
+	return browserify({
+		basedir: '.',
+		debug: true,
+		entries: ['src/app.ts'],
+		cache: {},
+		packageCache: {}
+	})
+	.plugin(tsify)
+	.bundle()
+	.pipe(source('bundle.js'))
+	.pipe(gulp.dest('dev'))
+})
 
 ///Release
 .task('release', function () {
@@ -100,16 +117,4 @@ gulp
 	return gulp
 		.src(['./node_modules/angular/angular.js'])
 		.pipe(gulp.dest('dev'))
-})
-
-
-///Universal
-.task('webserver', function () {
-	gulp.src('./dev')
-		.pipe(webserver({
-			livereload: true,
-			open: true,
-			host: 'localhost',
-			port: 8080,
-		}));
 })
