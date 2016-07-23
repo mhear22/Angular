@@ -15,13 +15,28 @@ gulp
 .task('run', ['build:develop', 'webserver'])
 
 .task('build:release', function () {
-	runSequ('clean:release','move:release',['minify:js', 'minify:css'],'inject:release')
+	runSequ('clean:release','compile:release','move:release',['minify:js', 'minify:css'],'inject:release')
 })
 
 .task('build:develop', function () {
-	runSequ('clean:develop','move:develop','depend','inject:develop');
+	runSequ('clean:develop','compile:develop','move:develop','depend','inject:develop');
 })
 
+.task('compile:develop', function () {
+	return project
+		.src()
+		.pipe(tsc(project))
+		.js
+		.pipe(gulp.dest('dev'))
+})
+
+.task('compile:develop', function () {
+	return project
+		.src()
+		.pipe(tsc(project))
+		.js
+		.pipe(gulp.dest('dist'))
+})
 
 .task('webserver', function () {
 	gulp.src('./dev')
