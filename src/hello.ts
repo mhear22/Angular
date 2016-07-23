@@ -1,3 +1,3 @@
 export function sayHello(name:string){
-	return 'hello from $(name)';
+	return 'hello from ' + name;
 }

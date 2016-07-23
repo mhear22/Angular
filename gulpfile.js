@@ -11,22 +11,23 @@ var	gulp 		= require('gulp'),
 	tsify 		= require('tsify'),
 	source		= require('vinyl-source-stream'),
 	browserify	= require('browserify'),
+	watchify	= require('watchify'),
 	project 	= tsc.createProject("tsconfig.json");
 
+var watched = watchify(browserify({
+	basedir: '.',
+	debug: true,
+	entries: ['src/app.ts'],
+	cache: {},
+	packageCache: {}
+}).plugin(tsify))
+
 gulp
-.task('default',['develop'])
+.task('default',['host:develop'])
 .task('run', ['build:develop',])
 
-
 .task('host:develop',['develop'], function () {
-	return browserify({
-		basedir: '.',
-		debug: true,
-		entries: ['src/app.ts'],
-		cache: {},
-		packageCache: {}
-	})
-	.plugin(tsify)
+	return watched
 	.bundle()
 	.pipe(source('bundle.js'))
 	.pipe(gulp.dest('dev'))
@@ -83,8 +84,7 @@ gulp
 
 
 ///Develop
-.task('develop', function () {
-	runSequ('inject:develop');
+.task('develop', ['inject:develop'],function () {
 })
 
 .task('inject:develop', ['move:develop', 'compile:develop', 'depend'], function () {
@@ -100,11 +100,11 @@ gulp
 })
 
 .task('compile:develop',['clean:develop'], function () {
-	return project
-		.src()
-		.pipe(tsc(project))
-		.js
-		.pipe(gulp.dest('dev'))
+	//return project
+	//	.src()
+	//	.pipe(tsc(project))
+	//	.js
+	//	.pipe(gulp.dest('dev'))
 })
 
 .task('move:develop',['clean:develop'], function () {
