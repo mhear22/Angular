@@ -47,8 +47,7 @@ gulp
 })
 
 .task('cleanjs:release',['compile:release', 'minify:js'], function () {
-	return del(['./dist/**/*.js', '!./dist/a.js'])
-		.then(paths => {console.log(paths)});
+	return del(['./dist/**/*.js', '!./dist/a.js']);
 })
 
 .task('minify:js',['compile:release'] ,function () {
