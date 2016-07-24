@@ -1,5 +1,5 @@
 var	gulp 		= require('gulp'),
-	gulpUtil	= require('gulp-Util'),
+	gulpUtil	= require('gulp-util'),
 	webserver 	= require('gulp-webserver'),
 	del 		= require('del'),
 	concat 		= require('gulp-concat'),
