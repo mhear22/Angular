@@ -11,11 +11,7 @@
 			"taskName": "develop",
 			"args": [],
 			"isBuildCommand": true,
-			"isWatching": false,
-			"problemMatcher": [
-				"$gulp-tsc",
-				"$jshint"
-			]
+			"isWatching": false
 		}
 	]
 }

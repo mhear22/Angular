@@ -14,24 +14,9 @@ var	gulp 		= require('gulp'),
 	watchify	= require('watchify'),
 	project 	= tsc.createProject("tsconfig.json");
 
-var watched = watchify(browserify({
-	basedir: '.',
-	debug: true,
-	entries: ['src/app.ts'],
-	cache: {},
-	packageCache: {}
-}).plugin(tsify))
-
 gulp
-.task('default',['host:develop'])
+.task('default',['develop'])
 .task('run', ['build:develop',])
-
-.task('host:develop',['develop'], function () {
-	return watched
-	.bundle()
-	.pipe(source('bundle.js'))
-	.pipe(gulp.dest('dev'))
-})
 
 ///Release
 .task('release', function () {
@@ -87,24 +72,22 @@ gulp
 .task('develop', ['inject:develop'],function () {
 })
 
-.task('inject:develop', ['move:develop', 'compile:develop', 'depend'], function () {
-	var target = gulp.src('./dev/index.html');
-	var source = gulp.src(['./dev/**/*.js', './dev/**/*.css'], {read: false});
-	return target
-		.pipe(inject(source,{relative: true}))
-		.pipe(gulp.dest('./dev'));
-})
-
 .task('clean:develop', function () {
 	del('./dev/**/*');
 })
 
 .task('compile:develop',['clean:develop'], function () {
-	//return project
-	//	.src()
-	//	.pipe(tsc(project))
-	//	.js
-	//	.pipe(gulp.dest('dev'))
+	return browserify({
+		basedir: '.',
+		debug: true,
+		entries: ['src/app.ts'],
+		cache: {},
+		packageCache: {}
+	})
+	.plugin(tsify)
+	.bundle()
+	.pipe(source('bundle.js'))
+	.pipe(gulp.dest('dev'));
 })
 
 .task('move:develop',['clean:develop'], function () {
@@ -113,8 +96,16 @@ gulp
 		.pipe(gulp.dest('dev'));
 })
 
-.task('depend',['move:develop', 'compile:develop'], function () {
-	return gulp
-		.src(['./node_modules/angular/angular.js'])
-		.pipe(gulp.dest('dev'))
+.task('inject:develop',['move:develop', 'compile:develop'], function () {
+	var target = gulp.src('./dev/index.html');
+	var source = gulp.src(['./dev/**/*.js', './dev/**/*.css'], {read: false});
+	return target
+		.pipe(inject(source,{relative: true}))
+		.pipe(gulp.dest('./dev'));
 })
+
+//.task('depend',['move:develop'], function () {
+//	return gulp
+//		.src(['./node_modules/angular/angular.js'])
+//		.pipe(gulp.dest('dev'))
+//})
