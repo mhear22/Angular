@@ -6,6 +6,7 @@
 		"gulpfile.js"
 	],
 	"compilerOptions": {
+		"experimentalDecorators": true,
 		"noImplicitAny": true,
 		"allowJs": true,
 		"target": "es6",
