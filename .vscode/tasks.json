@@ -4,14 +4,18 @@
 	"version": "0.1.0",
 	"command": "gulp",
 	"isShellCommand": true,
-	"args": [""],
 	"showOutput": "always",
+	"echoCommand": true,
 	"tasks": [
 		{
 			"taskName": "develop",
 			"args": [],
 			"isBuildCommand": true,
-			"isWatching": false
+			"isWatching": false,
+			"showOutput": "always",
+			"problemMatcher":[
+				"$jshint"
+			] 
 		}
 	]
 }

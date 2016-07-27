@@ -1,10 +1,4 @@
-import { sayHello } from './hello';
+import { bootstrap }    from '@angular/platform-browser-dynamic';
+import { AppComponent } from './customElement'
 
-class Startup{
-	public static main(): number{
-		console.log(sayHello("Hello world"));
-		return 0;
-	}
-}
-
-Startup.main();
+bootstrap(AppComponent);
