@@ -92,7 +92,13 @@ gulp
 
 .task('move:develop',['clean:develop'], function () {
 	return gulp
-		.src(['./src/**/*.css', './src/**/*.html'])
+		.src([
+				'./src/**/*.css', 
+				'./src/**/*.html',
+				'./node_modules/zone.js/dist/zone.js',
+				'./node_modules/reflect-metadata/Reflect.js',
+				'./node_modules/systemjs/dist/system.src.js'
+			])
 		.pipe(gulp.dest('dev'));
 })
 
