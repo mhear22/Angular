@@ -1,4 +1,7 @@
-import { bootstrap }    from '@angular/platform-browser-dynamic';
-import { AppComponent } from './customElement'
+import { Component } from '@angular/core';
 
-bootstrap(AppComponent);
+@Component({
+	selector: 'app',
+	templateUrl: './app.html'
+})
+export class AppComponent { }

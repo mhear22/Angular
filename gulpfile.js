@@ -80,7 +80,7 @@ gulp
 	return browserify({
 		basedir: '.',
 		debug: true,
-		entries: ['src/app.ts'],
+		entries: ['src/main.ts'],
 		cache: {},
 		packageCache: {}
 	})
