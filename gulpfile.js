@@ -10,6 +10,7 @@ var	gulp 		= require('gulp'),
 	tsc 		= require('gulp-typescript'),
 	tsify 		= require('tsify'),
 	source		= require('vinyl-source-stream'),
+	es 			= require('event-stream'),
 	browserify	= require('browserify'),
 	watchify	= require('watchify'),
 	project 	= tsc.createProject("tsconfig.json");
@@ -17,7 +18,7 @@ var	gulp 		= require('gulp'),
 gulp
 .task('default',['develop'])
 .task('run', ['develop'], function () {
-	gulp.src('dev')
+	gulp.src('./')
 		.pipe(webserver({
 			livereload:true,
 			directoryListing:true,
@@ -51,18 +52,30 @@ gulp
 	return gulp
 		.src([
 				'./src/**/*.css', 
-				'./src/**/*.html',
-				'./node_modules/zone.js/dist/zone.js',
-				'./node_modules/reflect-metadata/Reflect.js',
-				'./node_modules/systemjs/dist/system.src.js'
+				'./src/**/*.html'
 			])
 		.pipe(gulp.dest('dev'));
 })
 
-.task('inject:develop',['move:develop', 'compile:develop'], function () {
+.task('vendors:develop',['clean:develop'], function () {
+	return gulp.src([
+			'./node_modules/zone.js/dist/zone.js',
+			'./node_modules/reflect-metadata/Reflect.js',
+			'./node_modules/systemjs/dist/system.src.js'
+		])
+		.pipe(concat('vendor.js'))
+		.pipe(gulp.dest('dev'))
+})
+
+.task('inject:develop',['move:develop', 'compile:develop', 'vendors:develop'], function () {
 	var target = gulp.src('./dev/index.html');
-	var source = gulp.src(['./dev/**/*.js', './dev/**/*.css'], {read: false});
+	var source = gulp.src([
+		'./dev/**/*.js',
+		'!./dev/bundle.js',
+		'./dev/**/*.css'
+		], {read: false});
+	var bundle = gulp.src(['./dev/bundle.js']);
 	return target
-		.pipe(inject(source,{relative: true}))
+		.pipe(inject(es.merge(source,bundle),{relative: true}))
 		.pipe(gulp.dest('./dev'));
 })
