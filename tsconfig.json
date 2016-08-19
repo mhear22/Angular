@@ -10,7 +10,7 @@
 		"experimentalDecorators": true,
 		"noImplicitAny": true,
 		"allowJs": true,
-		"target": "es5",
+		"target": "es2015",
 		"watch": false,
 		"module": "commonjs",
 		"sourceMap": true,

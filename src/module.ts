@@ -8,10 +8,5 @@ import { AppComponent }  from './app';
   declarations: [ AppComponent ],
   bootstrap:    [ AppComponent ]
 })
-export class AppModule {
-	constructor() {
-		alert("Loaded");
- 		(function(){alert("kasdgjh")})()
-	}
- }
+export class AppModule { }
  

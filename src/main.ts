@@ -3,4 +3,3 @@ import { AppModule } from './module';
 platformBrowserDynamic()
 	.bootstrapModule(AppModule)
 	.catch(err => alert(err));
-	/* HERE */
