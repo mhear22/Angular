@@ -3,15 +3,18 @@
 		"node_modules",
 		"dev",
 		"dist",
-		"gulpfile.js"
+		"gulpfile.js",
+		"typings"
 	],
 	"compilerOptions": {
 		"experimentalDecorators": true,
 		"noImplicitAny": true,
 		"allowJs": true,
-		"target": "es2015",
+		"target": "es5",
 		"watch": false,
 		"module": "commonjs",
-		"sourceMap": true
+		"sourceMap": true,
+		"moduleResolution": "node",
+		"removeComments": true
 	}
 }
