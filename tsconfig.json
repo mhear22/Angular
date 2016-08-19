@@ -9,8 +9,8 @@
 		"experimentalDecorators": true,
 		"noImplicitAny": true,
 		"allowJs": true,
-		"target": "es6",
-		"watch": true,
+		"target": "es2015",
+		"watch": false,
 		"module": "commonjs",
 		"sourceMap": true
 	}

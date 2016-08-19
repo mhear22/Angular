@@ -34,6 +34,12 @@ gulp
 	del('./dev/**/*');
 })
 
+.task('compile:develop', ['clean:develop'], function(){
+	return gulp.src(['./src/**/*.ts'])
+		.pipe(tsc(project))
+		//pipe do dev
+})
+
 .task('compile:develop',['clean:develop'], function () {
 	return browserify({
 		basedir: '.',
@@ -58,10 +64,18 @@ gulp
 })
 
 .task('vendors:develop',['clean:develop'], function () {
+	gulp.src([
+		'./node_modules/materialize-css/dist/css/materialize.min.css',
+		'./node_modules/bootstrap/dist/css/bootstrap.min.css'
+	]).pipe(concat('vendor.css'))
+	.pipe(gulp.dest('dev'));
+
+	
 	return gulp.src([
 			'./node_modules/zone.js/dist/zone.js',
 			'./node_modules/reflect-metadata/Reflect.js',
 			'./node_modules/systemjs/dist/system.src.js'
+
 		])
 		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest('dev'))
