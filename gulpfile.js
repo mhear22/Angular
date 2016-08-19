@@ -37,22 +37,23 @@ gulp
 .task('compile:develop', ['clean:develop'], function(){
 	return gulp.src(['./src/**/*.ts'])
 		.pipe(tsc(project))
+		.pipe(gulp.dest('dev'))
 		//pipe do dev
 })
 
-.task('compile:develop',['clean:develop'], function () {
-	return browserify({
-		basedir: '.',
-		debug: true,
-		entries: ['src/main.ts'],
-		cache: {},
-		packageCache: {}
-	})
-	.plugin(tsify)
-	.bundle()
-	.pipe(source('bundle.js'))
-	.pipe(gulp.dest('dev'));
-})
+//.task('compile:develop',['clean:develop'], function () {
+//	return browserify({
+//		basedir: '.',
+//		debug: true,
+//		entries: ['src/main.ts'],
+//		cache: {},
+//		packageCache: {}
+//	})
+//	.plugin(tsify)
+//	.bundle()
+//	.pipe(source('bundle.js'))
+//	.pipe(gulp.dest('dev'));
+//})
 
 .task('move:develop',['clean:develop'], function () {
 	return gulp
