@@ -3,13 +3,19 @@ import { LoginModel } from '../Models/LoginModel'
 import { ServiceBase } from './ServiceBase'
 
 @Injectable()
-export class LoginService extends ServiceBase {
+export class LoginService implements ServiceBase {
 	private Users: LoginModel[];
 	
 	constructor() {
-		super();
+		let model = new LoginModel();
+		model.Name = "Bob";
+		model.Password = "Password 1";
+		
 		this.Users = [
-			new LoginModel()
+			{
+				Password : 'Password',
+				Name: 'Username'
+			}
 		]
 	}
 	
