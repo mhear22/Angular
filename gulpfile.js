@@ -13,7 +13,8 @@ var	gulp 		= require('gulp'),
 	es 			= require('event-stream'),
 	browserify	= require('browserify'),
 	watchify	= require('watchify'),
-	project 	= tsc.createProject("tsconfig.json");
+	project 	= tsc.createProject("tsconfig.json"),
+	webpack 	= require('webpack-stream');
 
 gulp
 .task('default',['develop'])
@@ -37,23 +38,9 @@ gulp
 .task('compile:develop', ['clean:develop'], function(){
 	return gulp.src(['./src/**/*.ts'])
 		.pipe(tsc(project))
+		.pipe(webpack(require('./webpack.config.js')))
 		.pipe(gulp.dest('dev'))
-		//pipe do dev
 })
-
-//.task('compile:develop',['clean:develop'], function () {
-//	return browserify({
-//		basedir: '.',
-//		debug: true,
-//		entries: ['src/main.ts'],
-//		cache: {},
-//		packageCache: {}
-//	})
-//	.plugin(tsify)
-//	.bundle()
-//	.pipe(source('bundle.js'))
-//	.pipe(gulp.dest('dev'));
-//})
 
 .task('move:develop',['clean:develop'], function () {
 	return gulp
@@ -87,9 +74,10 @@ gulp
 	var source = gulp.src([
 		'./dev/**/*.js',
 		'!./dev/bundle.js',
-		'./dev/**/*.css'
+		'./dev/**/*.css',
+		'!./dev/style.css'
 		], {read: false});
-	var bundle = gulp.src(['./dev/bundle.js']);
+	var bundle = gulp.src(['./dev/bundle.js', './dev/style.css']);
 	return target
 		.pipe(inject(es.merge(source,bundle),{relative: true}))
 		.pipe(gulp.dest('./dev'));
