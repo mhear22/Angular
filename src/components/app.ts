@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { LoginService } from './Services/Login';
-import { LoginModel } from './Models/LoginModel';
+import { LoginService } from '../Services/LoginService';
+import { LoginModel } from '../Models/LoginModel';
 
 @Component({
 	selector: 'app',
-	templateUrl: './app.html',
+	templateUrl: './components/app.html',
 	providers: [ LoginService ]
 })
 export class AppComponent implements OnInit {

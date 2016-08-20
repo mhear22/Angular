@@ -7,10 +7,6 @@ export class LoginService implements ServiceBase {
 	private Users: LoginModel[];
 	
 	constructor() {
-		let model = new LoginModel();
-		model.Name = "Bob";
-		model.Password = "Password 1";
-		
 		this.Users = [
 			{
 				Password : 'Password',
