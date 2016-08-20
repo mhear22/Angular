@@ -1,23 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginService } from '../Services/LoginService';
 import { LoginModel } from '../Models/LoginModel';
+import { LoginForm } from './Login/Login'
 
 @Component({
 	selector: 'app',
-	templateUrl: './components/app.html',
-	providers: [ LoginService ]
+	templateUrl: './components/app.html'
 })
-export class AppComponent implements OnInit {
-	title = 'Title';
-	users:LoginModel[] = [];
-	
-	constructor(@Inject(LoginService) private login: LoginService) { }
-	
-	getUsers(): void{
-		this.users[0] = this.login.Get();
-	}
-	
-	ngOnInit():void {
-		this.getUsers();
-	}
-}
+export class AppComponent { }
