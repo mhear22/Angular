@@ -62,7 +62,9 @@ gulp
 	return gulp.src([
 			'./node_modules/zone.js/dist/zone.js',
 			'./node_modules/reflect-metadata/Reflect.js',
-			'./node_modules/systemjs/dist/system.src.js'
+			'./node_modules/systemjs/dist/system.src.js',
+			'./node_modules/jquery/dist/jquery.js',
+			'./node_modules/materialize/dist/js/materialize.js'
 
 		])
 		.pipe(concat('vendor.js'))
