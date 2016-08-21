@@ -1,15 +1,14 @@
-* {
-	display: block;
-}
-
 .header {
-
-}
-
-.footer {
-
-}
-
-.bar {
+	top: 0;
+	width: 100%;
 	background-color: #000;
+	height: 10%;
+}
+.content-container {
+	position: absolute;
+	left:0;
+	right: 0;
+	bottom: 0;
+	top:10%;
+	overflow-y: auto;
 }
