@@ -16,19 +16,8 @@ var	gulp 		= require('gulp'),
 	project 	= tsc.createProject("tsconfig.json"),
 	webpack 	= require('webpack-stream');
 
-gulp
-.task('default',['develop'])
-.task('run', ['develop'], function () {
-	gulp.src('./')
-		.pipe(webserver({
-			livereload:true,
-			directoryListing:true,
-			open:true
-		}))
-})
-
 ///Develop
-.task('develop', ['inject:develop'],function () {
+gulp.task('develop', ['inject:develop'],function () {
 })
 
 .task('clean:develop', function () {
