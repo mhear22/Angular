@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 export class LoginService extends ServiceBase {
 	private Users: LoginModel[];
 	
-	constructor(/*private Http: Http*/) {
+	constructor(@Inject(Http) private http: Http) {
 		super();
 		this.Users = [
 			{
