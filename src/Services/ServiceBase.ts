@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
 export class ServiceBase {
-	
+	public ApiUrl:string = "http://localhost:8080";
 }

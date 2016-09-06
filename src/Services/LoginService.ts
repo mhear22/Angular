@@ -1,12 +1,15 @@
-import { Injectable } from '@angular/core';
-import { LoginModel } from '../Models/LoginModel'
-import { ServiceBase } from './ServiceBase'
+import { Injectable, Inject } from '@angular/core';
+import { Http, Response } from '@angular/Http';
+import { LoginModel } from '../Models/LoginModel';
+import { ServiceBase } from './ServiceBase';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class LoginService implements ServiceBase {
+export class LoginService extends ServiceBase {
 	private Users: LoginModel[];
 	
-	constructor() {
+	constructor(/*private Http: Http*/) {
+		super();
 		this.Users = [
 			{
 				Password : 'Password',
@@ -15,12 +18,11 @@ export class LoginService implements ServiceBase {
 		]
 	}
 	
-	Get(): LoginModel{
-		return this.Users[0];
+	public Login(Username:string, Password:string) {
+		//var x = this.Http.get("abc")
+		//	.catch(this.CatchErrors);
 	}
-	
-	Post(model: LoginModel): String {
-		this.Users.push(model);
-		return this.Users.length.toString();
+	private CatchErrors(error: any){
+		return Observable.throw("An error Occured")
 	}
 }
