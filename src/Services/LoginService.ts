@@ -6,22 +6,28 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class LoginService extends ServiceBase {
-	private Users: LoginModel[];
-	
+
 	constructor(@Inject(Http) private http: Http) {
 		super();
-		this.Users = [
-			{
-				Password : 'Password',
-				Name: 'Username'
-			}
-		]
 	}
 	
 	public Login(Username:string, Password:string) {
-		//var x = this.Http.get("abc")
-		//	.catch(this.CatchErrors);
+		var model = {Username: Username, Password: Password};
+		
+		return this.http
+			.post(this.ApiUrl + "sessions",model)
+			.catch(this.CatchErrors);
 	}
+	
+	public CreateUser(Username:string, Password:string, Email:string)
+	{
+		var model = {Username:Username, Password:Password,Email:Email};
+		
+		return this.http
+			.post(this.ApiUrl + "users", model)
+			.catch(this.CatchErrors);
+	}
+	
 	private CatchErrors(error: any){
 		return Observable.throw("An error Occured")
 	}
