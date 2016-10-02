@@ -11,16 +11,17 @@ export class LoginService extends ServiceBase {
 		super();
 	}
 	
-	public Login(Username:string, Password:string) {
+	public Login(Username:string, Password:string) : Promise<string> {
 		var model = {Username: Username, Password: Password};
 		
 		return this.http
 			.post(this.ApiUrl + "sessions",model)
-			.catch(this.CatchErrors);
+			.catch(this.CatchErrors)
+			.toPromise()
+			.then(x=>x.json() as string);
 	}
 	
-	public CreateUser(Username:string, Password:string, Email:string)
-	{
+	public CreateUser(Username:string, Password:string, Email:string) {
 		var model = {Username:Username, Password:Password,Email:Email};
 		
 		return this.http

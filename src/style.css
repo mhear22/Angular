@@ -12,3 +12,7 @@
 	top:10%;
 	overflow-y: auto;
 }
+
+body {
+	display: block;
+}

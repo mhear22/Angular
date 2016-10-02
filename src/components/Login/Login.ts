@@ -8,12 +8,16 @@ import { LoginModel } from '../../Models/LoginModel';
 	providers: [ LoginService ]
 })
 export class LoginForm {
-	username:String = "";
-	password:String = "";
+	username:string = "";
+	password:string = "";
 	
 	constructor(@Inject(LoginService) private login: LoginService) { }
 	
-	Actions: {
+	public Login() {
+		this.login.Login(this.username, this.password).then(()=>this.LoggedIn());
+	}
+	
+	private LoggedIn() {
 		
 	}
 }
