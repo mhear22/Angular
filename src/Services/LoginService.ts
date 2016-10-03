@@ -1,6 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/Http';
-import { LoginModel } from '../Models/LoginModel';
 import { ServiceBase } from './ServiceBase';
 import { Observable } from 'rxjs/Observable';
 

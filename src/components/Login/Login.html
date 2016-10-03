@@ -1,4 +1,4 @@
-<div>
+<form >
 	<div class="input-field">
 		<input id="username" type="text" class="validate" />
 		<label for="username">User</label>
@@ -9,9 +9,9 @@
 		<label for="password">Password</label>
 	</div>
 	
-	<div class="input-field" ng-click="Login()">
+	<div class="input-field" (click)="Login()">
 		<button class="btn waves-effect waves-light col-md-12 col-xs-12 col-sm-12" type="submit">
 			Log in
 		</button>
 	</div>
-</div>
+</form>

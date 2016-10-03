@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { LoginService } from '../../Services/LoginService';
-import { LoginModel } from '../../Models/LoginModel';
 
 @Component({
 	selector: 'login',
