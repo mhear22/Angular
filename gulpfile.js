@@ -1,18 +1,11 @@
 var	gulp 		= require('gulp'),
-	gulpUtil	= require('gulp-util'),
-	webserver 	= require('gulp-webserver'),
 	del 		= require('del'),
 	concat 		= require('gulp-concat'),
 	uglify 		= require('gulp-uglify'),
 	inject	 	= require('gulp-inject'),
-	runSequ		= require('run-sequence'),
-	cleanCss 	= require('gulp-clean-css'),
 	tsc 		= require('gulp-typescript'),
-	tsify 		= require('tsify'),
 	source		= require('vinyl-source-stream'),
 	es 			= require('event-stream'),
-	browserify	= require('browserify'),
-	watchify	= require('watchify'),
 	project 	= tsc.createProject("tsconfig.json"),
 	webpack 	= require('webpack-stream');
 
@@ -42,7 +35,7 @@ gulp.task('develop', ['inject:develop'],function () {
 
 .task('vendors:develop',['clean:develop'], function () {
 	gulp.src([
-		'./node_modules/materialize-css/dist/css/materialize.min.css',
+		//'./node_modules/materialize-css/dist/css/materialize.min.css',
 		'./node_modules/bootstrap/dist/css/bootstrap.min.css'
 	]).pipe(concat('vendor.css'))
 	.pipe(gulp.dest('dev'));
@@ -53,8 +46,7 @@ gulp.task('develop', ['inject:develop'],function () {
 			'./node_modules/reflect-metadata/Reflect.js',
 			'./node_modules/systemjs/dist/system.src.js',
 			'./node_modules/jquery/dist/jquery.js',
-			'./node_modules/materialize/dist/js/materialize.js'
-
+			//'./node_modules/materialize/dist/js/materialize.js'
 		])
 		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest('dev'))

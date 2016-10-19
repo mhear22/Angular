@@ -14,7 +14,7 @@
 			"isWatching": false,
 			"showOutput": "always",
 			"problemMatcher":[
-				"$jshint"
+				
 			] 
 		}
 	]

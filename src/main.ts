@@ -3,4 +3,4 @@ import './rxjs-operators';
 import { AppModule } from './module';
 platformBrowserDynamic()
 	.bootstrapModule(AppModule)
-	.catch(err => alert(err));
+	.catch((err :any) => alert(err));

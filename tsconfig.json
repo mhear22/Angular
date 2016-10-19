@@ -4,8 +4,15 @@
 		"dev",
 		"dist",
 		"gulpfile.js",
-		"typings"
+		"typings",
+		"typings/browser.d.ts",
+    	"typings/browser",
+		"src/typings",
+		"src/typings/globals"
 	],
+	"include": [
+        "src/**/*"
+    ],
 	"compilerOptions": {
 		"experimentalDecorators": true,
 		"noImplicitAny": true,
@@ -15,6 +22,7 @@
 		"module": "commonjs",
 		"sourceMap": true,
 		"moduleResolution": "node",
-		"removeComments": true
+		"removeComments": true,
+		"emitDecoratorMetadata": true
 	}
 }

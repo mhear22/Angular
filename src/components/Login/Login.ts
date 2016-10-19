@@ -13,7 +13,7 @@ export class LoginForm {
 	constructor(@Inject(LoginService) private login: LoginService) { }
 	
 	public Login() {
-		this.login.Login(this.username, this.password).then(()=>this.LoggedIn());
+		//this.login.Login(this.username, this.password).then(()=>this.LoggedIn());
 	}
 	
 	private LoggedIn() {
