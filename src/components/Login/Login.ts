@@ -10,10 +10,10 @@ export class LoginForm {
 	username:string = "";
 	password:string = "";
 	
-	constructor(@Inject(LoginService) private login: LoginService) { }
+	constructor(private _loginService: LoginService) { }
 	
-	public Login() {
-		//this.login.Login(this.username, this.password).then(()=>this.LoggedIn());
+	public doThing() {
+		this._loginService.DoThing();
 	}
 	
 	private LoggedIn() {
