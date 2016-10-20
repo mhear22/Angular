@@ -19,7 +19,7 @@ gulp.task('develop', ['inject:develop'],function () {
 
 .task('compile:develop', ['clean:develop'], function(){
 	return gulp.src(['./src/**/*.ts'])
-		.pipe(tsc(project))
+		.pipe(project())
 		.pipe(webpack(require('./webpack.config.js')))
 		.pipe(gulp.dest('dev'))
 })

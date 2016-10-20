@@ -8,7 +8,8 @@
 		"typings/browser.d.ts",
     	"typings/browser",
 		"src/typings",
-		"src/typings/globals"
+		"src/typings/globals",
+		"typings/**/*"
 	],
 	"include": [
         "src/**/*"
