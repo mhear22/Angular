@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class LoginService /*extends ServiceBase*/ {
 	
-	constructor() {
+	constructor(private http:Http) {
 		
 	}
 	

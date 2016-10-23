@@ -3,9 +3,9 @@ var	gulp 		= require('gulp'),
 	concat 		= require('gulp-concat'),
 	uglify 		= require('gulp-uglify'),
 	inject	 	= require('gulp-inject'),
-	tsc 		= require('gulp-typescript'),
 	source		= require('vinyl-source-stream'),
 	es 			= require('event-stream'),
+	tsc 		= require('gulp-typescript'),
 	project 	= tsc.createProject("tsconfig.json"),
 	webpack 	= require('webpack-stream');
 
