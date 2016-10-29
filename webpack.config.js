@@ -3,7 +3,7 @@ var webpack = require('webpack');
 module.exports = {
 	entry: './src/main.ts',
 	output: {
-		filename: 'bundle.js'
+		filename: '[name].js'
 	},
 	devtool: 'source-map',
 	resolve: {
@@ -11,7 +11,12 @@ module.exports = {
 	},
 	module: {
 		loaders:[
-			{ test: /\.ts$/, loader: 'ts-loader' }
+			{ 
+				test: /\.ts$/,
+				loaders:[
+					'awesome-typescript-loader'
+				]
+			}
 		]
 	}
 }

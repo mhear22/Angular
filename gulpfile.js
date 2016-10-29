@@ -19,7 +19,6 @@ gulp.task('develop', ['inject:develop'],function () {
 
 .task('compile:develop', ['clean:develop'], function(){
 	return gulp.src(['./src/**/*.ts'])
-		.pipe(project())
 		.pipe(webpack(require('./webpack.config.js')))
 		.pipe(gulp.dest('dev'))
 })
@@ -35,7 +34,6 @@ gulp.task('develop', ['inject:develop'],function () {
 
 .task('vendors:develop',['clean:develop'], function () {
 	gulp.src([
-		//'./node_modules/materialize-css/dist/css/materialize.min.css',
 		'./node_modules/bootstrap/dist/css/bootstrap.min.css'
 	]).pipe(concat('vendor.css'))
 	.pipe(gulp.dest('dev'));
@@ -46,7 +44,6 @@ gulp.task('develop', ['inject:develop'],function () {
 			'./node_modules/reflect-metadata/Reflect.js',
 			'./node_modules/systemjs/dist/system.src.js',
 			'./node_modules/jquery/dist/jquery.js',
-			//'./node_modules/materialize/dist/js/materialize.js'
 		])
 		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest('dev'))
@@ -56,11 +53,11 @@ gulp.task('develop', ['inject:develop'],function () {
 	var target = gulp.src('./dev/index.html');
 	var source = gulp.src([
 		'./dev/**/*.js',
-		'!./dev/bundle.js',
+		'!./dev/main.js',
 		'./dev/**/*.css',
 		'!./dev/style.css'
 		], {read: false});
-	var bundle = gulp.src(['./dev/bundle.js', './dev/style.css']);
+	var bundle = gulp.src(['./dev/main.js', './dev/style.css']);
 	return target
 		.pipe(inject(es.merge(source,bundle),{relative: true}))
 		.pipe(gulp.dest('./dev'));
