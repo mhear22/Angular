@@ -4,14 +4,18 @@ import { ServiceBase } from './ServiceBase';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class LoginService /*extends ServiceBase*/ {
+export class LoginService extends ServiceBase {
 	
 	constructor(private http:Http) {
-		
+		super();
 	}
 	
 	public DoThing() {
-		console.log("thing done");
+		
+		this.http.get(this.ApiUrl + "status")
+			.toPromise()
+			.then(function(success){
+			}, null);
 	}
 	//public constructor(private http: Http) {
 	//	//super();
