@@ -8,11 +8,12 @@ import { AppComponent }  from './components/app';
 import { LoginForm } from './components/Login/Login';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { Home } from './components/Home/Home';
+import { Signup } from './components/Signup/Signup';
 import { routes } from './routes';
 
 @NgModule({
 	imports:		[ BrowserModule, HttpModule, RouterModule.forRoot(routes) ],
-	declarations: 	[ AppComponent, LoginForm, Dashboard, Home ],
+	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup ],
 	providers: 		[{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 	bootstrap:		[ AppComponent ]
 })
