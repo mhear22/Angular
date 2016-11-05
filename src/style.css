@@ -13,6 +13,13 @@
 	overflow-y: auto;
 }
 
+
+/* Add compontents here if they behaving weird */
+.input-field, app, login {
+	overflow: hidden;
+	display: block;
+}
+
 body {
 	display: block;
 	background-color: #666;
