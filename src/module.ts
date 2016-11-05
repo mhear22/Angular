@@ -5,11 +5,12 @@ import { NgModule } from '@angular/core';
 import { LoginService } from './Services/LoginService';
 import { AppComponent }  from './components/app';
 import { LoginForm } from './components/Login/Login';
+import { Dashboard } from './components/Dashboard/Dashboard';
 import { routes } from './routes';
 
 @NgModule({
 	imports:		[ BrowserModule, HttpModule, RouterModule.forRoot(routes) ],
-	declarations: 	[ AppComponent, LoginForm ],
+	declarations: 	[ AppComponent, LoginForm, Dashboard ],
 	providers: 		[ LoginService ],
 	bootstrap:		[ AppComponent ]
 })
