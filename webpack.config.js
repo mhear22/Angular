@@ -1,7 +1,9 @@
 var webpack = require('webpack');
 
 module.exports = {
-	entry: './src/main.ts',
+	entry: {
+		main: './src/main.ts'
+	},
 	output: {
 		filename: '[name].js'
 	},
