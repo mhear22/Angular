@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from '../../Services/LoginService';
 
 @Component({
@@ -10,10 +11,11 @@ export class LoginForm {
 	username:string = "";
 	password:string = "";
 	
-	constructor(private _loginService: LoginService) { }
+	constructor(private _loginService: LoginService, private router: Router) { }
 	
-	public doThing() {
-		this._loginService.DoThing();
+	public Login() {
+		//this._loginService
+		this.router.navigate(['/home'])
 	}
 	
 	private LoggedIn() {
