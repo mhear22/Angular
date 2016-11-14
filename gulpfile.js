@@ -7,7 +7,8 @@ var	gulp 		= require('gulp'),
 	es 			= require('event-stream'),
 	tsc 		= require('gulp-typescript'),
 	project 	= tsc.createProject("tsconfig.json"),
-	webpack 	= require('webpack-stream');
+	webpack 	= require('webpack-stream'),
+	mincss		= require('gulp-clean-css');
 
 ///Develop
 gulp.task('develop', ['inject:develop'],function () {
@@ -15,6 +16,10 @@ gulp.task('develop', ['inject:develop'],function () {
 
 .task('clean:develop', function () {
 	del('./dev/**/*');
+})
+
+.task('clean:release', function(){
+	del('./dist/**/*');
 })
 
 .task('compile:develop', ['clean:develop'], function(){
@@ -61,4 +66,46 @@ gulp.task('develop', ['inject:develop'],function () {
 	return target
 		.pipe(inject(es.merge(source,bundle),{relative: true}))
 		.pipe(gulp.dest('./dev'));
+})
+
+.task('release',['release:inject'], function(){ })
+
+.task('minjs', ['clean:release', 'inject:develop'], function(){
+	return gulp.src([
+		'./dev/**/*.js',
+		'!./dev/**/vendor.js'
+	])
+	.pipe(gulp.dest('dist'));
+})
+
+.task('mincss', ['clean:release', 'inject:develop'], function(){
+	return gulp.src([
+		'./dev/**/*.css',
+		'!./dev/**/vendor.css'
+	])
+	.pipe(mincss())
+	.pipe(gulp.dest('dist'));
+})
+
+.task('release:move', ['clean:release', 'inject:develop'], function(){
+	return gulp.src([
+		'./dev/**/*',
+		'!./dev/**/*.js',
+		'!./dev/**/*.css'
+	])
+	.pipe(gulp.dest('dist'));
+})
+
+.task('release:inject', ['release:move', 'mincss', 'minjs'], function(){
+	var target = gulp.src('./dist/index.html');
+	var source = gulp.src([
+		'./dev/**/*.js',
+		'!./dev/main.js',
+		'./dev/**/*.css',
+		'!./dev/style.css'
+		], {read: false});
+	var bundle = gulp.src(['./dev/main.js', './dev/style.css']);
+	return target
+		.pipe(inject(es.merge(source,bundle),{relative: true}))
+		.pipe(gulp.dest('./dist'));
 })
