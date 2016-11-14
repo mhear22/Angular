@@ -2,6 +2,8 @@ import { Injector, Injectable  } from '@angular/core';
 import { Http } from '@angular/http';
 import { ServiceBase } from './ServiceBase';
 import { Observable } from 'rxjs/Observable';
+import { LoginModel } from '../Models/User/LoginModel';
+import { UserModel } from '../Models/User/UserModel';
 
 @Injectable()
 export class LoginService extends ServiceBase {
@@ -10,9 +12,17 @@ export class LoginService extends ServiceBase {
 		super();
 	}
 	
-	public DoThing() {
+	public Login(model: LoginModel) {
+		return this.http.post(ServiceBase.ApiUrl + "users",model)
+			.toPromise();
+	}
+	
+	public CreateUser(model:UserModel) {
 		
-		this.http.get(this.ApiUrl + "status")
+	}
+	
+	public DoThing() {
+		this.http.get(ServiceBase.ApiUrl + "status")
 			.toPromise()
 			.then(function(success){
 			}, null);

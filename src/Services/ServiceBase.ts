@@ -3,10 +3,6 @@ import { Http } from '@angular/http';
 
 
 export class ServiceBase {
-	public ApiUrl:string = "http://localhost:5000/";
-	
-	//public constructor(http: Http) {
-	//	
-	//}
-	
+	public static ApiUrl:string = "http://localhost:5000/";
+	public static ApiKey:string = "";
 }
