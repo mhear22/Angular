@@ -39,11 +39,11 @@ gulp.task('develop', ['inject:develop'],function () {
 
 .task('vendors:develop',['clean:develop'], function () {
 	gulp.src([
-		'./node_modules/bootstrap/dist/css/bootstrap.min.css'
+		'./node_modules/bootstrap/dist/css/bootstrap.min.css',
+		'./node_modules/font-awesome/css/font-awesome.min.css'
 	]).pipe(concat('vendor.css'))
 	.pipe(gulp.dest('dev'));
 
-	
 	return gulp.src([
 			'./node_modules/zone.js/dist/zone.js',
 			'./node_modules/reflect-metadata/Reflect.js',
