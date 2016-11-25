@@ -11,6 +11,9 @@ module.exports = {
 	resolve: {
 		extensions: ['','.webpack.js','.web.js', '.ts', '.js']
 	},
+	plugins:[
+
+	],
 	module: {
 		loaders:[
 			{ 
