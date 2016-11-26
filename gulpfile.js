@@ -4,19 +4,20 @@ var	gulp 		= require('gulp'),
 	inject	 	= require('gulp-inject'),
 	source		= require('vinyl-source-stream'),
 	es 			= require('event-stream'),
-	webpack 	= require('webpack-stream')
+	webpack 	= require('webpack-stream'),
+	webpackcon	= require('./webpack.config.js')
 ;
 ///Develop
 gulp.task('develop', ['inject:develop'],function () {
 })
 
 .task('clean:develop', function () {
-	del('./dev/**/*');
+	return del('./dev/**/*');
 })
 
 .task('compile:develop', ['clean:develop'], function(){
 	return gulp.src(['./src/**/*.ts'])
-		.pipe(webpack(require('./webpack.config.js')))
+		.pipe(webpack(webpackcon))
 		.pipe(gulp.dest('dev'))
 })
 
@@ -28,14 +29,16 @@ gulp.task('develop', ['inject:develop'],function () {
 	.pipe(gulp.dest('dev'));
 })
 
-.task('vendors:develop',['clean:develop'], function () {
-	gulp.src([
+.task('vendorcss:develop', ['clean:develop'], function(){
+	return gulp.src([
 		'./node_modules/bootstrap/dist/css/bootstrap.min.css',
 		'./node_modules/font-awesome/css/font-awesome.min.css'
 	])
 	.pipe(concat('vendor.css'))
 	.pipe(gulp.dest('dev'));
+})
 
+.task('vendorjs:develop',['clean:develop'], function () {
 	return gulp.src([
 		'./node_modules/zone.js/dist/zone.js',
 		'./node_modules/reflect-metadata/Reflect.js',
@@ -45,7 +48,7 @@ gulp.task('develop', ['inject:develop'],function () {
 	.pipe(gulp.dest('dev'))
 })
 
-.task('inject:develop',['move:develop', 'compile:develop', 'vendors:develop'], function () {
+.task('inject:develop',['move:develop', 'compile:develop', 'vendorcss:develop', 'vendorjs:develop'], function () {
 	var target = gulp.src('./dev/index.html');
 	var source = gulp.src([
 		'./dev/**/*.js',
