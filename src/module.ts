@@ -11,9 +11,10 @@ import { Header } from './components/Header/Header';
 import { Home } from './components/Home/Home';
 import { Signup } from './components/Signup/Signup';
 import { routes } from './routes';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
-	imports:		[ BrowserModule, HttpModule, RouterModule.forRoot(routes) ],
+	imports:		[ BrowserModule, HttpModule, FormsModule, RouterModule.forRoot(routes) ],
 	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup, Header ],
 	providers: 		[{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 	bootstrap:		[ AppComponent ]

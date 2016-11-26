@@ -1,6 +1,6 @@
 export class UrlChainer {
-	private base:string;
-	private args:string[];
+	private base:string = "";
+	private args:string[] = [];
 	
 	constructor(url: string) {
 		this.base = url;
@@ -20,7 +20,7 @@ export class UrlChainer {
 	} 
 	
 	public GetUrl():string{
-		var argumentString:string;
+		var argumentString:string = "";
 		var first = true;
 		this.args.forEach(element => {
 			argumentString += (first)?"?":"&";
@@ -28,6 +28,6 @@ export class UrlChainer {
 			first = false;
 		});
 		
-		return  argumentString;
+		return this.base + argumentString;
 	}
 }
