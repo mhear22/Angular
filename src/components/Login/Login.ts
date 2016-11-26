@@ -15,7 +15,7 @@ export class LoginForm {
 	
 	public Login() {
 		//this._loginService
-		this.router.navigate(['/home'])
+		//this.router.navigate(['/home'])
 	}
 	
 	private LoggedIn() {

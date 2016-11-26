@@ -8,8 +8,8 @@ import { UserModel } from '../Models/User/UserModel';
 @Injectable()
 export class LoginService extends ServiceBase {
 	
-	constructor(private http:Http) {
-		super();
+	constructor(protected http:Http) {
+		super(http);
 	}
 	
 	public Login(model: LoginModel) {
@@ -18,14 +18,12 @@ export class LoginService extends ServiceBase {
 	}
 	
 	public CreateUser(model:UserModel) {
-		
+		return this.Post("users",null,model).toPromise();
 	}
 	
 	public DoThing() {
 		this.http.get(ServiceBase.ApiUrl + "status")
-			.toPromise()
-			.then(function(success){
-			}, null);
+			.toPromise();
 	}
 	//public constructor(private http: Http) {
 	//	//super();
