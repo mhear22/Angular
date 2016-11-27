@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "node node_modules\\protractor\\bin\\protractor"
+    "test": "jasmine",
+	"test:e2e": "node node_modules\\protractor\\bin\\protractor"
   },
   "repository": {
     "type": "git",

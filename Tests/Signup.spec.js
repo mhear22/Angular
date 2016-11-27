@@ -1,6 +1,6 @@
-describe('demo', function(){
+describe('Signup page behavior', function(){
 	it('should launch', function(){
 		browser.get('http://localhost:8080/#/signup');
-		expect(browser.getTitle());
+		element(by.name('username')).sendKeys("testUsername");
 	});
 });
