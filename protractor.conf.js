@@ -4,6 +4,8 @@ exports.config = {
 	specs: ['./Tests/**/*.spec.js'],
 	useAllAngular2AppRoots: true,
 	capabilities: {
+		maxInstances: 5,
+		shardTestFiles: true,
 		browserName: 'chrome'
 	}
 }

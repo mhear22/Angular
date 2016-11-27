@@ -13,9 +13,7 @@
 			"isBuildCommand": true,
 			"isWatching": false,
 			"showOutput": "always",
-			"problemMatcher":[
-				
-			] 
+			"problemMatcher":[ ] 
 		}
 	]
 }
