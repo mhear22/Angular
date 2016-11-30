@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { UrlChainer } from './UrlChainer';
 
 export class ServiceBase {
@@ -19,6 +19,13 @@ export class ServiceBase {
 	
 	public Post(endpoint: string, params:any=null, model:any=null) {
 		var url = this.GetUrl(endpoint);
-		return this.http.post(url,model);
+		return this.http
+			.post(url,model)
+			.map(this.extract);
+	}
+	
+	private extract(res: Response) {
+		let body = res.json();
+		return body.data || { };
 	}
 }

@@ -20,8 +20,10 @@ export class Signup {
 		model.Email = this.email;
 		model.Password = this.password;
 		model.Username = this.username;
-		this.login.CreateUser(model).then(function(success){
-			this.router.navigate(['/home']);
-		});
+		this.login.CreateUser(model).subscribe(
+			result => {
+				this.router.navigate(['/login']);
+			}
+		)
 	}
 }
