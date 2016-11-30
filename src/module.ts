@@ -12,9 +12,10 @@ import { Home } from './components/Home/Home';
 import { Signup } from './components/Signup/Signup';
 import { routes } from './routes';
 import { FormsModule } from "@angular/forms";
+import { MaterialModule } from "@angular/material";
 
 @NgModule({
-	imports:		[ BrowserModule, HttpModule, FormsModule, RouterModule.forRoot(routes) ],
+	imports:		[ BrowserModule, HttpModule, FormsModule, RouterModule.forRoot(routes), MaterialModule.forRoot() ],
 	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup, Header ],
 	providers: 		[{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 	bootstrap:		[ AppComponent ]
