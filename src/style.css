@@ -11,4 +11,5 @@ input, button, md-input {
 
 button {
 	border: 0px;
+	background: transparent;
 }

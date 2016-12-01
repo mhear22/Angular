@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../Services/LoginService';
+import { LoginModel } from '../../Models/User/LoginModel';
 
 @Component({
 	selector: 'login',
@@ -14,11 +15,10 @@ export class LoginForm {
 	constructor(private _loginService: LoginService, private router: Router) { }
 	
 	public Login() {
-		//this._loginService
-		//this.router.navigate(['/home'])
-	}
-	
-	private LoggedIn() {
-		
+		var model = new LoginModel();
+		this._loginService.Login(model).subscribe(result => {
+			var x = result;
+			this.router.navigate(['/home']);
+		})
 	}
 }

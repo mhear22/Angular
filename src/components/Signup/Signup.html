@@ -4,5 +4,6 @@
 		<md-input type="text" [(ngModel)]="email" name="email" placeholder="Email"></md-input>
 		<md-input type="password" [(ngModel)]="password" name="pass" placeholder="Password" ></md-input>
 		<md-input type="submit" (click)="Submit()" style="display:none;" ></md-input>
+		<button [disableRipple]="true" (click)="Submit()" md-button>Sign up</button>
 	</md-card>
 </form>
