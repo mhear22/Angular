@@ -1,8 +1,3 @@
-.input-field, app, login {
-	overflow: hidden;
-	display: block;
-}
-
 body {
 	display: block;
 	background-color: #666;
@@ -10,9 +5,8 @@ body {
 	height: 100%;
 }
 
-input, button {
+input, button, md-input {
 	width: 100%;
-	margin-bottom: 15px;
 }
 
 button {

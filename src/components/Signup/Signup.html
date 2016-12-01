@@ -1,10 +1,8 @@
-<div>
-	<form>
-		<md-card>
-			<md-input type="text" [(ngModel)]="username" name="username" placeholder="Username"></md-input>
-			<md-input type="text" [(ngModel)]="email" name="email" placeholder="Email"></md-input>
-			<md-input type="text" [(ngModel)]="password" name="pass" placeholder="Password" ></md-input>
-			<md-input type="submit" (click)="Submit()" style="display:none;" ></md-input>
-		</md-card>
-	</form>
-</div>
+<form>
+	<md-card class="col-md-6 col-md-offset-3">
+		<md-input type="text" [(ngModel)]="username" name="username" placeholder="Username"></md-input>
+		<md-input type="text" [(ngModel)]="email" name="email" placeholder="Email"></md-input>
+		<md-input type="password" [(ngModel)]="password" name="pass" placeholder="Password" ></md-input>
+		<md-input type="submit" (click)="Submit()" style="display:none;" ></md-input>
+	</md-card>
+</form>
