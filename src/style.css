@@ -13,3 +13,7 @@ button {
 	border: 0px;
 	background: transparent;
 }
+
+md-card {
+	background-color: #FFF;
+}
