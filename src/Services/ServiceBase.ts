@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { UrlChainer } from './UrlChainer';
 
 export class ServiceBase {
 	public static ApiUrl:string = "http://localhost:5000/";
 	public static ApiKey:string = "";
 	
-	constructor(protected http:Http) {
-		
+	constructor(protected http:Http) { }
+	
+	private getHeaders(headers: Headers) {
+		headers.append("Content-Type","application/json");
+		return headers;
 	}
 	
 	private GetUrl(endpoint:string, params:any=null): string {
@@ -20,7 +23,7 @@ export class ServiceBase {
 	public Post(endpoint: string, params:any=null, model:any=null) {
 		var url = this.GetUrl(endpoint);
 		return this.http
-			.post(url,model)
+			.post(url,model,{ headers: this.getHeaders(new Headers()) })
 			.map(this.extract);
 	}
 	

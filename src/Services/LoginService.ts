@@ -13,7 +13,7 @@ export class LoginService extends ServiceBase {
 	}
 	
 	public Login(model: LoginModel) {
-		return this.Post(ServiceBase.ApiUrl + "users", model);
+		return this.Post("users", model);
 	}
 	
 	public CreateUser(model:UserModel) {
