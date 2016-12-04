@@ -14,7 +14,7 @@ export class UrlChainer {
 	public FromModel(query:any):UrlChainer {
 		for (var item in query) {
 			if (!query.hasOwnProperty(item)) continue;
-			alert(item);
+			this.args.push(item + "=" + query[item]);
 		}
 		return this;
 	} 

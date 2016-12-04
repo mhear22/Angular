@@ -20,8 +20,15 @@ export class ServiceBase {
 		return x.GetUrl();
 	}
 	
+	public Get(endpoint:string,params:any=null) {
+		var url = this.GetUrl(endpoint, params);
+		return this.http
+			.get(url,{headers:this.getHeaders(new Headers())})
+			.map(this.extract);
+	}
+	
 	public Post(endpoint: string, params:any=null, model:any=null) {
-		var url = this.GetUrl(endpoint);
+		var url = this.GetUrl(endpoint,params);
 		return this.http
 			.post(url,model,{ headers: this.getHeaders(new Headers()) })
 			.map(this.extract);

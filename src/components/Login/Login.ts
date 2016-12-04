@@ -19,7 +19,6 @@ export class LoginForm {
 		model.Username = this.username;
 		model.Password = this.password;
 		this._loginService.Login(model).subscribe(result => {
-			var x = result;
 			this.router.navigate(['/home']);
 		})
 	}

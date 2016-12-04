@@ -12,8 +12,12 @@ export class LoginService extends ServiceBase {
 		super(http);
 	}
 	
-	public Login(model: LoginModel) {
-		return this.Post("users", model);
+	public Login(model: LoginModel): Observable<string> {
+		var query = this.Post("sessions",null,model);
+		query.subscribe(result => {
+			ServiceBase.ApiKey = result;
+		});
+		return query;
 	}
 	
 	public CreateUser(model:UserModel) {
