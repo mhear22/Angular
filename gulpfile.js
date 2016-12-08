@@ -30,6 +30,10 @@ gulp.task('develop', ['inject:develop'],function () {
 })
 
 .task('vendorcss:develop', ['clean:develop'], function(){
+	gulp.src([
+		'./node_modules/font-awesome/fonts/**/*'
+	]).pipe(gulp.dest('dev/fonts'));
+	
 	return gulp.src([
 		'./node_modules/bootstrap/dist/css/bootstrap.min.css',
 		'./node_modules/font-awesome/css/font-awesome.min.css'

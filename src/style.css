@@ -17,3 +17,37 @@ button {
 md-card {
 	background-color: #FFF;
 }
+
+.header-text {
+	font-size: 22px;
+	padding-left: 15px;
+}
+
+.nav-icon-container {
+	float: left;
+	width: 20%;
+	height: 20%;
+	max-height: 80px;
+	max-width: 80px;
+}
+
+.nav-icon {
+	padding: 7px;
+	font-size: 40px;
+}
+
+md-sidenav {
+	background-color: white;
+	width: 80%;
+	max-width: 400px;
+	overflow: hidden;
+}
+
+.header-container {
+	overflow: hidden;
+}
+
+header-bar {
+	padding-top: 7px;
+	float: left;
+}
