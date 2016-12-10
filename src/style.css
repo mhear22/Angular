@@ -16,6 +16,7 @@ button {
 
 md-card {
 	background-color: #FFF;
+	margin-bottom: 15px;
 }
 
 .header-text {
@@ -47,3 +48,8 @@ header-bar {
 	padding-top: 7px;
 	float: left;
 }
+
+menu {
+	padding: 14px;
+}
+
