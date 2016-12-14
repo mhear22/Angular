@@ -21,7 +21,11 @@ export class LoginService extends ServiceBase {
 	}
 	
 	public Logout() {
-		throw "Not implemented";
+		var query = this.Delete("sessions", { Token: ServiceBase.ApiKey });
+		query.subscribe(result=> {
+			ServiceBase.ApiKey = "";
+		});
+		return query;
 	}
 	
 	public CreateUser(model:UserModel) {

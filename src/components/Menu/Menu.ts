@@ -12,5 +12,6 @@ export class MenuBar {
 	
 	public Logout() {
 		this.login.Logout();
+		this.router.navigate(['/login']);
 	}
 }

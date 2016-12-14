@@ -34,8 +34,14 @@ export class ServiceBase {
 			.map(this.extract);
 	}
 	
+	public Delete(endpoint: string, params:any=null) {
+		var url = this.GetUrl(endpoint, params);
+		return this.http.delete(url, { headers: this.getHeaders(new Headers()) })
+		.map(this.extract);
+	}
+	
 	private extract(res: Response) {
 		let body = res.json();
-		return body.data || { };
+		return body || { };
 	}
 }
