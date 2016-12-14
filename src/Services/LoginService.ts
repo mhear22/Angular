@@ -20,6 +20,10 @@ export class LoginService extends ServiceBase {
 		return query;
 	}
 	
+	public Logout() {
+		throw "Not implemented";
+	}
+	
 	public CreateUser(model:UserModel) {
 		return this.Post("users",null,model);
 	}
