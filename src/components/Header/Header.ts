@@ -1,23 +1,18 @@
 import { Component, Inject } from '@angular/core';
 import { ServiceBase } from '../../Services/ServiceBase';
 import { Router } from '@angular/router';
+import { LoginService } from '../../Services/LoginService';
 
 @Component({
 	selector: 'header-bar',
 	templateUrl: './components/Header/Header.html',
+	providers: [ LoginService ]
 })
 
 export class Header {
-	constructor(private router:Router) { }
-	public IsLoggedIn() : boolean {
-		if(ServiceBase.ApiKey === null){
-			return false;
-		}
-		return true;
-	}
-	
+	constructor(private router:Router, private loginService: LoginService) { }
 	public GoHome() {
-		if(this.IsLoggedIn()){
+		if(this.loginService.IsLoggedIn()){
 			this.router.navigate(['/home']);
 		}
 		else {

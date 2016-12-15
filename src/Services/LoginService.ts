@@ -20,6 +20,10 @@ export class LoginService extends ServiceBase {
 		return query;
 	}
 	
+	public IsLoggedIn(): boolean {
+		return ServiceBase.ApiKey != "";
+	}
+	
 	public Logout() {
 		var query = this.Delete("sessions", { Token: ServiceBase.ApiKey });
 		query.subscribe(result=> {
