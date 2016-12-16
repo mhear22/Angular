@@ -14,10 +14,12 @@ import { routes } from './routes';
 import { FormsModule } from "@angular/forms";
 import { MaterialModule } from "@angular/material";
 import { MenuBar } from "./components/Menu/Menu";
+import { Profile } from "./components/Profile/Profile";
+
 
 @NgModule({
 	imports:		[ BrowserModule, HttpModule, FormsModule, RouterModule.forRoot(routes), MaterialModule.forRoot() ],
-	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup, Header, MenuBar ],
+	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup, Header, MenuBar, Profile ],
 	providers: 		[{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 	bootstrap:		[ AppComponent ]
 })
