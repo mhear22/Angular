@@ -4,6 +4,13 @@ import { LoginForm } from './Login/Login'
 
 @Component({
 	selector: 'app',
-	templateUrl: './components/app.html'
+	templateUrl: './components/app.html',
+	providers: [ LoginService ]
 })
-export class AppComponent { }
+export class AppComponent {
+	public constructor(public LoginService:LoginService) { }
+	
+	public IsLoggedIn():boolean {
+		return this.LoginService.IsLoggedIn();
+	}
+}
