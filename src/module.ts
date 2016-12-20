@@ -15,11 +15,11 @@ import { FormsModule } from "@angular/forms";
 import { MaterialModule } from "@angular/material";
 import { MenuBar } from "./components/Menu/Menu";
 import { Profile } from "./components/Profile/Profile";
-
+import { Settings } from './components/Settings/Settings';
 
 @NgModule({
 	imports:		[ BrowserModule, HttpModule, FormsModule, RouterModule.forRoot(routes), MaterialModule.forRoot() ],
-	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup, Header, MenuBar, Profile ],
+	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup, Header, MenuBar, Profile, Settings ],
 	providers: 		[{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 	bootstrap:		[ AppComponent ]
 })
