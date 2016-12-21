@@ -14,27 +14,32 @@ export class ServiceBase {
 	}
 	
 	private GetUrl(endpoint:string, params:any=null): string {
+		if(!params){
+			params = {};
+		}
 		var url = ServiceBase.ApiUrl + endpoint;
 		var x = new UrlChainer(url);
+		if(ServiceBase.ApiKey)
+			params.ApiKey = ServiceBase.ApiKey;
 		x.FromModel(params);
 		return x.GetUrl();
 	}
 	
-	public Get(endpoint:string,params:any=null) {
+	protected Get(endpoint:string,params:any=null) {
 		var url = this.GetUrl(endpoint, params);
 		return this.http
 			.get(url,{headers:this.getHeaders(new Headers())})
 			.map(this.extract);
 	}
 	
-	public Post(endpoint: string, params:any=null, model:any=null) {
+	protected Post(endpoint: string, params:any=null, model:any=null) {
 		var url = this.GetUrl(endpoint,params);
 		return this.http
 			.post(url,model,{ headers: this.getHeaders(new Headers()) })
 			.map(this.extract);
 	}
 	
-	public Delete(endpoint: string, params:any=null) {
+	protected Delete(endpoint: string, params:any=null) {
 		var url = this.GetUrl(endpoint, params);
 		return this.http.delete(url, { headers: this.getHeaders(new Headers()) })
 		.map(this.extract);
