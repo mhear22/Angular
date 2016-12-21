@@ -20,7 +20,7 @@ export class ServiceBase {
 		var url = ServiceBase.ApiUrl + endpoint;
 		var x = new UrlChainer(url);
 		if(ServiceBase.ApiKey)
-			params.ApiKey = ServiceBase.ApiKey;
+			params.api_key = ServiceBase.ApiKey;
 		x.FromModel(params);
 		return x.GetUrl();
 	}
