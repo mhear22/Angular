@@ -3,7 +3,8 @@ import { Http } from '@angular/http';
 import { ServiceBase } from './ServiceBase';
 import { Observable } from 'rxjs/Observable';
 import { LoginModel } from '../Models/User/LoginModel';
-import { UserModel } from '../Models/User/UserModel';
+import { CreateUserModel } from '../Models/User/CreateUserModel';
+import { UserModel } from '../Models/User/UserModel';
 
 @Injectable()
 export class LoginService extends ServiceBase {
@@ -32,7 +33,15 @@ export class LoginService extends ServiceBase {
 		return query;
 	}
 	
-	public CreateUser(model:UserModel) {
+	public GetCurrentUser(): Observable<any> {
+		return this.Get("currentuser");
+	}
+	
+	public GetUser(NameOrId:string):Observable<any> {
+		return this.Get("users/" + NameOrId);
+	}
+	
+	public CreateUser(model:CreateUserModel) {
 		return this.Post("users",null,model);
 	}
 }

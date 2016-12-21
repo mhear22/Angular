@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from "../../Services/LoginService";
-import { UserModel } from "../../Models/User/UserModel";
+import { CreateUserModel } from "../../Models/User/CreateUserModel";
 import { Router } from '@angular/router';
 import { NgModel } from '@angular/forms';
 
@@ -16,7 +16,7 @@ export class Signup {
 	
 	constructor(private login:LoginService, private router: Router) { }
 	public Submit() {
-		var model = new UserModel();
+		var model = new CreateUserModel();
 		model.Email = this.email;
 		model.Password = this.password;
 		model.Username = this.username;
