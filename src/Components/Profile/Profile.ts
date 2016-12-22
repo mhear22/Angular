@@ -15,5 +15,9 @@ export class Profile {
 			this.CurrentUser = data;
 		})
 	}
+	
+	public Update() {
+		//this.UserService.UpdateUser();
+	}
 	CurrentUser: UserModel = new UserModel(); 
 }
