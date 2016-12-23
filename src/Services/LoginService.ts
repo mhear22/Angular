@@ -19,6 +19,10 @@ export class LoginService extends ServiceBase {
 		
 	}
 	
+	public UpdateUser(Id: string, Model: UserModel) {
+		return this.Put("users/" + Id, null, Model);
+	}
+	
 	public Login(model: LoginModel): Observable<string> {
 		var query = this.Post("sessions",null,model);
 		query.subscribe(result => {

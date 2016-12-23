@@ -10,14 +10,20 @@ import { LoginService } from '../../Services/LoginService';
 })
 export class Profile {
 	constructor(private UserService: LoginService) {
+		this.Refresh();
+	}
+	
+	public Refresh() {
 		this.UserService.GetCurrentUser().subscribe(result => {
 			var data = <UserModel>result;
 			this.CurrentUser = data;
-		})
+		});
 	}
 	
 	public Update() {
-		//this.UserService.UpdateUser();
+		this.UserService.UpdateUser(this.CurrentUser.Id, this.CurrentUser).subscribe(x=>{
+			this.Refresh();
+		});
 	}
 	CurrentUser: UserModel = new UserModel(); 
 }

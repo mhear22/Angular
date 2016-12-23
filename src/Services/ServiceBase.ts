@@ -45,6 +45,12 @@ export class ServiceBase {
 		.map(this.extract);
 	}
 	
+	protected Put(endpoint:string, params:any=null, model:any=null) {
+		var url = this.GetUrl(endpoint, params);
+		return this.http.put(url,model, { headers: this.getHeaders(new Headers()) })
+		.map(this.extract);
+	}
+	
 	private extract(res: Response) {
 		let body = res.json();
 		return body || { };
