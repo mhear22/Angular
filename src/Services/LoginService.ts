@@ -5,17 +5,24 @@ import { Observable } from 'rxjs/Observable';
 import { LoginModel } from '../Models/User/LoginModel';
 import { CreateUserModel } from '../Models/User/CreateUserModel';
 import { UserModel } from '../Models/User/UserModel';
+import { LocalStorageService } from 'ng2-webstorage';
 
 @Injectable()
 export class LoginService extends ServiceBase {
 	
-	constructor(protected http:Http) {
+	constructor(protected http:Http, private local:LocalStorageService) {
 		super(http);
+		
+		var key = this.local.retrieve("api_key");
+		if(key !== null)
+			ServiceBase.ApiKey = key;
+		
 	}
 	
 	public Login(model: LoginModel): Observable<string> {
 		var query = this.Post("sessions",null,model);
 		query.subscribe(result => {
+			this.local.store("api_key", result);
 			ServiceBase.ApiKey = result;
 		});
 		return query;
@@ -28,6 +35,7 @@ export class LoginService extends ServiceBase {
 	public Logout() {
 		var query = this.Delete("sessions", { Token: ServiceBase.ApiKey });
 		query.subscribe(result=> {
+			this.local.clear("api_key");
 			ServiceBase.ApiKey = "";
 		});
 		return query;

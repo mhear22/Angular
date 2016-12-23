@@ -13,5 +13,4 @@ export const routes: Routes = [
 	{ path: 'signup', component: Signup},
 	{ path: 'profile', component: Profile },
 	{ path: 'settings', component: Settings }
-	//{ path: 'home/:Id', component: Dashboard }
 ]

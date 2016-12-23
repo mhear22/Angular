@@ -19,7 +19,9 @@ export class AppComponent extends OnInit {
 	
 	public ngOnInit() {
 		if(!this.LoginService.IsLoggedIn()) {
-			this.router.navigate(['/login']);
+			setTimeout(() => {
+				this.router.navigate(['/login']);
+			}, 0);
 		}
 	}
 }
