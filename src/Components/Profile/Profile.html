@@ -1,4 +1,11 @@
 <md-card>
 	<user [user]="CurrentUser"></user>
-	<button (click)="Update()">Save</button>
+	<button (click)="Update()">Update</button>
+	
+</md-card>
+<md-card>
+	<h3 class="title">Change Password</h3>
+	<md-input placeholder="Old Password" [(ngModel)]="OldPassword"></md-input>
+	<md-input placeholder="New Password" [(ngModel)]="NewPassword"></md-input>
+	<button (click)="ChangePassword()">Change Password</button>
 </md-card>

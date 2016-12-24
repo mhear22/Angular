@@ -8,10 +8,8 @@ import { Router } from '@angular/router';
 	templateUrl: './components/app.html',
 	providers: [ LoginService ]
 })
-export class AppComponent extends OnInit {
-	public constructor(private LoginService:LoginService, private router:Router) {
-		super();
-	}
+export class AppComponent implements OnInit {
+	public constructor(private LoginService:LoginService, private router:Router) { }
 	
 	public IsLoggedIn():boolean {
 		return this.LoginService.IsLoggedIn();

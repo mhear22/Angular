@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { LoginModel } from '../Models/User/LoginModel';
 import { CreateUserModel } from '../Models/User/CreateUserModel';
 import { UserModel } from '../Models/User/UserModel';
+import { PasswordChangeModel } from '../Models/User/PasswordChangeModel';
 import { LocalStorageService } from 'ng2-webstorage';
 
 @Injectable()
@@ -30,6 +31,10 @@ export class LoginService extends ServiceBase {
 			ServiceBase.ApiKey = result;
 		});
 		return query;
+	}
+	
+	public ChangePassword(Id: string, RequestModel: PasswordChangeModel) {
+		return this.Post("user/" + Id + "/password", null, RequestModel);
 	}
 	
 	public IsLoggedIn(): boolean {

@@ -7,5 +7,6 @@ import { UserModel } from '../../Models/User/UserModel';
 })
 export class User {
 	@Input() user: UserModel;
+	@Input() editable: boolean;
 	constructor() { }
 }
