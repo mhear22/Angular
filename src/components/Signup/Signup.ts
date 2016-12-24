@@ -17,7 +17,7 @@ export class Signup {
 	constructor(private login:LoginService, private router: Router) { }
 	public Submit() {
 		var model = new CreateUserModel();
-		model.Email = this.email;
+		model.EmailAddress = this.email;
 		model.Password = this.password;
 		model.Username = this.username;
 		this.login.CreateUser(model).subscribe(
