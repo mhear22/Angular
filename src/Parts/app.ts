@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app',
-	templateUrl: './components/app.html',
+	templateUrl: './parts/app.html',
 	providers: [ LoginService ]
 })
 export class AppComponent implements OnInit {

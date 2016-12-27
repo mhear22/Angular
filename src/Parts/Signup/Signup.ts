@@ -6,7 +6,7 @@ import { NgModel } from '@angular/forms';
 
 @Component({
 	selector: 'Signup',
-	templateUrl: './components/Signup/Signup.html',
+	templateUrl: './parts/Signup/Signup.html',
 	providers: [ LoginService ]
 })
 export class Signup {
