@@ -19,21 +19,6 @@ import { Settings } from './Parts/Settings/Settings';
 import { User } from './Parts/User/User';
 import { Ng2Webstorage } from 'ng2-webstorage';
 
-
-
-'./Parts/Login/Login'.
-'./Parts/Dashboard/Dashboard'.
-'./Parts/Header/Header'.
-'./Parts/Home/Home'.
-'./Parts/Signup/Signup'.
-'./Parts/Menu/Menu'.
-'./Parts/Profile/Profile'.
-'./Parts/Settings/Settings'.
-'./Parts/User/User'.
-
-
-
-
 @NgModule({
 	imports:		[ BrowserModule, Ng2Webstorage, HttpModule, FormsModule, RouterModule.forRoot(routes), MaterialModule.forRoot() ],
 	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup, Header, MenuBar, Profile, Settings, User ],
