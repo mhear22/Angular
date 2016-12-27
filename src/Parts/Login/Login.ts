@@ -5,7 +5,7 @@ import { LoginModel } from '../../Models/User/LoginModel';
 
 @Component({
 	selector: 'login',
-	templateUrl: './parts/Login/Login.html',
+	templateUrl: './Parts/Login/Login.html',
 	providers: [ LoginService ]
 })
 export class LoginForm {

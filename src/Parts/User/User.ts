@@ -3,7 +3,7 @@ import { UserModel } from '../../Models/User/UserModel';
 
 @Component({
 	selector: 'user',
-	templateUrl: './parts/User/User.html'
+	templateUrl: './Parts/User/User.html'
 })
 export class User {
 	@Input() user: UserModel;

@@ -4,7 +4,7 @@ import { LoginService } from '../../Services/LoginService';
 
 @Component({
 	selector: 'menu',
-	templateUrl: './parts/Menu/Menu.html',
+	templateUrl: './Parts/Menu/Menu.html',
 	providers: [ LoginService ]
 })
 export class MenuBar {

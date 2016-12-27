@@ -5,7 +5,7 @@ import { LoginService } from '../../Services/LoginService';
 
 @Component({
 	selector: 'header-bar',
-	templateUrl: './parts/Header/Header.html',
+	templateUrl: './Parts/Header/Header.html',
 	providers: [ LoginService ]
 })
 

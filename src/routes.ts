@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { LoginForm } from './parts/Login/Login';
-import { Dashboard } from './parts/Dashboard/Dashboard';
-import { Home } from './parts/Home/Home';
-import { Signup } from './parts/Signup/Signup';
-import { Profile } from './parts/Profile/Profile';
-import { Settings} from './parts/Settings/Settings';
+import { LoginForm } from './Parts/Login/Login';
+import { Dashboard } from './Parts/Dashboard/Dashboard';
+import { Home } from './Parts/Home/Home';
+import { Signup } from './Parts/Signup/Signup';
+import { Profile } from './Parts/Profile/Profile';
+import { Settings} from './Parts/Settings/Settings';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: 'login', pathMatch: 'full' },

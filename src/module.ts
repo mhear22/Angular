@@ -4,20 +4,35 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { LoginService } from './Services/LoginService';
-import { AppComponent }  from './parts/app';
-import { LoginForm } from './parts/Login/Login';
-import { Dashboard } from './parts/Dashboard/Dashboard';
-import { Header } from './parts/Header/Header';
-import { Home } from './parts/Home/Home';
-import { Signup } from './parts/Signup/Signup';
+import { AppComponent }  from './Parts/app';
+import { LoginForm } from './Parts/Login/Login';
+import { Dashboard } from './Parts/Dashboard/Dashboard';
+import { Header } from './Parts/Header/Header';
+import { Home } from './Parts/Home/Home';
+import { Signup } from './Parts/Signup/Signup';
 import { routes } from './routes';
 import { FormsModule } from "@angular/forms";
 import { MaterialModule } from "@angular/material";
-import { MenuBar } from './parts/Menu/Menu';
-import { Profile } from './parts/Profile/Profile';
-import { Settings } from './parts/Settings/Settings';
-import { User } from './parts/User/User';
+import { MenuBar } from './Parts/Menu/Menu';
+import { Profile } from './Parts/Profile/Profile';
+import { Settings } from './Parts/Settings/Settings';
+import { User } from './Parts/User/User';
 import { Ng2Webstorage } from 'ng2-webstorage';
+
+
+
+'./Parts/Login/Login'.
+'./Parts/Dashboard/Dashboard'.
+'./Parts/Header/Header'.
+'./Parts/Home/Home'.
+'./Parts/Signup/Signup'.
+'./Parts/Menu/Menu'.
+'./Parts/Profile/Profile'.
+'./Parts/Settings/Settings'.
+'./Parts/User/User'.
+
+
+
 
 @NgModule({
 	imports:		[ BrowserModule, Ng2Webstorage, HttpModule, FormsModule, RouterModule.forRoot(routes), MaterialModule.forRoot() ],

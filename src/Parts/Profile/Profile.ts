@@ -6,7 +6,7 @@ import { PasswordChangeModel } from '../../Models/User/PasswordChangeModel';
 
 @Component({
 	selector: 'Profile',
-	templateUrl: './parts/Profile/Profile.html',
+	templateUrl: './Parts/Profile/Profile.html',
 	providers: [ User ]
 })
 export class Profile {
