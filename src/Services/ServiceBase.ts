@@ -3,10 +3,12 @@ import { Http, Response, Headers } from '@angular/http';
 import { UrlChainer } from './UrlChainer';
 
 export class ServiceBase {
-	public static ApiUrl:string = "http://localhost:5000/";
+	public static ApiUrl:string;
 	public static ApiKey:string = "";
 	
-	constructor(protected http:Http) { }
+	constructor(protected http:Http) {
+		ServiceBase.ApiUrl = "http://" + window.location.hostname + ":5000/";
+	}
 	
 	private getHeaders(headers: Headers) {
 		headers.append("Content-Type","application/json");
