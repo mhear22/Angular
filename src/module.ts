@@ -18,12 +18,20 @@ import { Profile } from './Parts/Profile/Profile';
 import { Settings } from './Parts/Settings/Settings';
 import { User } from './Parts/User/User';
 import { Ng2Webstorage } from 'ng2-webstorage';
+import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 
 @NgModule({
-	imports:		[ BrowserModule, Ng2Webstorage, HttpModule, FormsModule, RouterModule.forRoot(routes), MaterialModule.forRoot() ],
+	imports: [ 
+		BrowserModule, 
+		Ng2Webstorage, 
+		HttpModule, 
+		FormsModule, 
+		RouterModule.forRoot(routes), 
+		MaterialModule.forRoot(), 
+		Angulartics2Module.forRoot([Angulartics2GoogleAnalytics])
+	],
 	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup, Header, MenuBar, Profile, Settings, User ],
 	providers: 		[{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 	bootstrap:		[ AppComponent ]
 })
 export class AppModule { }
- 

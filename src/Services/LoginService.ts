@@ -17,7 +17,6 @@ export class LoginService extends ServiceBase {
 		var key = this.local.retrieve("api_key");
 		if(key !== null)
 			ServiceBase.ApiKey = key;
-		
 	}
 	
 	public UpdateUser(Id: string, Model: UserModel) {
