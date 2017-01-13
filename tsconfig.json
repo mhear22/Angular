@@ -17,7 +17,7 @@
 	"compilerOptions": {
 		"experimentalDecorators": true,
 		"noImplicitAny": true,
-		"target": "es2015",
+		"target": "es6",
 		"watch": false,
 		"module": "commonjs",
 		"sourceMap": true,

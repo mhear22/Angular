@@ -5,7 +5,7 @@ var	gulp 		= require('gulp'),
 	source		= require('vinyl-source-stream'),
 	es 			= require('event-stream'),
 	webpack 	= require('webpack-stream'),
-	webpackcon	= require('./webpack.config.js')
+	webpackcon	= require('./webpack.config.release.js')
 ;
 ///Develop
 gulp.task('develop', ['inject:develop'],function () {
