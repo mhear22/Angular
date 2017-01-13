@@ -5,11 +5,11 @@ var	gulp 		= require('gulp'),
 	source		= require('vinyl-source-stream'),
 	es 			= require('event-stream'),
 	webpack 	= require('webpack-stream'),
-	webpackcon	= require('./webpack.config.release.js')
+	webpackcon	= require('./webpack.config.js')
+	webpackrel	= require('./webpack.config.release.js')
 ;
 ///Develop
-gulp.task('develop', ['inject:develop'],function () {
-})
+gulp.task('develop', ['inject:develop'],function () { })
 
 .task('clean:develop', function () {
 	return del('./dev/**/*');
@@ -64,4 +64,64 @@ gulp.task('develop', ['inject:develop'],function () {
 	return target
 		.pipe(inject(es.merge(source,bundle),{relative: true}))
 		.pipe(gulp.dest('./dev'));
+})
+
+/*****************************************************************************************************************************/
+/***********************************************RELEASE***********************************************************************/
+/*****************************************************************************************************************************/
+
+.task('release', ['inject:release'], function(){})
+
+.task('compile:release', ['clean:release'], function(){
+	return gulp.src(['./src/**/*.ts'])
+		.pipe(webpack(webpackrel))
+		.pipe(gulp.dest('dist'))
+})
+
+.task('move:release',['clean:release'], function () {
+	return gulp.src([
+		'./src/**/*.css', 
+		'./src/**/*.html'
+	])
+	.pipe(gulp.dest('dist'));
+})
+
+.task('vendorcss:release', ['clean:release'], function(){
+	gulp.src([
+		'./node_modules/font-awesome/fonts/**/*'
+	]).pipe(gulp.dest('dist/fonts'));
+	
+	return gulp.src([
+		'./node_modules/bootstrap/dist/css/bootstrap.min.css',
+		'./node_modules/font-awesome/css/font-awesome.min.css'
+	])
+	.pipe(concat('vendor.css'))
+	.pipe(gulp.dest('dist'));
+})
+
+.task('vendorjs:release',['clean:release'], function () {
+	return gulp.src([
+		'./node_modules/zone.js/dist/zone.js',
+		'./node_modules/reflect-metadata/Reflect.js',
+		'./node_modules/systemjs/dist/system.src.js'
+	])
+	.pipe(concat('vendor.js'))
+	.pipe(gulp.dest('dist'))
+})
+
+.task('inject:release', ['clean:release', 'vendorcss:release', 'vendorjs:release', 'move:release', 'compile:release'], function(){
+	var target = gulp.src('./dist/index.html');
+	var source = gulp.src([
+		'./dist/**/*.js',
+		'!./dist/main.js',
+		'./dist/**/*.css',
+		'!./dist/style.css'
+		], {read: false});
+	var bundle = gulp.src(['./dist/main.js', './dist/style.css']);
+	return target
+		.pipe(inject(es.merge(source,bundle),{relative: true}))
+		.pipe(gulp.dest('./dist'));
+})
+.task('clean:release',function() {
+	return del('./dist');
 })
