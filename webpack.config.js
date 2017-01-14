@@ -2,7 +2,8 @@ var webpack = require('webpack');
 
 module.exports = {
 	entry: {
-		main: './src/main.ts'
+		main: './src/main.ts',
+		vendor: './vendor.ts'
 	},
 	output: {
 		filename: '[name].js'
@@ -18,5 +19,8 @@ module.exports = {
 				loader: 'awesome-typescript-loader'
 			}
 		]
-	}
+	},
+	plugins: [
+		new webpack.optimize.CommonsChunkPlugin("vendor","vendor.js")
+	]
 }

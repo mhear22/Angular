@@ -46,9 +46,9 @@ gulp.task('develop', ['inject:develop'],function () { })
 	return gulp.src([
 		'./node_modules/zone.js/dist/zone.js',
 		'./node_modules/reflect-metadata/Reflect.js',
-		'./node_modules/systemjs/dist/system.src.js'
+		'./node_modules/systemjs/dist/system.src.js',
 	])
-	.pipe(concat('vendor.js'))
+	.pipe(concat('vendor2.js'))
 	.pipe(gulp.dest('dev'))
 })
 
@@ -56,11 +56,12 @@ gulp.task('develop', ['inject:develop'],function () { })
 	var target = gulp.src('./dev/index.html');
 	var source = gulp.src([
 		'./dev/**/*.js',
+		'!./dev/vendor.js',
 		'!./dev/main.js',
 		'./dev/**/*.css',
 		'!./dev/style.css'
 		], {read: false});
-	var bundle = gulp.src(['./dev/main.js', './dev/style.css']);
+	var bundle = gulp.src(['./dev/vendor.js','./dev/main.js', './dev/style.css']);
 	return target
 		.pipe(inject(es.merge(source,bundle),{relative: true}))
 		.pipe(gulp.dest('./dev'));
@@ -105,7 +106,7 @@ gulp.task('develop', ['inject:develop'],function () { })
 		'./node_modules/reflect-metadata/Reflect.js',
 		'./node_modules/systemjs/dist/system.src.js'
 	])
-	.pipe(concat('vendor.js'))
+	.pipe(concat('vendor2.js'))
 	.pipe(gulp.dest('dist'))
 })
 
@@ -113,11 +114,12 @@ gulp.task('develop', ['inject:develop'],function () { })
 	var target = gulp.src('./dist/index.html');
 	var source = gulp.src([
 		'./dist/**/*.js',
+		'!./dist/vendor.js',
 		'!./dist/main.js',
 		'./dist/**/*.css',
 		'!./dist/style.css'
 		], {read: false});
-	var bundle = gulp.src(['./dist/main.js', './dist/style.css']);
+	var bundle = gulp.src(['./dist/vendor.js','./dist/main.js', './dist/style.css']);
 	return target
 		.pipe(inject(es.merge(source,bundle),{relative: true}))
 		.pipe(gulp.dest('./dist'));
