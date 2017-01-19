@@ -11,3 +11,4 @@ import '@angular/core';
 import 'ng2-webstorage';
 import '@angular/router';
 import '@angular/forms';
+import 'hammerjs';
