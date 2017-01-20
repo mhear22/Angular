@@ -1,16 +1,22 @@
 <div>
+	<div class="header-container">
+		<div class="nav-icon-container" (click)="start.toggle()">
+			<div class="nav-icon" [ngClass]="{'open': start.opened}">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<header-bar class="col-md-11"></header-bar>
+	</div>
 	<md-sidenav-layout>
-		<md-sidenav #start mode="push" opened="false">
+		<md-sidenav #start mode="over" opened="false">
 			<menu></menu>
 		</md-sidenav>
-		<div class="header-container">
-			<div class="nav-icon-container">
-				<i class="fa fa-bars nav-icon" (click)="start.toggle()"></i>
-			</div>
-			<header-bar class="col-md-11"></header-bar>
-		</div>
 		<div class="col-md-8 col-md-offset-2">
 			<router-outlet></router-outlet>
 		</div>
 	</md-sidenav-layout>
+</div>
+<div class="cover-page">
 </div>
