@@ -9,9 +9,11 @@ import { LoginService } from '../../Services/LoginService';
 })
 export class MenuBar {
 	constructor(private login: LoginService, private router: Router) { }
+	
 	public IsLoggedIn():boolean {
 		return this.login.IsLoggedIn();
 	}
+	
 	public Logout() {
 		this.login.Logout();
 		this.router.navigate(['/home']);
