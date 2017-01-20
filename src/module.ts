@@ -16,7 +16,6 @@ import { MaterialModule } from "@angular/material";
 import { MenuBar } from './Parts/Menu/Menu';
 import { Profile } from './Parts/Profile/Profile';
 import { Settings } from './Parts/Settings/Settings';
-import { User } from './Parts/User/User';
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 
@@ -30,7 +29,7 @@ import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 		MaterialModule.forRoot(), 
 		Angulartics2Module.forRoot([Angulartics2GoogleAnalytics])
 	],
-	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup, Header, MenuBar, Profile, Settings, User ],
+	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup, Header, MenuBar, Profile, Settings ],
 	providers: 		[{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 	bootstrap:		[ AppComponent ]
 })

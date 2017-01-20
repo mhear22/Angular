@@ -7,7 +7,7 @@ import { Profile } from './Parts/Profile/Profile';
 import { Settings} from './Parts/Settings/Settings';
 
 export const routes: Routes = [
-	{ path: '', redirectTo: 'login', pathMatch: 'full' },
+	{ path: '', redirectTo: 'home', pathMatch: 'full' },
 	{ path: 'login', component: LoginForm },
 	{ path: 'home', component:  Home },
 	{ path: 'signup', component: Signup},

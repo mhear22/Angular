@@ -9,14 +9,4 @@ import { LoginService } from '../../Services/LoginService';
 	providers: [ LoginService ]
 })
 
-export class Header {
-	constructor(private router:Router, private loginService: LoginService) { }
-	public GoHome() {
-		if(this.loginService.IsLoggedIn()){
-			this.router.navigate(['/home']);
-		}
-		else {
-			this.router.navigate(['/']);
-		}
-	}
-}
+export class Header { }

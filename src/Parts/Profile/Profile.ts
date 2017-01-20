@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { User } from '../User/User';
 import { UserModel } from '../../Models/User/UserModel';
 import { LoginService } from '../../Services/LoginService';
 import { PasswordChangeModel } from '../../Models/User/PasswordChangeModel';
 
 @Component({
 	selector: 'Profile',
-	templateUrl: './Parts/Profile/Profile.html',
-	providers: [ User ]
+	templateUrl: './Parts/Profile/Profile.html'
 })
 export class Profile {
 	constructor(private UserService: LoginService) {
@@ -16,6 +14,7 @@ export class Profile {
 	
 	public NewPassword: string;
 	public OldPassword: string;
+	public CurrentUser: UserModel = new UserModel(); 
 	
 	public Refresh() {
 		this.UserService.GetCurrentUser().subscribe(result => {
@@ -38,6 +37,4 @@ export class Profile {
 			this.Refresh();
 		});
 	}
-	
-	CurrentUser: UserModel = new UserModel(); 
 }

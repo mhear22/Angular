@@ -1,10 +1,10 @@
 <div>
 	<md-sidenav-layout>
-		<md-sidenav #start mode="push" opened="false" [hidden]="!IsLoggedIn()">
+		<md-sidenav #start mode="push" opened="false">
 			<menu></menu>
 		</md-sidenav>
 		<div class="header-container">
-			<div class="nav-icon-container" [hidden]="!IsLoggedIn()">
+			<div class="nav-icon-container">
 				<i class="fa fa-bars nav-icon" (click)="start.toggle()"></i>
 			</div>
 			<header-bar class="col-md-11"></header-bar>

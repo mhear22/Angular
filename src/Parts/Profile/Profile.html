@@ -1,8 +1,9 @@
 <md-card>
-	<user [user]="CurrentUser"></user>
+	<md-input placeholder="Username" [(ngModel)]="currentUser.Username" type="text"></md-input>
+	<md-input placeholder="Email" [(ngModel)]="CurrentUser.EmailAddress" type="text"></md-input>
 	<button (click)="Update()">Update</button>
-	
 </md-card>
+
 <md-card>
 	<h3 class="title">Change Password</h3>
 	<md-input placeholder="Old Password" [(ngModel)]="OldPassword"></md-input>
