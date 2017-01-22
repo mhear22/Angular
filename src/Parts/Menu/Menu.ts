@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class MenuBar {
 	constructor(private login: LoginService, private router: Router) {
 		this.Refresh();
+		
 	}
 	
 	private IsLoggedIn: boolean = false; 
@@ -20,7 +21,10 @@ export class MenuBar {
 	}
 	
 	public Logout() {
-		this.login.Logout();
+		try{
+			this.login.Logout();
+		}
+		catch (ex) { }
 		this.router.navigate(['/home']);
 	}
 }
