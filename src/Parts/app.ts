@@ -18,15 +18,15 @@ export class AppComponent implements OnInit {
 	}
 	
 	public ngOnInit() {
-		if(!this.LoginService.IsLoggedIn()) {
-			setTimeout(() => {
-				this.router.navigate(['/login']);
-			}, 0);
-		}
-		else {
-			setTimeout(() => {
-				this.router.navigate(['/home']);
-			}, 0);
-		}
+		//if(!this.LoginService.IsLoggedIn()) {
+		//	setTimeout(() => {
+		//		this.router.navigate(['/login']);
+		//	}, 0);
+		//}
+		//else {
+		//	setTimeout(() => {
+		//		this.router.navigate(['/home']);
+		//	}, 0);
+		//}
 	}
 }

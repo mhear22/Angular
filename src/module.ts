@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { LoginService } from './Services/LoginService';
 import { AppComponent }  from './Parts/app';
 import { LoginForm } from './Parts/Login/Login';
 import { Dashboard } from './Parts/Dashboard/Dashboard';
@@ -30,7 +29,9 @@ import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 		Angulartics2Module.forRoot([Angulartics2GoogleAnalytics])
 	],
 	declarations: 	[ AppComponent, LoginForm, Dashboard, Home, Signup, Header, MenuBar, Profile, Settings ],
-	providers: 		[{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+	providers: 		[
+						{ provide: LocationStrategy, useClass: HashLocationStrategy }
+					],
 	bootstrap:		[ AppComponent ]
 })
 export class AppModule { }

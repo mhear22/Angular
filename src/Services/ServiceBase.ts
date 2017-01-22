@@ -7,7 +7,8 @@ export class ServiceBase {
 	public static ApiKey:string = "";
 	
 	constructor(protected http:Http) {
-		ServiceBase.ApiUrl = "http://" + window.location.hostname + ":5000/";
+		ServiceBase.ApiUrl = "http://mckayhear.es:5000/";
+		//ServiceBase.ApiUrl = "http://" + window.location.hostname + ":5000/";
 	}
 	
 	private getHeaders(headers: Headers) {

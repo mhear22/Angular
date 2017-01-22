@@ -1,8 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ContentService } from '../../Services/ContentService';
+
 @Component({
 	selector: 'home',
 	templateUrl: './Parts/Home/Home.html',
+	providers: [ ContentService ]
 })
-export class Home {
+export class Home implements OnInit {
+	constructor(protected contentService:ContentService) { }
 	
+	public ngOnInit() {
+		//this.contentService.GetContent();
+	}
 }
