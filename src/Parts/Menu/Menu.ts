@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../Services/LoginService';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'menu',
@@ -15,7 +16,7 @@ export class MenuBar {
 	private IsLoggedIn: boolean = false; 
 	
 	public Refresh():void {
-		this.IsLoggedIn = this.login.IsLoggedIn();
+		this.login.IsLoggedIn().subscribe(x=> this.IsLoggedIn = x);
 	}
 	
 	public Logout() {

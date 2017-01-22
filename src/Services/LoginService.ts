@@ -36,8 +36,17 @@ export class LoginService extends ServiceBase {
 		return this.Post("user/" + Id + "/password", null, RequestModel);
 	}
 	
-	public IsLoggedIn(): boolean {
-		return ServiceBase.ApiKey != "";
+	private stillLive:boolean = false;
+	
+	public IsLoggedIn(): Observable<boolean> {
+		if(this.stillLive)
+			return Observable.of(this.stillLive);
+		else
+			return this.GetCurrentUser().map(x=> {
+				var isLive = x.EmailAddress?true:false;
+				this.stillLive = isLive;
+				return isLive;
+			});
 	}
 	
 	public Logout() {
@@ -49,7 +58,7 @@ export class LoginService extends ServiceBase {
 		return query;
 	}
 	
-	public GetCurrentUser(): Observable<any> {
+	public GetCurrentUser(): Observable<UserModel> {
 		return this.Get("currentuser");
 	}
 	

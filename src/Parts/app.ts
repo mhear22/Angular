@@ -13,10 +13,6 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnInit {
 	public constructor(private LoginService:LoginService, private router:Router,angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) { }
 	
-	public IsLoggedIn():boolean {
-		return this.LoginService.IsLoggedIn();
-	}
-	
 	public ngOnInit() {
 		//if(!this.LoginService.IsLoggedIn()) {
 		//	setTimeout(() => {
