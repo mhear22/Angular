@@ -3,6 +3,7 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2';
 import { LoginService } from '../Services/LoginService';
 import { LoginForm } from './Login/Login';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app',

@@ -6,7 +6,7 @@
 		</h3>
 	</md-card>
 	
-	<md-card [hidden]="IsLoggedIn()" class="nav-item" routerLink="/profile">
+	<md-card *ngIf="IsLoggedIn" class="nav-item" routerLink="/profile">
 		<h3>
 			<i class="fa fa-user"></i>
 			Profile
@@ -20,14 +20,14 @@
 		</h3>
 	</md-card>
 
-	<md-card class="nav-item" (click)="Logout()">
+	<md-card *ngIf="IsLoggedIn" class="nav-item" (click)="Logout()">
 		<h3>
 			<i class="fa fa-sign-out"></i>
 			Sign out
 		</h3>
 	</md-card>
 	
-	<md-card class="nav-item" routerLink="/login">
+	<md-card *ngIf="!IsLoggedIn" class="nav-item" routerLink="/login">
 		<h3>
 			<i class="fa fa-sign-in"></i>
 			Sign in

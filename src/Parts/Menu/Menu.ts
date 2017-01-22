@@ -8,10 +8,14 @@ import { LoginService } from '../../Services/LoginService';
 	providers: [ LoginService ]
 })
 export class MenuBar {
-	constructor(private login: LoginService, private router: Router) { }
+	constructor(private login: LoginService, private router: Router) {
+		this.Refresh();
+	}
 	
-	public IsLoggedIn():boolean {
-		return this.login.IsLoggedIn();
+	private IsLoggedIn: boolean = false; 
+	
+	public Refresh():void {
+		this.IsLoggedIn = this.login.IsLoggedIn();
 	}
 	
 	public Logout() {

@@ -42,7 +42,7 @@ export class LoginService extends ServiceBase {
 	
 	public Logout() {
 		var query = this.Delete("sessions", { Token: ServiceBase.ApiKey });
-		query.subscribe(result=> {
+		query.subscribe(result => {
 			this.local.clear("api_key");
 			ServiceBase.ApiKey = "";
 		});
