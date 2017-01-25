@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../Services/LoginService';
+import { ServiceBase } from '../../Services/ServiceBase';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,7 +12,9 @@ import { Observable } from 'rxjs';
 export class MenuBar {
 	constructor(private login: LoginService, private router: Router) {
 		this.Refresh();
-		
+		ServiceBase.ApiKeyChange.subscribe(x=>{
+			this.IsLoggedIn = x;
+		});
 	}
 	
 	private IsLoggedIn: boolean = false; 

@@ -1,10 +1,23 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { UrlChainer } from './UrlChainer';
+import { Observer, Observable, Subject } from 'rxjs'; 
 
 export class ServiceBase {
 	public static ApiUrl:string;
-	public static ApiKey:string = "";
+	
+	private static _ApiKey:string = "";
+	public static set ApiKey(val:string){
+		ServiceBase._ApiKey = val;
+		if(val == "")
+			ServiceBase.ApiKeyChange.next(false);
+		else
+			ServiceBase.ApiKeyChange.next(true);
+	}
+	public static get ApiKey():string {
+		return ServiceBase._ApiKey;
+	}
+	public static ApiKeyChange: Subject<boolean> = new Subject<boolean>();
 	
 	constructor(protected http:Http) {
 		ServiceBase.ApiUrl = "http://mckayhear.es:5000/";
