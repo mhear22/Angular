@@ -1,15 +1,16 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 	entry: {
-		main: './src/main.ts',
+		main: ['./src/main.ts', './src/main.sass'],
 		vendor: './vendor.ts'
 	},
 	output: {
 		filename: '[name].js'
 	},
 	resolve: {
-		extensions: ['','.webpack.js','.web.js', '.ts', '.js']
+		extensions: ['','.webpack.js','.web.js', '.ts', '.js', '.sass']
 	},
 	module: {
 		loaders:[
@@ -29,10 +30,15 @@ module.exports = {
 				test: /\.js$/,
 				exclude: '/node_modules/',
 				loader: 'uglify'
+			},
+			{
+				test: /\.sass$/,
+				loader: ExtractTextPlugin.extract(["css-loader","sass-loader"])
 			}
 		]
 	},
 	plugins: [
+		new ExtractTextPlugin('s.css'),
 		new webpack.optimize.CommonsChunkPlugin("vendor","vendor.js")
 	]
 }
