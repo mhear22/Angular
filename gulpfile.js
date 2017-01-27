@@ -117,9 +117,9 @@ gulp.task('develop', ['inject:develop'],function () { })
 		'!./dist/vendor.js',
 		'!./dist/main.js',
 		'./dist/**/*.css',
-		'!./dist/style.css'
+		'!./dist/s.css'
 		], {read: false});
-	var bundle = gulp.src(['./dist/vendor.js','./dist/main.js', './dist/style.css']);
+	var bundle = gulp.src(['./dist/vendor.js','./dist/main.js', './dist/s.css']);
 	return target
 		.pipe(inject(es.merge(source,bundle),{relative: true}))
 		.pipe(gulp.dest('./dist'));

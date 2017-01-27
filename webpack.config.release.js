@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
 	entry: {
@@ -39,6 +40,9 @@ module.exports = {
 	},
 	plugins: [
 		new ExtractTextPlugin('s.css'),
-		new webpack.optimize.CommonsChunkPlugin("vendor","vendor.js")
+		new webpack.optimize.CommonsChunkPlugin("vendor","vendor.js"),
+		new OptimizeCssAssetsPlugin({
+			cssProcessorOptions: { discardComments: { removeAll:true } }
+		})
 	]
 }
