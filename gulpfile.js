@@ -23,8 +23,8 @@ gulp.task('develop', ['inject:develop'],function () { })
 
 .task('move:develop',['clean:develop'], function () {
 	return gulp.src([
-		'./src/**/*.css', 
-		'./src/**/*.html'
+		'./src/**/*.html',
+		'./src/web.config'
 	])
 	.pipe(gulp.dest('dev'));
 })
@@ -82,7 +82,8 @@ gulp.task('develop', ['inject:develop'],function () { })
 .task('move:release',['clean:release'], function () {
 	return gulp.src([
 		'./src/**/*.css', 
-		'./src/**/*.html'
+		'./src/**/*.html',
+		'./src/web.config'
 	])
 	.pipe(gulp.dest('dist'));
 })
