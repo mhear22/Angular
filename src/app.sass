@@ -1,0 +1,20 @@
+//More Stable use of MD colours
+$app-primary: #673AB7
+$app-primary-dark: #512DA8
+$app-primary-light: #D1C4E9
+$app-accent: #FF5722
+
+$app-text: #FFF
+$app-primary-text: #212121
+$app-secondary-text: #757575
+
+$app-warn: #f44336
+
+//Material Design Colours*/
+@import '~@angular/material/core/theming/all-theme'
+@include md-core
+$md-app-primary: md-palette($md-grey)
+$md-app-accent: md-palette($md-green, A200, A100, A400)
+$md-app-warn: md-palette($md-red)
+$app-theme: md-light-theme($md-app-primary, $md-app-accent, $md-app-warn)
+@include angular-material-theme($app-theme)

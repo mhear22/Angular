@@ -1,11 +1,7 @@
 <div>
 	<div class="header-container">
 		<div class="nav-icon-container" (click)="start.toggle()">
-			<div class="nav-icon" [ngClass]="{'open': start.opened}">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
+			<hamburger [open]="start.opened"></hamburger>
 		</div>
 		<header-bar class="col-md-11"></header-bar>
 	</div>
