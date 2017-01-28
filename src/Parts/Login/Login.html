@@ -1,12 +1,13 @@
-<form>
-	<md-card class="col-md-6 col-md-offset-3">
-		<form>
-			<md-input name="username" placeholder="Username" [(ngModel)]="username" type="text"></md-input>
-			<md-input name="password" placeholder="Password" [(ngModel)]="password" type="password"></md-input>
-			<md-input type="submit" (click)="Login()" style="display:none;" ></md-input>
-		</form>
+<md-card class="col-md-6 col-md-offset-3">
+	
+	<div *ngIf="!IsLoading">
+		<md-input name="username" placeholder="Username" [(ngModel)]="username" type="text"></md-input>
+		<md-input name="password" placeholder="Password" [(ngModel)]="password" type="password" (keyup.enter)="Login()" ></md-input>
 		<button [disableRipple]="true" (click)="Login()" md-button>Login</button>
 		<a routerLink="/signup">No Account?</a>
-		<!--<md-spinner mode="indeterminate" color="primary"></md-spinner>-->
-	</md-card>
-</form>
+	</div>
+	
+	<div *ngIf="IsLoading">
+		<md-spinner mode="indeterminate" color="primary"></md-spinner>
+	</div>
+</md-card>
