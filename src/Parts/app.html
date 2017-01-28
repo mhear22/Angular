@@ -1,10 +1,10 @@
-<div>
-	<div class="header-container">
-		<div class="nav-icon-container" (click)="start.toggle()">
-			<hamburger [open]="start.opened"></hamburger>
-		</div>
-		<header-bar class="col-md-11"></header-bar>
+<div class="header-container">
+	<div class="nav-icon-container" (click)="start.toggle()">
+		<hamburger [open]="start.opened"></hamburger>
 	</div>
+	<header-bar class="col-md-11"></header-bar>
+</div>
+<div class="sidenav">
 	<md-sidenav-layout>
 		<md-sidenav #start mode="over" opened="false">
 			<menu></menu>

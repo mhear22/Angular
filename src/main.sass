@@ -1,10 +1,15 @@
 @import './app'
 @import './Parts/HamburgerMenu/Hamburger'
 
-body
+body, html
 	background-color: $app-primary
 	color: $app-primary-text
 	display: block
+	height: 100%
+
+dashboard, home, login, profile, settings, signup, app
+	display: block
+	margin: 0
 
 input, md-input
 	width: 100%
@@ -24,6 +29,13 @@ md-card
 .nav-icon-container
 	float: left
 
+.sidenav
+	position: absolute
+	top: 60px
+	left: 0
+	right: 0
+	bottom: 0
+
 md-sidenav
 	background-color: $app-primary-light
 	width: 80%
@@ -42,6 +54,7 @@ header-bar
 	float: left
 
 menu
+	display: block
 	padding: 0px 15px 15px 15px
 
 @keyframes startAnim
