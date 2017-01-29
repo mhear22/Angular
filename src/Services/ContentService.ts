@@ -2,6 +2,7 @@ import { ServiceBase } from './ServiceBase';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Injector, Injectable  } from '@angular/core';
+import { ContentModel } from '../Models/ContentModel'
 
 @Injectable()
 export class ContentService extends ServiceBase {
@@ -9,7 +10,14 @@ export class ContentService extends ServiceBase {
 		super(http);
 	}
 	
-	public GetContent() :Observable<any> {
-		return this.Post("");
+	public GetContent() :Observable<ContentModel[]> {
+		var p = new Promise<ContentModel[]>((resolve, reject) => {
+			resolve([
+				{ Name: "1", Text: "" },
+				{ Name: "2 ", Text: "" }
+			]);
+		});
+		
+		return Observable.fromPromise(p);
 	}
 }
