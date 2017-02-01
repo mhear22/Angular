@@ -1,7 +1,13 @@
 <md-card>
-	<md-input placeholder="Username" [(ngModel)]="CurrentUser.Username" type="text"></md-input>
-	<md-input placeholder="Email" [(ngModel)]="CurrentUser.EmailAddress" type="text"></md-input>
-	<button (click)="Update()">Update</button>
+	<img md-card-image src="http://placehold.it/350x150" />
+	<md-card-title>
+		Profile
+	</md-card-title>
+	<md-card-content>
+		<md-input placeholder="Username" [(ngModel)]="CurrentUser.Username" type="text"></md-input>
+		<md-input placeholder="Email" [(ngModel)]="CurrentUser.EmailAddress" type="text"></md-input>
+		<button (click)="Update()">Update</button>
+	</md-card-content>
 </md-card>
 
 <md-card>
