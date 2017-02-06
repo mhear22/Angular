@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
+import { MdDialog } from '@angular/material';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppComponent }  from './Parts/app';
 import { LoginForm } from './Parts/Login/Login';
@@ -15,6 +16,7 @@ import { MaterialModule } from "@angular/material";
 import { MenuBar } from './Parts/Menu/Menu';
 import { Profile } from './Parts/Profile/Profile';
 import { Settings } from './Parts/Settings/Settings';
+import { UploadFileDialog } from './Parts/Dialog/Upload/Upload';
 import { Hamburger } from './Parts/HamburgerMenu/Hamburger';
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
@@ -39,10 +41,15 @@ import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 		MenuBar,
 		Profile,
 		Settings,
-		Hamburger
+		Hamburger,
+		UploadFileDialog
+	],
+	entryComponents: [
+		UploadFileDialog
 	],
 	providers: [
-		{ provide: LocationStrategy, useClass: HashLocationStrategy }
+		{ provide: LocationStrategy, useClass: HashLocationStrategy },
+		MdDialog
 	],
 	bootstrap: [ AppComponent ]
 })

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { MdDialog } from '@angular/material';
 import { UserModel } from '../../Models/User/UserModel';
 import { LoginService } from '../../Services/LoginService';
+import { UploadFileDialog } from '../Dialog/Upload/Upload';
 import { PasswordChangeModel } from '../../Models/User/PasswordChangeModel';
 
 @Component({
@@ -8,7 +10,7 @@ import { PasswordChangeModel } from '../../Models/User/PasswordChangeModel';
 	templateUrl: './Parts/Profile/Profile.html'
 })
 export class Profile {
-	constructor(private UserService: LoginService) {
+	constructor(private UserService: LoginService, private mdDialog:MdDialog) {
 		this.Refresh();
 	}
 	
@@ -21,6 +23,10 @@ export class Profile {
 			var data = <UserModel>result;
 			this.CurrentUser = data;
 		});
+	}
+	
+	public UploadImage() {
+		var model =  this.mdDialog.open(UploadFileDialog);
 	}
 	
 	public Update() {
