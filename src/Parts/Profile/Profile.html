@@ -1,8 +1,11 @@
 <md-card>
 	<md-card-content>
-		<div class="profile-container">
-			<img class="profile-image" src="http://placehold.it/200x200" />
-			<h2>Profile</h2>
+		<div class="profile-header">
+			<div class="profile-container">
+				<div class="profile-cover"></div>
+				<img class="profile-image" src="http://placehold.it/200x200" />
+				<h2 class="profile-header-text">Profile</h2>
+			</div>
 		</div>
 		<md-input placeholder="Username" [(ngModel)]="CurrentUser.Username" type="text"></md-input>
 		<md-input placeholder="Email" [(ngModel)]="CurrentUser.EmailAddress" type="text"></md-input>

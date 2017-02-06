@@ -2,13 +2,28 @@
 
 .profile-container
 	height: 100px
-	margin-bottom: 15px
-
+	width: 100px
+	position: relative
+	
+.profile-cover
+	height: 100px
+	width: 100px
+	position: absolute
+	top: 0
+	left: 0
+	&:hover
+		background-color: #FFF
+	
 .profile-image
 	border-radius: 50%
-	height: 100px
 	margin-right: 25px
-	width: 100px
 	float: left
-	&:hover
-		
+	height: 100%
+	width: 100%
+
+.profile-header
+	height: 100px
+	margin-bottom: 15px
+	
+.profile-header-text
+	float: right
