@@ -20,6 +20,7 @@ import { UploadFileDialog } from './Parts/Dialog/Upload/Upload';
 import { Hamburger } from './Parts/HamburgerMenu/Hamburger';
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
 	imports: [ 
@@ -42,7 +43,8 @@ import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 		Profile,
 		Settings,
 		Hamburger,
-		UploadFileDialog
+		UploadFileDialog,
+		FileSelectDirective
 	],
 	entryComponents: [
 		UploadFileDialog
