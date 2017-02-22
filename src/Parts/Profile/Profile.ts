@@ -27,6 +27,9 @@ export class Profile {
 	
 	public UploadImage() {
 		var model =  this.mdDialog.open(UploadFileDialog);
+		model.afterClosed().subscribe(x=>{
+			var z = x;
+		});
 	}
 	
 	public Update() {
