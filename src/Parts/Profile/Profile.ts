@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { UserModel } from '../../Models/User/UserModel';
 import { LoginService } from '../../Services/LoginService';
+import { DialogService } from '../../Services/DialogService';
 import { UploadFileDialog } from '../Dialog/Upload/Upload';
 import { PasswordChangeModel } from '../../Models/User/PasswordChangeModel';
 
@@ -10,7 +11,10 @@ import { PasswordChangeModel } from '../../Models/User/PasswordChangeModel';
 	templateUrl: './Parts/Profile/Profile.html'
 })
 export class Profile {
-	constructor(private UserService: LoginService, private mdDialog:MdDialog) {
+	constructor(
+		private UserService: LoginService, 
+		private viewContainerRef: ViewContainerRef,
+		private dialogService:DialogService) {
 		this.Refresh();
 	}
 	
@@ -26,9 +30,11 @@ export class Profile {
 	}
 	
 	public UploadImage() {
-		var model =  this.mdDialog.open(UploadFileDialog);
-		model.afterClosed().subscribe(x=>{
-			var z = x;
+		var model =  this.dialogService.SubmitFile(this.viewContainerRef)
+		model.subscribe(x=>{
+			if(x){
+				//console.log(x);
+			}
 		});
 	}
 	

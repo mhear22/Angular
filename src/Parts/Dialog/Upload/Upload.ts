@@ -10,14 +10,18 @@ import { Observable } from 'rxjs/Observable';
 	templateUrl: './Parts/Dialog/Upload/Upload.html'
 })
 export class UploadFileDialog {
-	public uploader:FileUploader;
-	public onComplete: Observable<ImageUploadResponse> = new Observable<ImageUploadResponse>();
-	constructor() {
+	private uploader:FileUploader;
+	private isLoading: boolean = false;
+	constructor(public diaRef: MdDialogRef<UploadFileDialog>) {
 		this.uploader = new FileUploader({url: ServiceBase.ApiUrl + "i/?api_key=" + ServiceBase.ApiKey, autoUpload: true});
+		this.uploader.onBeforeUploadItem = () =>{
+			this.isLoading = true;
+		} 
+		
 		this.uploader.onCompleteItem = (item, response:string, status:Number, header) => {
 			if(status == 200){
 				var obj = JSON.parse(response);
-				var x = obj as ImageUploadResponse;
+				this.diaRef.close(obj as ImageUploadResponse);
 			}
 		}
 	}

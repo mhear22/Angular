@@ -21,6 +21,7 @@ import { Hamburger } from './Parts/HamburgerMenu/Hamburger';
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 import { FileSelectDirective } from 'ng2-file-upload';
+import { DialogService } from './Services/DialogService';
 
 @NgModule({
 	imports: [ 
@@ -44,14 +45,15 @@ import { FileSelectDirective } from 'ng2-file-upload';
 		Settings,
 		Hamburger,
 		UploadFileDialog,
-		FileSelectDirective
+		FileSelectDirective,
 	],
 	entryComponents: [
 		UploadFileDialog
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
-		MdDialog
+		MdDialog,
+		DialogService
 	],
 	bootstrap: [ AppComponent ]
 })

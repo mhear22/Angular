@@ -1,8 +1,6 @@
 <div>
-	Upload File
+	<div *ngIf="isLoading">
+		<md-spinner></md-spinner>
+	</div>
 	<input type="file" ng2FileSelect  [uploader]="uploader" />
-	<!--
-		
-	-->
-	
 </div>
