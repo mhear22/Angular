@@ -1,7 +1,8 @@
 <md-card>
 	<md-card-content>
 		<div class="profile-container">
-			<img class="profile-image" (click)="UploadImage()" src="http://placehold.it/200x200" />
+			<img *ngIf="!ProfileImageUrl" class="profile-image" (click)="UploadImage()" src="http://placehold.it/200x200" />
+			<img *ngIf="ProfileImageUrl" class="profile-image" (click)="UploadImage()" [src]="ProfileImageUrl" />
 			<h2>Profile</h2>
 		</div>
 		<md-input placeholder="Username" [(ngModel)]="CurrentUser.Username" type="text"></md-input>

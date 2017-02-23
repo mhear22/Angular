@@ -22,6 +22,7 @@ import { Ng2Webstorage } from 'ng2-webstorage';
 import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { DialogService } from './Services/DialogService';
+import { ImageService } from './Services/ImageService';
 
 @NgModule({
 	imports: [ 
@@ -53,7 +54,8 @@ import { DialogService } from './Services/DialogService';
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		MdDialog,
-		DialogService
+		DialogService,
+		ImageService
 	],
 	bootstrap: [ AppComponent ]
 })
