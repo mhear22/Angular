@@ -14,7 +14,7 @@ module.exports = {
 		extensions: ['','.webpack.js','.web.js', '.ts', '.js', '.sass']
 	},
 	module: {
-		loaders:[
+		rules:[
 			{ 
 				test: /\.ts$/,
 				loader: 'awesome-typescript-loader'
@@ -40,7 +40,7 @@ module.exports = {
 	},
 	plugins: [
 		new ExtractTextPlugin('s.css'),
-		new webpack.optimize.CommonsChunkPlugin("vendor","vendor.js"),
+		new webpack.optimize.CommonsChunkPlugin({name:"vendor", filename:"vendor.js"}),
 		new OptimizeCssAssetsPlugin({
 			cssProcessorOptions: { discardComments: { removeAll:true } }
 		})

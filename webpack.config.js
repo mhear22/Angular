@@ -11,22 +11,22 @@ module.exports = {
 	},
 	devtool: 'source-map',
 	resolve: {
-		extensions: ['','.webpack.js','.web.js', '.ts', '.js', '.sass']
+		extensions: ['.webpack.js','.web.js', '.ts', '.js', '.sass']
 	},
 	module: {
-		loaders:[
+		rules:[
 			{ 
 				test: /\.ts$/,
-				loader: 'awesome-typescript-loader'
+				use: 'awesome-typescript-loader'
 			},
 			{
 				test: /\.sass$/,
-				loader: ExtractTextPlugin.extract(["css-loader","sass-loader"])
+				use: ExtractTextPlugin.extract(['css-loader','sass-loader'])
 			}
 		]
 	},
 	plugins: [
 		new ExtractTextPlugin('style.css'),
-		new webpack.optimize.CommonsChunkPlugin("vendor","vendor.js")
+		new webpack.optimize.CommonsChunkPlugin({name:"vendor", filename:"vendor.js"})
 	]
 }
