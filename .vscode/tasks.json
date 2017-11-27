@@ -1,19 +1,14 @@
 {
-	// See https://go.microsoft.com/fwlink/?LinkId=733558
-	// for the documentation about the tasks.json format
-	"version": "0.1.0",
-	"command": "gulp",
-	"isShellCommand": true,
-	"showOutput": "always",
-	"echoCommand": true,
 	"tasks": [
 		{
-			"taskName": "develop",
-			"args": [],
-			"isBuildCommand": true,
-			"isWatching": false,
-			"showOutput": "always",
-			"problemMatcher":[ ] 
+			"label": "build",
+			"type": "shell",
+			"command": "webpack",
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		}
 	]
 }

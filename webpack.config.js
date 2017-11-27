@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const clearWebpackPlugin = require("clean-webpack-plugin");
 const htmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = {
 	entry: {
@@ -9,11 +10,21 @@ module.exports = {
 		vendor: './vendor.ts'
 	},
 	output: {
-		filename: './dist/[name].js'
+		filename: './dist/[name].js',
+		path: path.resolve(__dirname, 'dist')
 	},
 	devtool: 'source-map',
 	resolve: {
 		extensions: ['.webpack.js','.web.js', '.ts', '.js', '.sass']
+	},
+	stats: {
+		children: false,
+		chunks: false,
+		hash: false,
+		assets:false,
+		version: false,
+		modules: false,
+		warnings: false,
 	},
 	module: {
 		rules:[
@@ -26,6 +37,7 @@ module.exports = {
 				use: ExtractTextPlugin.extract(['css-loader','sass-loader'])
 			},
 			{
+				test: /\.html$/,
 				use:'html-loader'
 			}
 		]
@@ -35,7 +47,9 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin({name:"vendor", filename:"vendor.js"}),
 		new clearWebpackPlugin([
 			'dist'
-		]),
+		], {
+			verbose:false
+		}),
 		new htmlWebpackPlugin("./src/index.html")
 	]
 }
