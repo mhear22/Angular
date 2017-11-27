@@ -13,9 +13,9 @@ module.exports = {
 		filename: './[name].js',
 		path: path.resolve(__dirname, 'dist')
 	},
-	devtool: 'source-map',
+	devtool: 'eval',
 	resolve: {
-		extensions: ['.webpack.js','.web.js', '.ts', '.js', '.sass']
+		extensions: ['.ts', '.js', '.sass']
 	},
 	stats: {
 		children: false,
@@ -25,15 +25,24 @@ module.exports = {
 	},
 	module: {
 		rules:[
-			{ 
+			//adds 6s
+			{
 				test: /\.ts$/,
+				//include:path.resolve("/src"),
+				//use:[ 
+				//	'thread-loader',
+				//	'awesome-typescript-loader'
+				//]
+				
 				use: [{
 					loader:'awesome-typescript-loader',
 					options: {
-						silent:true
+						silent:true,
+						useCache:true
 					}
 				}]
 			},
+			//adds 2s
 			{
 				test: /\.sass$/,
 				use: ExtractTextPlugin.extract(['css-loader','sass-loader'])
@@ -47,9 +56,7 @@ module.exports = {
 	plugins: [
 		new ExtractTextPlugin('style.css'),
 		new webpack.optimize.CommonsChunkPlugin({name:"vendor", filename:"vendor.js"}),
-		new clearWebpackPlugin([
-			'dist'
-		], {
+		new clearWebpackPlugin(['dist'], {
 			verbose:false
 		}),
 		new htmlWebpackPlugin({
