@@ -7,10 +7,10 @@ const path = require("path");
 module.exports = {
 	entry: {
 		main: ['./src/main.ts', './src/main.sass'],
-		vendor: './vendor.ts'
+		vendor: './src/vendor.ts'
 	},
 	output: {
-		filename: './dist/[name].js',
+		filename: './[name].js',
 		path: path.resolve(__dirname, 'dist')
 	},
 	devtool: 'source-map',
@@ -20,17 +20,19 @@ module.exports = {
 	stats: {
 		children: false,
 		chunks: false,
-		hash: false,
-		assets:false,
-		version: false,
 		modules: false,
-		warnings: false,
+		warnings: false
 	},
 	module: {
 		rules:[
 			{ 
 				test: /\.ts$/,
-				use: 'awesome-typescript-loader'
+				use: [{
+					loader:'awesome-typescript-loader',
+					options: {
+						silent:true
+					}
+				}]
 			},
 			{
 				test: /\.sass$/,
@@ -50,6 +52,8 @@ module.exports = {
 		], {
 			verbose:false
 		}),
-		new htmlWebpackPlugin("./src/index.html")
+		new htmlWebpackPlugin({
+			template:"./src/index.html"
+		})
 	]
 }

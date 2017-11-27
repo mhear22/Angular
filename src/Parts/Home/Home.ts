@@ -3,7 +3,7 @@ import { ContentService } from '../../Services/ContentService';
 
 @Component({
 	selector: 'home',
-	templateUrl: './Parts/Home/Home.html',
+	template: require('./Home.html'),
 	providers: [ ContentService ]
 })
 export class Home implements OnInit {

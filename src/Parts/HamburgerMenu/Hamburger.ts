@@ -2,7 +2,7 @@ import { Component, Inject, Input } from '@angular/core';
 
 @Component({
 	selector: 'hamburger',
-	templateUrl: './Parts/HamburgerMenu/Hamburger.html'
+	template: require('./Hamburger.html')
 })
 export class Hamburger {
 	@Input() open: boolean;

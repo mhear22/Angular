@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'menu',
-	templateUrl: './Parts/Menu/Menu.html',
+	template: require('./Menu.html'),
 	providers: [ LoginService ]
 })
 export class MenuBar {
