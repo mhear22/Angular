@@ -23,40 +23,43 @@ module.exports = {
 		modules: false,
 		warnings: false
 	},
+	target: 'node',
 	module: {
-		rules:[
+		rules: [
 			{
 				test: /\.ts$/,
 				use: [{
-					loader:'awesome-typescript-loader',
+					loader: 'awesome-typescript-loader',
 					options: {
-						silent:true,
-						useCache:true
+						silent: true,
+						useCache: true
 					}
 				}]
 			},
 			{
-				test:/\.(svg|eot|woff2?|ttf)/,
+				test: /\.(svg|eot|woff2?|ttf)/,
 				use: 'file-loader'
 			},
 			{
 				test: /\.sass$/,
-				use: ExtractTextPlugin.extract(['css-loader','sass-loader'])
+				use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
 			},
 			{
 				test: /\.html$/,
-				use:'html-loader'
+				use: 'html-loader'
 			}
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin('style.css'),
-		new webpack.optimize.CommonsChunkPlugin({name:"vendor", filename:"vendor.js"}),
+		new ExtractTextPlugin('[name].css', {
+			publicPath: '../'
+		}),
+		new webpack.optimize.CommonsChunkPlugin({ name: "vendor", filename: "vendor.js" }),
 		new clearWebpackPlugin(['dist'], {
-			verbose:false
+			verbose: false
 		}),
 		new htmlWebpackPlugin({
-			template:"./src/index.html"
+			template: "./src/index.html"
 		})
 	]
 }
