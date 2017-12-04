@@ -25,15 +25,8 @@ module.exports = {
 	},
 	module: {
 		rules:[
-			//adds 6s
 			{
 				test: /\.ts$/,
-				//include:path.resolve("/src"),
-				//use:[ 
-				//	'thread-loader',
-				//	'awesome-typescript-loader'
-				//]
-				
 				use: [{
 					loader:'awesome-typescript-loader',
 					options: {
@@ -42,7 +35,10 @@ module.exports = {
 					}
 				}]
 			},
-			//adds 2s
+			{
+				test:/\.(svg|eot|woff2?|ttf)/,
+				use: 'file-loader'
+			},
 			{
 				test: /\.sass$/,
 				use: ExtractTextPlugin.extract(['css-loader','sass-loader'])
