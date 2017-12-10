@@ -23,7 +23,6 @@ module.exports = {
 		modules: false,
 		warnings: false
 	},
-	target: 'node',
 	module: {
 		rules: [
 			{
@@ -51,9 +50,7 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin('[name].css', {
-			publicPath: '../'
-		}),
+		new ExtractTextPlugin('style.css'),
 		new webpack.optimize.CommonsChunkPlugin({ name: "vendor", filename: "vendor.js" }),
 		new clearWebpackPlugin(['dist'], {
 			verbose: false
