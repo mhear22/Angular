@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
 	selector:'upload-file-dialog',
-	templateUrl: './Parts/Dialog/Upload/Upload.html'
+	template: require('./Upload.html')
 })
 export class UploadFileDialog {
 	private uploader:FileUploader;

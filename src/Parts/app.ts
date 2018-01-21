@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app',
-	templateUrl: './Parts/app.html',
+	template: require('./app.html'),
 	providers: [ LoginService ]
 })
 export class AppComponent implements OnInit {
