@@ -1,6 +1,7 @@
 import { ServiceBase } from './ServiceBase';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { from } from 'rxjs';
 import { Injector, Injectable  } from '@angular/core';
 import { ContentModel } from '../Models/ContentModel'
 
@@ -18,6 +19,8 @@ export class ContentService extends ServiceBase {
 			]);
 		});
 		
-		return Observable.fromPromise(p);
+		
+		
+		return from(p);
 	}
 }

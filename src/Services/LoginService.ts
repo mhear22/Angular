@@ -2,6 +2,7 @@ import { Injector, Injectable  } from '@angular/core';
 import { Http } from '@angular/http';
 import { ServiceBase } from './ServiceBase';
 import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs';
 import { LoginModel } from '../Models/User/LoginModel';
 import { CreateUserModel } from '../Models/User/CreateUserModel';
 import { UserModel } from '../Models/User/UserModel';
@@ -40,7 +41,7 @@ export class LoginService extends ServiceBase {
 	
 	public IsLoggedIn(): Observable<boolean> {
 		if(this.stillLive)
-			return Observable.of(this.stillLive);
+			return of(this.stillLive);
 		else
 			return this.GetCurrentUser().map(x=> {
 				var isLive = x.EmailAddress?true:false;

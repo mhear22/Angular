@@ -1,27 +1,19 @@
-const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const clearWebpackPlugin = require("clean-webpack-plugin");
-const htmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const htmlWebpackPlugin = require("html-webpack-plugin");
+const clearWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
 	entry: {
+		vendor: './src/vendor.ts',
 		main: ['./src/main.ts', './src/main.sass'],
-		vendor: './src/vendor.ts'
 	},
 	output: {
 		filename: './[name].js',
 		path: path.resolve(__dirname, 'dist')
 	},
-	devtool: 'eval',
+	devtool: 'source-map',
 	resolve: {
 		extensions: ['.ts', '.js', '.sass']
-	},
-	stats: {
-		children: false,
-		chunks: false,
-		modules: false,
-		warnings: false
 	},
 	module: {
 		rules: [
@@ -40,18 +32,49 @@ module.exports = {
 				use: 'file-loader'
 			},
 			{
-				test: /\.sass$/,
-				use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
-			},
-			{
 				test: /\.html$/,
 				use: 'html-loader'
+			},
+			{
+				test: /\.s?css$/,
+				use: ['style-loader', 'css-loader', 'sass-loader']
 			}
 		]
 	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				commons: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendor',
+					chunks: 'all'
+				}
+			}
+		}
+	},
+	mode: 'development',
+	stats: {
+		children: false,
+		chunks: false,
+		modules: false,
+		warnings: false,
+		hash: false,
+		
+		assets: false,
+		colors: true,
+		version: false,
+		timings: false,
+		chunkModules: false
+	},
+	devServer: {
+		stats: {
+			modules:false,
+			warnings:false,
+			children:false,
+			assets:false
+		}
+	},
 	plugins: [
-		new ExtractTextPlugin('style.css'),
-		new webpack.optimize.CommonsChunkPlugin({ name: "vendor", filename: "vendor.js" }),
 		new clearWebpackPlugin(['dist'], {
 			verbose: false
 		}),

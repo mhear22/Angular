@@ -5,9 +5,10 @@
 		"**/.svn": true,
 		"**/.hg": true,
 		"**/.DS_Store": true,
-		"node_modules/**/*":true,
-		"dev/**/*":true,
-		"dist/**/*":true,
-		"typings/**/*":true
+		"node_modules/":true,
+		"dev/":true,
+		"dist/":true,
+		"typings/":true,
+		".awcache":true
 	}
 }
