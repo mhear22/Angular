@@ -7,9 +7,8 @@ import { LoginModel } from '../Models/User/LoginModel';
 import { CreateUserModel } from '../Models/User/CreateUserModel';
 import { UserModel } from '../Models/User/UserModel';
 import { PasswordChangeModel } from '../Models/User/PasswordChangeModel';
-import { LocalStorageService } from 'ng2-webstorage';
+import { LocalStorageService } from 'ngx-webstorage';
 
-@Injectable()
 export class LoginService extends ServiceBase {
 	
 	constructor(protected http:Http, private local:LocalStorageService) {

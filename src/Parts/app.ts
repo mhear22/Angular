@@ -7,10 +7,10 @@ import { Subscription } from 'rxjs';
 @Component({
 	selector: 'app',
 	template: require('./app.html'),
-	providers: [ LoginService ]
+	//providers: [ LoginService ]
 })
 export class AppComponent implements OnInit {
-	public constructor(private LoginService:LoginService, private router:Router) { }
+	public constructor() { }
 	
 	public ngOnInit() {
 		//if(!this.LoginService.IsLoggedIn()) {

@@ -1,62 +1,36 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
-import { NgModule } from '@angular/core';
-import { MatDialog, MatDialogModule } from '@angular/material';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { AppComponent }  from './Parts/app';
-import { LoginForm } from './Parts/Login/Login';
-import { Dashboard } from './Parts/Dashboard/Dashboard';
-import { Header } from './Parts/Header/Header';
-import { Home } from './Parts/Home/Home';
-import { Signup } from './Parts/Signup/Signup';
-import { routes } from './routes';
+import { NgModule } from "@angular/core";
+import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
-import { MenuBar } from './Parts/Menu/Menu';
-import { Profile } from './Parts/Profile/Profile';
-import { Settings } from './Parts/Settings/Settings';
-import { UploadFileDialog } from './Parts/Dialog/Upload/Upload';
-import { Hamburger } from './Parts/HamburgerMenu/Hamburger';
-import { Ng2Webstorage } from 'ng2-webstorage';
-import { Angulartics2Module } from 'angulartics2';
-import { FileSelectDirective } from 'ng2-file-upload';
-import { DialogService } from './Services/DialogService';
-import { ImageService } from './Services/ImageService';
+import { RouterModule } from "@angular/router";
+import { routes } from "./routes";
+import { BrowserModule } from '@angular/platform-browser';
+import { MatDialogModule } from "@angular/material/dialog";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppComponent } from "./Parts/app";
+import { LoginService } from "./Services/LoginService";
+import { Ng2Webstorage } from "ngx-webstorage";
+import { HttpClientModule } from "@angular/common/http";
+
 
 @NgModule({
-	imports: [ 
-		BrowserModule, 
-		//Ng2Webstorage, 
-		HttpModule, 
-		FormsModule, 
-		RouterModule.forRoot(routes),
-		//MatDialogModule,
-		
-		//Angulartics2Module.forRoot([])
-	],
 	declarations: [
 		AppComponent,
-		LoginForm,
-		Dashboard,
-		Home,
-		Signup,
-		Header,
-		MenuBar,
-		Profile,
-		Settings,
-		Hamburger,
-		UploadFileDialog,
-		FileSelectDirective,
 	],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		FormsModule,
+		RouterModule.forRoot(routes),
+		BrowserAnimationsModule,
+		MatDialogModule,
+		Ng2Webstorage
+	],
+	bootstrap: [AppComponent],
 	entryComponents: [
-		UploadFileDialog
+		AppComponent,
 	],
 	providers: [
-		{ provide: LocationStrategy, useClass: HashLocationStrategy },
-		MatDialog,
-		DialogService,
-		ImageService
+		//LoginService
 	],
-	bootstrap: [ AppComponent ]
 })
 export class AppModule { }
