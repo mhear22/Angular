@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { UserModel } from '../../Models/User/UserModel';
 import { LoginService } from '../../Services/LoginService';
 import { DialogService } from '../../Services/DialogService';

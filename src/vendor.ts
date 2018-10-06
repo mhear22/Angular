@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import '@angular/platform-browser-dynamic';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
