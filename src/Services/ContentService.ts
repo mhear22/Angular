@@ -1,8 +1,8 @@
 import { ServiceBase } from './ServiceBase';
 import { Http } from '@angular/http';
 import { from, Observable } from 'rxjs';
-import { Injector, Injectable  } from '@angular/core';
-import { ContentModel } from '../Models/ContentModel'
+import { Injectable } from '@angular/core';
+import { ContentModel } from '../models/ContentModel'
 
 @Injectable()
 export class ContentService extends ServiceBase {

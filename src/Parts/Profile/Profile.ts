@@ -1,10 +1,8 @@
 import { Component, ViewContainerRef } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import { UserModel } from '../../Models/User/UserModel';
 import { LoginService } from '../../Services/LoginService';
 import { DialogService } from '../../Services/DialogService';
 import { ImageService } from '../../Services/ImageService';
-import { UploadFileDialog } from '../Dialog/Upload/Upload';
 import { PasswordChangeModel } from '../../Models/User/PasswordChangeModel';
 
 @Component({

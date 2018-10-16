@@ -1,6 +1,6 @@
-import { Injector, Injectable, ViewContainerRef } from '@angular/core';
+import { Injectable, ViewContainerRef } from '@angular/core';
 import { Http } from '@angular/http';
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ServiceBase } from './ServiceBase';
 import { UploadFileDialog } from '../Parts/Dialog/Upload/Upload';
 import { ImageUploadResponse } from '../Models/ImageUploadResponse';

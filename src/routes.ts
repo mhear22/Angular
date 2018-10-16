@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { Home } from './parts/Home/Home';
-import { Settings } from './parts/Settings/Settings';
-import { Profile } from './parts/Profile/Profile';
-import { Signup } from './parts/Signup/Signup';
-import { LoginForm } from './parts/Login/Login';
+import { Home } from './Parts/Home/Home';
+import { Settings } from './Parts/Settings/Settings';
+import { Profile } from './Parts/Profile/Profile';
+import { Signup } from './Parts/Signup/Signup';
+import { LoginForm } from './Parts/Login/Login';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: 'home', pathMatch: 'full' },
