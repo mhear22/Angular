@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'Settings',
-	template: require('./Settings.html')
+	templateUrl: './Settings.html'
 })
 export class Settings {
 	constructor() { }

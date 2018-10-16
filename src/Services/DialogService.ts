@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { ServiceBase } from './ServiceBase';
 import { UploadFileDialog } from '../Parts/Dialog/Upload/Upload';
 import { ImageUploadResponse } from '../Models/ImageUploadResponse';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 
 @Injectable()

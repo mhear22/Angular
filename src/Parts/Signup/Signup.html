@@ -1,9 +1,9 @@
 <form>
-	<md-card class="col-md-6 col-md-offset-3">
-		<md-input type="text" [(ngModel)]="username" name="username" placeholder="Username"></md-input>
-		<md-input type="text" [(ngModel)]="email" name="email" placeholder="Email"></md-input>
-		<md-input type="password" [(ngModel)]="password" name="pass" placeholder="Password" ></md-input>
-		<md-input type="submit" (click)="Submit()" style="display:none;" ></md-input>
-		<button [disableRipple]="true" (click)="Submit()" name="submit" md-button>Sign up</button>
-	</md-card>
+	<mat-card class="col-md-6 col-md-offset-3">
+		<input matInput type="text" [(ngModel)]="username" name="username" placeholder="Username"/>
+		<input matInput type="text" [(ngModel)]="email" name="email" placeholder="Email"/>
+		<input matInput type="password" [(ngModel)]="password" name="pass" placeholder="Password" />
+		<input matInput type="submit" (click)="Submit()" style="display:none;" />
+		<button (click)="Submit()" name="submit" matButton>Sign up</button>
+	</mat-card>
 </form>

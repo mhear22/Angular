@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'dashboard',
-	template: require('./Dashboard.html'),
+	templateUrl: './Dashboard.html',
 })
 
 export class Dashboard implements OnInit, OnDestroy {

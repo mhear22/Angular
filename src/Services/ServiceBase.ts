@@ -1,7 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { UrlChainer } from './UrlChainer';
-import { Observer, Observable, Subject } from 'rxjs'; 
+import { Observer, Observable, Subject } from 'rxjs';
+import 'rxjs/add/operator/map';
 
 export class ServiceBase {
 	public static ApiUrl:string;

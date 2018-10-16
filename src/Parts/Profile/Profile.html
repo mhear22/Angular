@@ -1,19 +1,19 @@
-<md-card>
-	<md-card-content>
+<mat-card>
+	<mat-card-content>
 		<div class="profile-container">
 			<img *ngIf="!ProfileImageUrl" class="profile-image" (click)="UploadImage()" src="http://placehold.it/200x200" />
 			<img *ngIf="ProfileImageUrl" class="profile-image" (click)="UploadImage()" [src]="ProfileImageUrl" />
 			<h2>Profile</h2>
 		</div>
-		<md-input placeholder="Username" [(ngModel)]="CurrentUser.Username" type="text"></md-input>
-		<md-input placeholder="Email" [(ngModel)]="CurrentUser.EmailAddress" type="text"></md-input>
+		<input matInput placeholder="Username" [(ngModel)]="CurrentUser.Username" type="text"/>
+		<input matInput placeholder="Email" [(ngModel)]="CurrentUser.EmailAddress" type="text"/>
 		<button (click)="Update()">Update</button>
-	</md-card-content>
-</md-card>
+	</mat-card-content>
+</mat-card>
 
-<md-card>
+<mat-card>
 	<h3 class="title">Change Password</h3>
-	<md-input placeholder="Old Password" [(ngModel)]="OldPassword"></md-input>
-	<md-input placeholder="New Password" [(ngModel)]="NewPassword"></md-input>
+	<input matInput placeholder="Old Password" [(ngModel)]="OldPassword"/>
+	<input matInput placeholder="New Password" [(ngModel)]="NewPassword"/>
 	<button (click)="ChangePassword()">Change Password</button>
-</md-card>
+</mat-card>

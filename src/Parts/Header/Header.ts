@@ -5,7 +5,7 @@ import { LoginService } from '../../Services/LoginService';
 
 @Component({
 	selector: 'header-bar',
-	template: require('./Header.html'),
+	templateUrl: './Header.html',
 	providers: [ LoginService ]
 })
 

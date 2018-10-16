@@ -1,36 +1,36 @@
 <div>
-	<md-card class="nav-item" routerLink="/home">
+	<mat-card class="nav-item" routerLink="/home">
 		<h3>
 			<i class="fa fa-home"></i>
 			Home
 		</h3>
-	</md-card>
+	</mat-card>
 	
-	<md-card *ngIf="IsLoggedIn" class="nav-item" routerLink="/profile">
+	<mat-card *ngIf="IsLoggedIn" class="nav-item" routerLink="/profile">
 		<h3>
 			<i class="fa fa-user"></i>
 			Profile
 		</h3>
-	</md-card>
+	</mat-card>
 
-	<md-card class="nav-item" routerLink="/settings">
+	<mat-card class="nav-item" routerLink="/settings">
 		<h3>
 			<i class="fa fa-cog"></i>
 			Settings
 		</h3>
-	</md-card>
+	</mat-card>
 
-	<md-card *ngIf="IsLoggedIn" class="nav-item" (click)="Logout()">
+	<mat-card *ngIf="IsLoggedIn" class="nav-item" (click)="Logout()">
 		<h3>
 			<i class="fa fa-sign-out"></i>
 			Sign out
 		</h3>
-	</md-card>
+	</mat-card>
 	
-	<md-card *ngIf="!IsLoggedIn" class="nav-item" routerLink="/login">
+	<mat-card *ngIf="!IsLoggedIn" class="nav-item" routerLink="/login">
 		<h3>
 			<i class="fa fa-sign-in"></i>
 			Sign in
 		</h3>
-	</md-card>
+	</mat-card>
 </div>

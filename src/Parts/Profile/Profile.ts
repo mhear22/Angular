@@ -9,7 +9,7 @@ import { PasswordChangeModel } from '../../Models/User/PasswordChangeModel';
 
 @Component({
 	selector: 'Profile',
-	template: require('./Profile.html')
+	templateUrl: './Profile.html'
 })
 export class Profile {
 	constructor(

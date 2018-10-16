@@ -1,26 +1,29 @@
-@import 'vendor.sass';
-@import 'app.sass';
-@import 'Parts/HamburgerMenu/Hamburger.sass';
-@import 'Parts/Profile/Profile.sass';
-@import 'Parts/Dialog/Upload/Upload.sass';
+@import './app';
+@import './parts/HamburgerMenu/Hamburger';
+@import './parts/Profile/Profile';
+@import './parts/Dialog/Upload/Upload';
+
+* {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 body, html {
 	background-color: $app-primary;
 	color: $app-primary-text;
 	display: block;
-	height: 100%;
+	margin: 0;
 }
 
-dashboard, home, login, profile, settings, signup, app, upload-file-dialog {
+dashboard, home, login, profile, settings, signup, app-root, upload-file-dialog {
 	display: block;
 	margin: 0;
 }
 
-input, md-input {
+input, mat-input {
 	width: 100%;
 }
 	
-md-spinner {
+mat-spinner {
 	position: relative;
 	right: -50%;
 	transform: translateX(-50px);
@@ -31,7 +34,7 @@ button {
 	background: transparent;
 }
 
-md-card {
+mat-card {
 	margin-top: 15px;
 }
 
@@ -53,14 +56,18 @@ md-card {
 	bottom: 0;
 }
 
-md-sidenav {
+mat-sidenav {
 	background-color: $app-primary-light;
 	width: 80%;
 	max-width: 400px;
 	overflow: hidden;
 }
-.md-sidenav-content {
+
+.mat-sidenav-content {
 	background-color: $app-primary;
+}
+mat-sidenav-container {
+	height: 100%;
 }
 
 .header-container {

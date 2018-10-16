@@ -1,13 +1,13 @@
-<md-card class="col-md-6 col-md-offset-3">
+<mat-card class="col-md-6 col-md-offset-3">
 	
 	<div *ngIf="!IsLoading">
-		<md-input name="username" placeholder="Username" [(ngModel)]="username" type="text"></md-input>
-		<md-input name="password" placeholder="Password" [(ngModel)]="password" type="password" (keyup.enter)="Login()" ></md-input>
-		<button [disableRipple]="true" (click)="Login()" md-button>Login</button>
+		<input matInput name="username" placeholder="Username" [(ngModel)]="username" type="text" />
+		<input matInput name="password" placeholder="Password" [(ngModel)]="password" type="password" (keyup.enter)="Login()" />
+		<button (click)="Login()" matButton>Login</button>
 		<a routerLink="/signup">No Account?</a>
 	</div>
 	
 	<div *ngIf="IsLoading">
-		<md-spinner mode="indeterminate" color="primary"></md-spinner>
+		<mat-spinner mode="indeterminate" color="primary"></mat-spinner>
 	</div>
-</md-card>
+</mat-card>
