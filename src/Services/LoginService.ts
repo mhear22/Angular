@@ -1,19 +1,17 @@
-import { Injector, Injectable  } from '@angular/core';
+import { Injector, Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { ServiceBase } from './ServiceBase';
-import { Observable } from 'rxjs/Observable';
+import { of, Observable } from 'rxjs';
 import { LoginModel } from '../Models/User/LoginModel';
 import { CreateUserModel } from '../Models/User/CreateUserModel';
 import { UserModel } from '../Models/User/UserModel';
 import { PasswordChangeModel } from '../Models/User/PasswordChangeModel';
-import { LocalStorageService } from 'ng2-webstorage';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Injectable()
 export class LoginService extends ServiceBase {
-	
 	constructor(protected http:Http, private local:LocalStorageService) {
 		super(http);
-		
 		var key = this.local.retrieve("api_key");
 		if(key !== null)
 			ServiceBase.ApiKey = key;
@@ -40,13 +38,14 @@ export class LoginService extends ServiceBase {
 	
 	public IsLoggedIn(): Observable<boolean> {
 		if(this.stillLive)
-			return Observable.of(this.stillLive);
+			return of(this.stillLive);
 		else
-			return this.GetCurrentUser().map(x=> {
-				var isLive = x.EmailAddress?true:false;
-				this.stillLive = isLive;
-				return isLive;
-			});
+			return this.GetCurrentUser() as any
+			//.map(x=> {
+			//	var isLive = x.EmailAddress?true:false;
+			//	this.stillLive = isLive;
+			//	return isLive;
+			//});
 	}
 	
 	public Logout() {

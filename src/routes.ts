@@ -1,16 +1,15 @@
 import { Routes } from '@angular/router';
-import { LoginForm } from './Parts/Login/Login';
-import { Dashboard } from './Parts/Dashboard/Dashboard';
-import { Home } from './Parts/Home/Home';
-import { Signup } from './Parts/Signup/Signup';
-import { Profile } from './Parts/Profile/Profile';
-import { Settings} from './Parts/Settings/Settings';
+import { Home } from './parts/Home/Home';
+import { Settings } from './parts/Settings/Settings';
+import { Profile } from './parts/Profile/Profile';
+import { Signup } from './parts/Signup/Signup';
+import { LoginForm } from './parts/Login/Login';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: 'home', pathMatch: 'full' },
 	{ path: 'login', component: LoginForm },
 	{ path: 'home', component:  Home },
-	{ path: 'signup', component: Signup},
+	{ path: 'signup', component: Signup },
 	{ path: 'profile', component: Profile },
 	{ path: 'settings', component: Settings }
 ]
