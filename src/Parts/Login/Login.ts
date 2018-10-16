@@ -11,7 +11,7 @@ import { LoginModel } from '../../Models/User/LoginModel';
 export class LoginForm {
 	username:string = "";
 	password:string = "";
-	private IsLoading:boolean = false;
+	IsLoading:boolean = false;
 	constructor(private _loginService: LoginService, private router: Router) { }
 	
 	public Login() {

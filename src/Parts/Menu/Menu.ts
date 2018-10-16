@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'menu',
-	templateUrl: './Menu.html',
-	providers: [ LoginService ]
+	templateUrl: './Menu.html'
 })
 export class MenuBar {
 	constructor(private login: LoginService, private router: Router) {
@@ -17,7 +16,7 @@ export class MenuBar {
 		});
 	}
 	
-	private IsLoggedIn: boolean = false; 
+	IsLoggedIn: boolean = false; 
 	
 	public Refresh():void {
 		this.login.IsLoggedIn().subscribe(x=> this.IsLoggedIn = x);

@@ -9,8 +9,8 @@ import { ImageUploadResponse } from '../../../Models/ImageUploadResponse';
 	templateUrl: './Upload.html'
 })
 export class UploadFileDialog {
-	private uploader:FileUploader;
-	private isLoading: boolean = false;
+	uploader:FileUploader;
+	isLoading: boolean = false;
 	constructor(public diaRef: MatDialogRef<UploadFileDialog>) {
 		this.uploader = new FileUploader({url: ServiceBase.ApiUrl + "i/?api_key=" + ServiceBase.ApiKey, autoUpload: true});
 		this.uploader.onBeforeUploadItem = () =>{
