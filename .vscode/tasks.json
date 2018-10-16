@@ -3,23 +3,19 @@
 		{
 			"label": "build",
 			"type": "shell",
-			"command": "webpack",
-			"problemMatcher": [],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
+			"command":"ng build",
+			"problemMatcher":[]
 		},
 		{
 			"label": "release",
 			"type": "shell",
-			"command": "webpack ./webpack.config.release.js",
+			"command":"ng build --prod",
 			"problemMatcher":[]
 		},
 		{
 			"label": "dev:serve",
 			"type": "shell",
-			"command":"webpack-dev-server",
+			"command":"ng serve",
 			"problemMatcher":[]
 		}
 	]

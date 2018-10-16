@@ -6,7 +6,7 @@ import { ContentService } from 'src/Services/ContentService';
 import { DialogService } from 'src/Services/DialogService';
 import { ImageService } from 'src/Services/ImageService';
 import { LoginService } from 'src/Services/LoginService';
-import { MatDialogModule, MatCardModule, MatInputModule, MatSpinner, MatProgressSpinnerModule, MatSidenavModule } from '@angular/material';
+import { MatDialogModule, MatCardModule, MatInputModule, MatProgressSpinnerModule, MatSidenavModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { Ng2Webstorage } from "ngx-webstorage";
@@ -22,10 +22,10 @@ import { Profile } from 'src/Parts/Profile/Profile';
 import { Settings } from 'src/Parts/Settings/Settings';
 import { Hamburger } from 'src/Parts/HamburgerMenu/Hamburger';
 import { UploadFileDialog } from 'src/Parts/Dialog/Upload/Upload';
-import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TestService } from 'src/Services/TestService';
+import { TestService } from '../Services/TestService';
 
 @NgModule({
 	declarations: [
@@ -40,7 +40,6 @@ import { TestService } from 'src/Services/TestService';
 		Settings,
 		Hamburger,
 		UploadFileDialog,
-		FileSelectDirective,
 	],
 	imports: [
 		BrowserModule,
@@ -51,7 +50,7 @@ import { TestService } from 'src/Services/TestService';
 		BrowserAnimationsModule,
 		Ng2Webstorage,
 		RouterModule.forRoot(routes),
-		
+		FileUploadModule,
 		MatCardModule,
 		MatInputModule,
 		MatProgressSpinnerModule,

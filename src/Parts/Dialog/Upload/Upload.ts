@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { FileUploader, FileSelectDirective } from 'ng2-file-upload';
+import { MatDialogRef } from '@angular/material';
+import { FileUploader } from 'ng2-file-upload';
 import { ServiceBase } from '../../../Services/ServiceBase';
 import { ImageUploadResponse } from '../../../Models/ImageUploadResponse';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
 	selector:'upload-file-dialog',
