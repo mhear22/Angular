@@ -14,7 +14,7 @@ body, html {
 	margin: 0;
 }
 
-dashboard, home, login, profile, settings, signup, app-root, upload-file-dialog {
+dashboard, home, login, profile, settings, Signup, app-root, upload-file-dialog {
 	display: block;
 	margin: 0;
 }
@@ -56,8 +56,8 @@ mat-card {
 	bottom: 0;
 }
 
-mat-sidenav {
-	background-color: $app-primary-light;
+.mat-sidenav {
+	background-color: $app-primary;
 	width: 80%;
 	max-width: 400px;
 	overflow: hidden;
