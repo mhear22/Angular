@@ -26,7 +26,10 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TestService } from '../Services/TestService';
-import { Client, API_BASE_URL } from 'src/Services/Api/Api';
+import * as Api from 'src/Services/Api/Api';
+
+
+var keys = Object.keys(Api).filter(x=> { return (x.includes("Client")); }).map(x=> { return Api[x]; });
 
 @NgModule({
 	declarations: [
@@ -64,9 +67,8 @@ import { Client, API_BASE_URL } from 'src/Services/Api/Api';
 		ImageService,
 		LoginService,
 		TestService,
-		Client,
-		{ provide:API_BASE_URL, useValue:"http://localhost:5000" }
-	],
+		{ provide:Api.API_BASE_URL, useValue:"http://localhost:5000" }
+	].concat(keys),
 	bootstrap: [AppComponent],
 })
 export class AppModule { }
