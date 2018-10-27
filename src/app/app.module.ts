@@ -27,6 +27,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TestService } from '../Services/TestService';
 import * as Api from 'src/Services/Api/Api';
+import { AddCar } from 'src/Parts/AddCar/AddCar';
 
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Client")); }).map(x=> { return Api[x]; });
@@ -44,6 +45,7 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Client")); }).map(x
 		Settings,
 		Hamburger,
 		UploadFileDialog,
+		AddCar
 	],
 	imports: [
 		BrowserModule,
