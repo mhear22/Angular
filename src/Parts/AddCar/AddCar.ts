@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { VinClient, CarModel } from "src/Services/Api/Api";
+import { VinService, CarModel } from "src/Services/Api/Api";
 
 @Component({
 	selector:'add-car',
@@ -8,7 +8,7 @@ import { VinClient, CarModel } from "src/Services/Api/Api";
 export class AddCar {
 	public vin:string;
 	public Car:CarModel;
-	constructor(private vinService:VinClient) {
+	constructor(private vinService:VinService) {
 		
 	}
 	

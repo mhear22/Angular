@@ -4,7 +4,7 @@
 			<input matInput type="text" [(ngModel)]="vin" name="vin" placeholder="Vin" />
 			<mat-hint *ngIf="Car">
 				<span><b>Country:</b>{{Car.countryOfOrigin.name}}</span>
-				<span><b>Manufacturer:</b>{{Car.manufacturer.name}}</span>
+				<span><b>Make:</b>{{Car.manufacturer.name}}</span>
 			</mat-hint>
 		</mat-form-field>
 		<button mat-button type="submit">Submit</button>

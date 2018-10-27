@@ -14,7 +14,7 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 @Injectable()
-export class CurrentUserClient {
+export class CurrentUserService {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -77,7 +77,7 @@ export class CurrentUserClient {
 }
 
 @Injectable()
-export class ImageClient {
+export class ImageService {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -304,7 +304,7 @@ export class ImageClient {
 }
 
 @Injectable()
-export class SessionsClient {
+export class SessionsService {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -422,7 +422,7 @@ export class SessionsClient {
 }
 
 @Injectable()
-export class TestClient {
+export class TestService {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -528,7 +528,7 @@ export class TestClient {
 }
 
 @Injectable()
-export class UsersClient {
+export class UsersService {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -764,7 +764,7 @@ export class UsersClient {
 }
 
 @Injectable()
-export class VinClient {
+export class VinService {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;

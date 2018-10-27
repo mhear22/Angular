@@ -30,7 +30,7 @@ import * as Api from 'src/Services/Api/Api';
 import { AddCar } from 'src/Parts/AddCar/AddCar';
 
 
-var keys = Object.keys(Api).filter(x=> { return (x.includes("Client")); }).map(x=> { return Api[x]; });
+var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
 @NgModule({
 	declarations: [
