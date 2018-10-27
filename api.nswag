@@ -9,7 +9,7 @@
   },
   "codeGenerators": {
     "swaggerToTypeScriptClient": {
-      "className": "{controller}Client",
+      "className": "{controller}Service",
       "moduleName": "",
       "namespace": "",
       "typeScriptVersion": 2.7,
@@ -36,7 +36,7 @@
       "useTransformOptionsMethod": false,
       "useTransformResultMethod": false,
       "generateDtoTypes": true,
-      "operationGenerationMode": "SingleClientFromOperationId",
+      "operationGenerationMode": "MultipleClientsFromOperationId",
       "markOptionalProperties": true,
       "generateCloneMethod": false,
       "typeStyle": "Class",
