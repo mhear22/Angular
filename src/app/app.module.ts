@@ -26,6 +26,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TestService } from '../Services/TestService';
+import { Client, API_BASE_URL } from 'src/Services/Api/Api';
 
 @NgModule({
 	declarations: [
@@ -54,7 +55,7 @@ import { TestService } from '../Services/TestService';
 		MatCardModule,
 		MatInputModule,
 		MatProgressSpinnerModule,
-		MatSidenavModule
+		MatSidenavModule,
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -62,7 +63,9 @@ import { TestService } from '../Services/TestService';
 		DialogService,
 		ImageService,
 		LoginService,
-		TestService
+		TestService,
+		Client,
+		{ provide:API_BASE_URL, useValue:"http://localhost:5000" }
 	],
 	bootstrap: [AppComponent],
 })
