@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../Services/LoginService';
-import { LoginModel } from '../../Models/User/LoginModel';
 
 @Component({
 	selector: 'login',
@@ -16,10 +15,10 @@ export class LoginForm {
 	
 	public Login() {
 		this.IsLoading = true;
-		var model = new LoginModel();
-		model.Username = this.username;
-		model.Password = this.password;
-		this._loginService.Login(model).subscribe(result => {
+		this._loginService.Login({
+			Password: this.password,
+			Username: this.username
+		}).subscribe(result => {
 			this.IsLoading = false;
 			this.router.navigate(['/home']);
 		}, error => {

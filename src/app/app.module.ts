@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppComponent } from './app.component';
-import { ContentService } from 'src/Services/ContentService';
 import { DialogService } from 'src/Services/DialogService';
 import { ImageService } from 'src/Services/ImageService';
 import { LoginService } from 'src/Services/LoginService';
@@ -25,9 +24,9 @@ import { UploadFileDialog } from 'src/Parts/Dialog/Upload/Upload';
 import { FileUploadModule } from 'ng2-file-upload';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TestService } from '../Services/TestService';
 import * as Api from 'src/Services/Api/Api';
 import { AddCar } from 'src/Parts/AddCar/AddCar';
+import { ApiInterceptor } from 'src/Services/ApiInterceptor';
 
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
@@ -64,12 +63,11 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy},
-		ContentService,
 		DialogService,
 		ImageService,
 		LoginService,
-		TestService,
-		{ provide:Api.API_BASE_URL, useValue:"http://localhost:5000" }
+		{ provide:Api.API_BASE_URL, useValue:"http://localhost:5000" },
+		{ provide:HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi:true}
 	].concat(keys),
 	bootstrap: [AppComponent],
 })

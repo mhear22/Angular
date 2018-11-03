@@ -3,20 +3,26 @@
 		{
 			"label": "build",
 			"type": "shell",
-			"command":"ng build",
-			"problemMatcher":[]
+			"command": "ng build",
+			"problemMatcher": []
 		},
 		{
 			"label": "release",
 			"type": "shell",
-			"command":"ng build --prod",
-			"problemMatcher":[]
+			"command": "ng build --prod",
+			"problemMatcher": []
 		},
 		{
 			"label": "dev:serve",
 			"type": "shell",
-			"command":"ng serve",
-			"problemMatcher":[]
+			"command": "ng serve",
+			"problemMatcher": []
+		},
+		{
+			"label": "genServices",
+			"type": "shell",
+			"command": "nswag run ./api.nswag",
+			"problemMatcher": []
 		}
 	]
 }

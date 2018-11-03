@@ -1,12 +1,29 @@
 <mat-card>
 	<form (ngSubmit)="save()">
 		<mat-form-field>
-			<input matInput type="text" [(ngModel)]="vin" name="vin" placeholder="Vin" />
+			<input matInput required
+				type="text"
+				(keyup)="checkVin($event)"
+				[(ngModel)]="vin"
+				name="vin"
+				placeholder="Vin"
+				[ngModelOptions]="{standalone:true}"/>
+			
 			<mat-hint *ngIf="Car">
-				<span><b>Country:</b>{{Car.countryOfOrigin.name}}</span>
-				<span><b>Make:</b>{{Car.manufacturer.name}}</span>
+				<span><b>Country:</b>{{Car.CountryOfOrigin.Name}}</span>
+				<span><b>Make:</b>{{Car.Manufacturer.Name}}</span>
 			</mat-hint>
 		</mat-form-field>
+		
+		<mat-form-field>
+			<input matInput required 
+				type="text"
+				[(ngModel)]="nickname"
+				placeholder="Car Nickname"
+				[ngModelOptions]="{standalone:true}" />
+		</mat-form-field>
+		
+		
 		<button mat-button type="submit">Submit</button>
 	</form>
 </mat-card>

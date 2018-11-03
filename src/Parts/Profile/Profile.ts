@@ -3,7 +3,6 @@ import { UserModel } from '../../Models/User/UserModel';
 import { LoginService } from '../../Services/LoginService';
 import { DialogService } from '../../Services/DialogService';
 import { ImageService } from '../../Services/ImageService';
-import { PasswordChangeModel } from '../../Models/User/PasswordChangeModel';
 
 @Component({
 	selector: 'Profile',
@@ -51,10 +50,10 @@ export class Profile {
 	}
 	
 	public ChangePassword() {
-		var model = new PasswordChangeModel();
-		model.NewPassword = this.NewPassword;
-		model.OldPassword = this.OldPassword;
-		this.UserService.ChangePassword(this.CurrentUser.Id, model).subscribe(x=>{
+		this.UserService.ChangePassword(this.CurrentUser.Id, {
+			NewPassword: this.NewPassword,
+			OldPassword: this.OldPassword
+		}).subscribe(x=>{
 			this.Refresh();
 		});
 	}

@@ -2,15 +2,20 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { ServiceBase } from './ServiceBase';
 import { of, Observable } from 'rxjs';
-import { LoginModel } from '../Models/User/LoginModel';
 import { CreateUserModel } from '../Models/User/CreateUserModel';
 import { UserModel } from '../Models/User/UserModel';
-import { PasswordChangeModel } from '../Models/User/PasswordChangeModel';
 import { LocalStorageService } from 'ngx-webstorage';
+import { SessionsService, LoginModel, UsersService, ChangePasswordModel, CurrentUserService } from './Api/Api';
 
 @Injectable()
 export class LoginService extends ServiceBase {
-	constructor(protected http:Http, private local:LocalStorageService) {
+	constructor(
+		protected http:Http,
+		private local:LocalStorageService,
+		private sessionsService:SessionsService,
+		private userService:UsersService,
+		private currentUserService:CurrentUserService
+	) {
 		super(http);
 		var key = this.local.retrieve("api_key");
 		if(key !== null)
@@ -18,11 +23,11 @@ export class LoginService extends ServiceBase {
 	}
 	
 	public UpdateUser(Id: string, Model: UserModel) {
-		return this.Put("users/" + Id, null, Model);
+		return this.userService.updateUser(Id, Model);
 	}
 	
 	public Login(model: LoginModel): Observable<string> {
-		var query = this.Post("sessions",null,model);
+		var query = this.sessionsService.login(model);
 		query.subscribe(result => {
 			this.local.store("api_key", result);
 			ServiceBase.ApiKey = result;
@@ -30,42 +35,32 @@ export class LoginService extends ServiceBase {
 		return query;
 	}
 	
-	public ChangePassword(Id: string, RequestModel: PasswordChangeModel) {
-		return this.Post("user/" + Id + "/password", null, RequestModel);
+	public ChangePassword(Id: string, RequestModel: ChangePasswordModel) {
+		return this.userService.changePassword(Id, RequestModel);
 	}
 	
 	private stillLive:boolean = false;
 	
 	public IsLoggedIn(): Observable<boolean> {
-		if(this.stillLive)
-			return of(this.stillLive);
-		else
-			return this.GetCurrentUser() as any
-			//.map(x=> {
-			//	var isLive = x.EmailAddress?true:false;
-			//	this.stillLive = isLive;
-			//	return isLive;
-			//});
+		return ServiceBase.ApiKeyChange;
 	}
 	
 	public Logout() {
-		var query = this.Delete("sessions", { Token: ServiceBase.ApiKey });
-		query.subscribe(result => {
+		this.sessionsService.logout(ServiceBase.ApiKey).subscribe(result => {
 			this.local.clear("api_key");
 			ServiceBase.ApiKey = "";
 		});
-		return query;
 	}
 	
-	public GetCurrentUser(): Observable<UserModel> {
-		return this.Get("currentuser");
+	public GetCurrentUser() {
+		return this.currentUserService.getCurrentUser();
 	}
 	
-	public GetUser(NameOrId:string):Observable<any> {
-		return this.Get("users/" + NameOrId);
+	public GetUser(NameOrId:string) {
+		return this.userService.getUser(NameOrId);
 	}
 	
 	public CreateUser(model:CreateUserModel) {
-		return this.Post("users",null,model);
+		return this.userService.createUser(model);
 	}
 }

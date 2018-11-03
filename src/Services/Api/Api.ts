@@ -14,6 +14,176 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 @Injectable()
+export class CarService {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    /**
+     * @param model (optional) 
+     * @return Success
+     */
+    createCar(model: CarCreateModel | null | undefined): Observable<string> {
+        let url_ = this.baseUrl + "/car";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateCar(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateCar(<any>response_);
+                } catch (e) {
+                    return <Observable<string>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<string>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processCreateCar(response: HttpResponseBase): Observable<string> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <string>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<string>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getCar(id: string): Observable<string> {
+        let url_ = this.baseUrl + "/car/{Id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{Id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetCar(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetCar(<any>response_);
+                } catch (e) {
+                    return <Observable<string>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<string>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetCar(response: HttpResponseBase): Observable<string> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <string>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<string>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    deleteOwnedCar(id: string): Observable<void> {
+        let url_ = this.baseUrl + "/car/{Id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{Id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteOwnedCar(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteOwnedCar(<any>response_);
+                } catch (e) {
+                    return <Observable<void>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<void>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processDeleteOwnedCar(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 201) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return _observableOf<void>(<any>null);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<void>(<any>null);
+    }
+}
+
+@Injectable()
 export class CurrentUserService {
     private http: HttpClient;
     private baseUrl: string;
@@ -63,8 +233,7 @@ export class CurrentUserService {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 ? UserModel.fromJS(resultData200) : new UserModel();
+            result200 = _responseText === "" ? null : <UserModel>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -358,8 +527,7 @@ export class SessionsService {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            result200 = _responseText === "" ? null : <string>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -371,13 +539,13 @@ export class SessionsService {
     }
 
     /**
-     * @param id (optional) 
+     * @param token (optional) 
      * @return Success
      */
-    logout(id: string | null | undefined): Observable<void> {
+    logout(token: string | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/sessions?";
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+        if (token !== undefined)
+            url_ += "Token=" + encodeURIComponent("" + token) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -582,8 +750,7 @@ export class UsersService {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 ? UserModel.fromJS(resultData200) : new UserModel();
+            result200 = _responseText === "" ? null : <UserModel>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -636,8 +803,7 @@ export class UsersService {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 ? UserModel.fromJS(resultData200) : new UserModel();
+            result200 = _responseText === "" ? null : <UserModel>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -695,8 +861,7 @@ export class UsersService {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 ? UserModel.fromJS(resultData200) : new UserModel();
+            result200 = _responseText === "" ? null : <UserModel>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -816,8 +981,7 @@ export class VinService {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 ? CarModel.fromJS(resultData200) : new CarModel();
+            result200 = _responseText === "" ? null : <CarModel>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -829,316 +993,52 @@ export class VinService {
     }
 }
 
-export class UserModel implements IUserModel {
-    id?: string | undefined;
-    username?: string | undefined;
-    emailAddress?: string | undefined;
-    imageId?: string | undefined;
-
-    constructor(data?: IUserModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.id = data["Id"];
-            this.username = data["Username"];
-            this.emailAddress = data["EmailAddress"];
-            this.imageId = data["ImageId"];
-        }
-    }
-
-    static fromJS(data: any): UserModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new UserModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["Id"] = this.id;
-        data["Username"] = this.username;
-        data["EmailAddress"] = this.emailAddress;
-        data["ImageId"] = this.imageId;
-        return data; 
-    }
+export interface CarCreateModel {
+    Vin?: string | undefined;
+    Nickname?: string | undefined;
 }
 
-export interface IUserModel {
-    id?: string | undefined;
-    username?: string | undefined;
-    emailAddress?: string | undefined;
-    imageId?: string | undefined;
+export interface UserModel {
+    Id?: string | undefined;
+    Username?: string | undefined;
+    EmailAddress?: string | undefined;
+    ImageId?: string | undefined;
 }
 
-export class LoginModel implements ILoginModel {
-    username?: string | undefined;
-    password?: string | undefined;
-
-    constructor(data?: ILoginModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.username = data["Username"];
-            this.password = data["Password"];
-        }
-    }
-
-    static fromJS(data: any): LoginModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new LoginModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["Username"] = this.username;
-        data["Password"] = this.password;
-        return data; 
-    }
+export interface LoginModel {
+    Username?: string | undefined;
+    Password?: string | undefined;
 }
 
-export interface ILoginModel {
-    username?: string | undefined;
-    password?: string | undefined;
+export interface CreateUserModel {
+    Password?: string | undefined;
+    Id?: string | undefined;
+    Username?: string | undefined;
+    EmailAddress?: string | undefined;
+    ImageId?: string | undefined;
 }
 
-export class CreateUserModel implements ICreateUserModel {
-    password?: string | undefined;
-    id?: string | undefined;
-    username?: string | undefined;
-    emailAddress?: string | undefined;
-    imageId?: string | undefined;
-
-    constructor(data?: ICreateUserModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.password = data["Password"];
-            this.id = data["Id"];
-            this.username = data["Username"];
-            this.emailAddress = data["EmailAddress"];
-            this.imageId = data["ImageId"];
-        }
-    }
-
-    static fromJS(data: any): CreateUserModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new CreateUserModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["Password"] = this.password;
-        data["Id"] = this.id;
-        data["Username"] = this.username;
-        data["EmailAddress"] = this.emailAddress;
-        data["ImageId"] = this.imageId;
-        return data; 
-    }
+export interface ChangePasswordModel {
+    NewPassword?: string | undefined;
+    OldPassword?: string | undefined;
 }
 
-export interface ICreateUserModel {
-    password?: string | undefined;
-    id?: string | undefined;
-    username?: string | undefined;
-    emailAddress?: string | undefined;
-    imageId?: string | undefined;
+export interface CarModel {
+    ManufacturerId?: string | undefined;
+    Manufacturer?: ManufacturerModel | undefined;
+    Vin?: string | undefined;
+    CountryId?: string | undefined;
+    CountryOfOrigin?: CountryModel | undefined;
 }
 
-export class ChangePasswordModel implements IChangePasswordModel {
-    newPassword?: string | undefined;
-    oldPassword?: string | undefined;
-
-    constructor(data?: IChangePasswordModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.newPassword = data["NewPassword"];
-            this.oldPassword = data["OldPassword"];
-        }
-    }
-
-    static fromJS(data: any): ChangePasswordModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new ChangePasswordModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["NewPassword"] = this.newPassword;
-        data["OldPassword"] = this.oldPassword;
-        return data; 
-    }
+export interface ManufacturerModel {
+    Name?: string | undefined;
+    VinPrefix?: string | undefined;
 }
 
-export interface IChangePasswordModel {
-    newPassword?: string | undefined;
-    oldPassword?: string | undefined;
-}
-
-export class CarModel implements ICarModel {
-    manufacturerId?: string | undefined;
-    manufacturer?: ManufacturerModel | undefined;
-    vin?: string | undefined;
-    countryId?: string | undefined;
-    countryOfOrigin?: CountryModel | undefined;
-
-    constructor(data?: ICarModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.manufacturerId = data["ManufacturerId"];
-            this.manufacturer = data["Manufacturer"] ? ManufacturerModel.fromJS(data["Manufacturer"]) : <any>undefined;
-            this.vin = data["Vin"];
-            this.countryId = data["CountryId"];
-            this.countryOfOrigin = data["CountryOfOrigin"] ? CountryModel.fromJS(data["CountryOfOrigin"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): CarModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new CarModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["ManufacturerId"] = this.manufacturerId;
-        data["Manufacturer"] = this.manufacturer ? this.manufacturer.toJSON() : <any>undefined;
-        data["Vin"] = this.vin;
-        data["CountryId"] = this.countryId;
-        data["CountryOfOrigin"] = this.countryOfOrigin ? this.countryOfOrigin.toJSON() : <any>undefined;
-        return data; 
-    }
-}
-
-export interface ICarModel {
-    manufacturerId?: string | undefined;
-    manufacturer?: ManufacturerModel | undefined;
-    vin?: string | undefined;
-    countryId?: string | undefined;
-    countryOfOrigin?: CountryModel | undefined;
-}
-
-export class ManufacturerModel implements IManufacturerModel {
-    name?: string | undefined;
-    vinPrefix?: string | undefined;
-
-    constructor(data?: IManufacturerModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.name = data["Name"];
-            this.vinPrefix = data["VinPrefix"];
-        }
-    }
-
-    static fromJS(data: any): ManufacturerModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new ManufacturerModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["Name"] = this.name;
-        data["VinPrefix"] = this.vinPrefix;
-        return data; 
-    }
-}
-
-export interface IManufacturerModel {
-    name?: string | undefined;
-    vinPrefix?: string | undefined;
-}
-
-export class CountryModel implements ICountryModel {
-    name?: string | undefined;
-    vinPrefix?: string | undefined;
-
-    constructor(data?: ICountryModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.name = data["Name"];
-            this.vinPrefix = data["VinPrefix"];
-        }
-    }
-
-    static fromJS(data: any): CountryModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new CountryModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["Name"] = this.name;
-        data["VinPrefix"] = this.vinPrefix;
-        return data; 
-    }
-}
-
-export interface ICountryModel {
-    name?: string | undefined;
-    vinPrefix?: string | undefined;
+export interface CountryModel {
+    Name?: string | undefined;
+    VinPrefix?: string | undefined;
 }
 
 export class SwaggerException extends Error {
