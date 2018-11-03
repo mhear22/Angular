@@ -181,6 +181,62 @@ export class CarService {
         }
         return _observableOf<void>(<any>null);
     }
+
+    /**
+     * @param userId (optional) 
+     * @return Success
+     */
+    getForUser(userId: string | null | undefined, id: string): Observable<PageOfOwnedCarModel> {
+        let url_ = this.baseUrl + "/car/user/{Id}?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{Id}", encodeURIComponent("" + id)); 
+        if (userId !== undefined)
+            url_ += "UserId=" + encodeURIComponent("" + userId) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetForUser(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetForUser(<any>response_);
+                } catch (e) {
+                    return <Observable<PageOfOwnedCarModel>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PageOfOwnedCarModel>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetForUser(response: HttpResponseBase): Observable<PageOfOwnedCarModel> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <PageOfOwnedCarModel>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PageOfOwnedCarModel>(<any>null);
+    }
 }
 
 @Injectable()
@@ -998,6 +1054,34 @@ export interface CarCreateModel {
     Nickname?: string | undefined;
 }
 
+export interface PageOfOwnedCarModel {
+    Items?: OwnedCarModel[] | undefined;
+    Count?: number | undefined;
+}
+
+export interface OwnedCarModel {
+    Base?: CarModel | undefined;
+    Vin?: string | undefined;
+}
+
+export interface CarModel {
+    ManufacturerId?: string | undefined;
+    Manufacturer?: ManufacturerModel | undefined;
+    Vin?: string | undefined;
+    CountryId?: string | undefined;
+    CountryOfOrigin?: CountryModel | undefined;
+}
+
+export interface ManufacturerModel {
+    Name?: string | undefined;
+    VinPrefix?: string | undefined;
+}
+
+export interface CountryModel {
+    Name?: string | undefined;
+    VinPrefix?: string | undefined;
+}
+
 export interface UserModel {
     Id?: string | undefined;
     Username?: string | undefined;
@@ -1021,24 +1105,6 @@ export interface CreateUserModel {
 export interface ChangePasswordModel {
     NewPassword?: string | undefined;
     OldPassword?: string | undefined;
-}
-
-export interface CarModel {
-    ManufacturerId?: string | undefined;
-    Manufacturer?: ManufacturerModel | undefined;
-    Vin?: string | undefined;
-    CountryId?: string | undefined;
-    CountryOfOrigin?: CountryModel | undefined;
-}
-
-export interface ManufacturerModel {
-    Name?: string | undefined;
-    VinPrefix?: string | undefined;
-}
-
-export interface CountryModel {
-    Name?: string | undefined;
-    VinPrefix?: string | undefined;
 }
 
 export class SwaggerException extends Error {
