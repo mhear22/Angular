@@ -5,6 +5,7 @@ import { Profile } from './Parts/Profile/Profile';
 import { Signup } from './Parts/Signup/Signup';
 import { LoginForm } from './Parts/Login/Login';
 import { AddCar } from './Parts/AddCar/AddCar';
+import { Car } from './Parts/Car/Car';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,5 +14,6 @@ export const routes: Routes = [
 	{ path: 'signup', component: Signup },
 	{ path: 'profile', component: Profile },
 	{ path: 'settings', component: Settings },
-	{ path: 'add-car', component:AddCar }
+	{ path: 'add-car', component:AddCar },
+	{ path: 'car/:Id', component:Car }
 ]

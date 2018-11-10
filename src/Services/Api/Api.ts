@@ -82,7 +82,7 @@ export class CarService {
     /**
      * @return Success
      */
-    getCar(id: string): Observable<string> {
+    getCar(id: string): Observable<OwnedCarModel> {
         let url_ = this.baseUrl + "/car/{Id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -104,14 +104,14 @@ export class CarService {
                 try {
                     return this.processGetCar(<any>response_);
                 } catch (e) {
-                    return <Observable<string>><any>_observableThrow(e);
+                    return <Observable<OwnedCarModel>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<string>><any>_observableThrow(response_);
+                return <Observable<OwnedCarModel>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetCar(response: HttpResponseBase): Observable<string> {
+    protected processGetCar(response: HttpResponseBase): Observable<OwnedCarModel> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -121,7 +121,7 @@ export class CarService {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : <string>JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = _responseText === "" ? null : <OwnedCarModel>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -129,7 +129,7 @@ export class CarService {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<string>(<any>null);
+        return _observableOf<OwnedCarModel>(<any>null);
     }
 
     /**
@@ -1119,11 +1119,6 @@ export interface CarCreateModel {
     Nickname?: string | undefined;
 }
 
-export interface PageOfOwnedCarModel {
-    Items?: OwnedCarModel[] | undefined;
-    Count?: number | undefined;
-}
-
 export interface OwnedCarModel {
     Base?: CarModel | undefined;
     Vin?: string | undefined;
@@ -1145,6 +1140,11 @@ export interface ManufacturerModel {
 export interface CountryModel {
     Name?: string | undefined;
     VinPrefix?: string | undefined;
+}
+
+export interface PageOfOwnedCarModel {
+    Items?: OwnedCarModel[] | undefined;
+    Count?: number | undefined;
 }
 
 export interface UserModel {

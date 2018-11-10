@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import * as Api from 'src/Services/Api/Api';
 import { AddCar } from 'src/Parts/AddCar/AddCar';
 import { ApiInterceptor } from 'src/Services/ApiInterceptor';
+import { Car } from 'src/Parts/Car/Car';
 
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
@@ -44,7 +45,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		Settings,
 		Hamburger,
 		UploadFileDialog,
-		AddCar
+		AddCar,
+		Car
 	],
 	entryComponents:[
 		UploadFileDialog
