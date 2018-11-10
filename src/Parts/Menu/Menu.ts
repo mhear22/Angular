@@ -19,7 +19,7 @@ export class MenuBar {
 	IsLoggedIn: boolean = false; 
 	
 	public Refresh():void {
-		this.login.IsLoggedIn().subscribe(x=> this.IsLoggedIn = x);
+		this.IsLoggedIn = this.login.IsLoggedIn();
 	}
 	
 	public Logout() {

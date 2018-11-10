@@ -41,8 +41,8 @@ export class LoginService extends ServiceBase {
 	
 	private stillLive:boolean = false;
 	
-	public IsLoggedIn(): Observable<boolean> {
-		return ServiceBase.ApiKeyChange;
+	public IsLoggedIn(): boolean {
+		return ServiceBase.ApiKey !== "";
 	}
 	
 	public Logout() {

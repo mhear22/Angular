@@ -1,0 +1,26 @@
+.home-card {
+	.car {
+		width: 100%;
+		padding: 15px;
+		border:1px solid gainsboro;
+		box-sizing: border-box;
+		position: relative;
+		
+		.buttons {
+			position: absolute;
+			right: 0;
+			top:0;
+			bottom: 0;
+			padding: 15px;
+			&:hover {
+				background-color: gainsboro;
+				cursor: pointer;
+			}
+		}
+	}
+	
+	h1 {
+		margin-top: 0;
+		margin-bottom: 15px;
+	}
+}

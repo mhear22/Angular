@@ -17,3 +17,4 @@ $mat-app-accent: mat-palette($mat-green, A200, A100, A400);
 $mat-app-warn: mat-palette($mat-red);
 $app-theme: mat-light-theme($mat-app-primary, $mat-app-accent, $mat-app-warn);
 @include angular-material-theme($app-theme);
+@import './vendor.scss';
