@@ -46,6 +46,9 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		UploadFileDialog,
 		AddCar
 	],
+	entryComponents:[
+		UploadFileDialog
+	],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
