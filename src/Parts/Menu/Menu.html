@@ -1,5 +1,5 @@
 <div>
-	<mat-card class="nav-item" routerLink="/home">
+	<mat-card *ngIf="IsLoggedIn" class="nav-item" routerLink="/home">
 		<h3>
 			<i class="fa fa-home"></i>
 			Home

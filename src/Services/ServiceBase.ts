@@ -10,10 +10,6 @@ export class ServiceBase {
 	
 	public static set ApiKey(val:string){
 		ServiceBase._ApiKey = val;
-		if(val == "")
-			ServiceBase.ApiKeyChange.next(false);
-		else
-			ServiceBase.ApiKeyChange.next(true);
 	}
 	
 	public static get ApiKey():string {

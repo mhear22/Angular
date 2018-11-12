@@ -5,7 +5,7 @@
 		</h2>
 		<a style="float:right" routerLink="/car/{{Car.Vin}}/edit">edit</a>
 		<div style="clear: both;"></div>
-		Mileage: {{Car.Mileage}} Kilometers <a routerLink="/car/{{Car.Vin}}/mileage">Update</a>
+		Mileage: {{Car.Mileage}} Kilometers <button mat-button (click)="updateMileage()">Update</button>
 	</div>
 </mat-card>
 

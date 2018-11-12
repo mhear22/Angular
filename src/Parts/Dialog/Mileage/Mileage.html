@@ -1,0 +1,15 @@
+<div style="width:200px;">
+	<div *ngIf="!Loading">
+		<h3>Record Mileage</h3>
+		<div>
+			<mat-form-field>
+				<input matInput name="Mileage" placeholder="Current Mileage" [(ngModel)]="Car.Mileage" type="number"/>
+			</mat-form-field>
+			
+			<button matButton (click)="save()">Save</button>
+		</div>
+	</div>
+	<div *ngIf="Loading">
+		<mat-spinner mode="indeterminate" color="primary"></mat-spinner>
+	</div>
+</div>

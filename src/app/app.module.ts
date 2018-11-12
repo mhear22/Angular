@@ -29,6 +29,7 @@ import { AddCar } from 'src/Parts/Car/Add/AddCar';
 import { ApiInterceptor } from 'src/Services/ApiInterceptor';
 import { CarDetail } from 'src/Parts/Car/Detail/Detail';
 import { EditCar } from 'src/Parts/Car/Edit/EditCar';
+import { MileageDialog } from 'src/Parts/Dialog/Mileage/Mileage';
 
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
@@ -46,12 +47,14 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		Settings,
 		Hamburger,
 		UploadFileDialog,
+		MileageDialog,
 		AddCar,
 		CarDetail,
 		EditCar
 	],
 	entryComponents:[
-		UploadFileDialog
+		UploadFileDialog,
+		MileageDialog
 	],
 	imports: [
 		BrowserModule,
