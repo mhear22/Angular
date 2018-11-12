@@ -1,0 +1,8 @@
+<mat-card *ngIf="!Loading">
+	<div class="col-md-12">
+		<a routerLink="/car/{{Car.Vin}}">Back</a>
+	</div>
+</mat-card>
+<mat-card *ngIf="Loading">
+	<mat-spinner mode="indeterminate" color="primary"></mat-spinner>
+</mat-card>

@@ -4,9 +4,9 @@ import { ActivatedRoute } from "@angular/router";
 
 @Component({
 	selector:'car',
-	templateUrl:'./Car.html'
+	templateUrl:'./Detail.html'
 })
-export class Car implements OnInit{
+export class CarDetail implements OnInit{
 	constructor(
 		private carService:CarService,
 		private route:ActivatedRoute

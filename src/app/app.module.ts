@@ -25,9 +25,10 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import * as Api from 'src/Services/Api/Api';
-import { AddCar } from 'src/Parts/AddCar/AddCar';
+import { AddCar } from 'src/Parts/Car/Add/AddCar';
 import { ApiInterceptor } from 'src/Services/ApiInterceptor';
-import { Car } from 'src/Parts/Car/Car';
+import { CarDetail } from 'src/Parts/Car/Detail/Detail';
+import { EditCar } from 'src/Parts/Car/Edit/EditCar';
 
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
@@ -46,7 +47,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		Hamburger,
 		UploadFileDialog,
 		AddCar,
-		Car
+		CarDetail,
+		EditCar
 	],
 	entryComponents:[
 		UploadFileDialog

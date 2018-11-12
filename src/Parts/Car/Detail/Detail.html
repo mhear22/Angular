@@ -1,11 +1,11 @@
-<mat-card *ngIf="!Loading">
+<mat-card class="car" *ngIf="!Loading">
 	<div class="col-md-12">
 		<h2 style="float:left;">
 			{{Car.Nickname||"Username"}}
 		</h2>
-		<span style="float:right" >edit</span>
+		<a style="float:right" routerLink="/car/{{Car.Vin}}/edit">edit</a>
 		<div style="clear: both;"></div>
-		Mileage: {{Car.Mileage}} Kilometers <a routerLink="/car/{Car.Vin}/mileage">Update</a>
+		Mileage: {{Car.Mileage}} Kilometers <a routerLink="/car/{{Car.Vin}}/mileage">Update</a>
 	</div>
 </mat-card>
 

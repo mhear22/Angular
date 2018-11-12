@@ -2,8 +2,11 @@
 @import './Parts/HamburgerMenu/Hamburger';
 @import './Parts/Profile/Profile';
 @import './Parts/Dialog/Upload/Upload';
-@import './Parts/AddCar/AddCar';
+@import './Parts/Car/Add/AddCar.scss';
+@import './Parts/Car/Detail/Detail.scss';
+@import './Parts/Car/Edit/EditCar.scss';
 @import './Parts/Home/Home.scss';
+
 
 * {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

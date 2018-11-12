@@ -4,8 +4,9 @@ import { Settings } from './Parts/Settings/Settings';
 import { Profile } from './Parts/Profile/Profile';
 import { Signup } from './Parts/Signup/Signup';
 import { LoginForm } from './Parts/Login/Login';
-import { AddCar } from './Parts/AddCar/AddCar';
-import { Car } from './Parts/Car/Car';
+import { AddCar } from './Parts/Car/Add/AddCar';
+import { CarDetail } from './Parts/Car/Detail/Detail';
+import { EditCar } from './Parts/Car/Edit/EditCar';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,5 +16,6 @@ export const routes: Routes = [
 	{ path: 'profile', component: Profile },
 	{ path: 'settings', component: Settings },
 	{ path: 'add-car', component:AddCar },
-	{ path: 'car/:Id', component:Car }
+	{ path: 'car/:Id', component:CarDetail },
+	{ path:'car/:Id/edit',component:EditCar }
 ]
