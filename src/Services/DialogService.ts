@@ -7,6 +7,7 @@ import { ImageUploadResponse } from '../Models/ImageUploadResponse';
 import { Observable } from 'rxjs';
 import { MileageDialog } from 'src/Parts/Dialog/Mileage/Mileage';
 import { OwnedCarModel } from './Api/Api';
+import { DeleteCarDialog } from 'src/Parts/Dialog/DeleteCar/DeleteCar';
 
 
 @Injectable()
@@ -25,6 +26,14 @@ export class DialogService extends ServiceBase {
 	
 	public UpdateMileage(viewContainerRef:ViewContainerRef,car:OwnedCarModel):Observable<void> {
 		var ref = this.mdDialog.open(MileageDialog,{
+			data:car,
+			viewContainerRef:viewContainerRef
+		});
+		return ref.afterClosed();
+	}
+	
+	public DeleteCar(viewContainerRef:ViewContainerRef, car:OwnedCarModel):Observable<void> {
+		var ref = this.mdDialog.open(DeleteCarDialog, {
 			data:car,
 			viewContainerRef:viewContainerRef
 		});

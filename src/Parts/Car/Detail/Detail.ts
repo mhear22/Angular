@@ -35,4 +35,10 @@ export class CarDetail implements OnInit{
 			this.update();
 		});
 	}
+	
+	public delete() {
+		this.dialogService.DeleteCar(this.viewContainerRef, this.Car).subscribe(() => {
+			this.update();
+		});
+	}
 }

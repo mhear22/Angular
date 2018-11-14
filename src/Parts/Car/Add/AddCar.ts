@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { VinService, CarModel, CarService, CarCreateModel } from "src/Services/Api/Api";
+import { Router } from "@angular/router";
 
 @Component({
 	selector:'add-car',
@@ -9,7 +10,11 @@ export class AddCar {
 	public vin:string;
 	public Car:CarModel;
 	public nickname:string;
-	constructor(private vinService:VinService, private carService:CarService) { }
+	constructor(
+		private vinService:VinService,
+		private carService:CarService,
+		private router:Router
+	) { }
 	
 	checkVin(event:KeyboardEvent) {
 		if(this.vin.length == 17) {
@@ -25,7 +30,7 @@ export class AddCar {
 				Nickname: this.nickname,
 				Vin: this.vin,
 			}).subscribe(x=> {
-				
+				this.router.navigate(['/home']);
 			})
 		}
 	}
