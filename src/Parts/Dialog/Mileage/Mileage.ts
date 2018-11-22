@@ -17,6 +17,7 @@ export class MileageDialog {
 	}
 	private Car:OwnedCarModel;
 	private Loading:boolean = false;
+	private ErrorMessage:string = null;
 	
 	public save() {
 		this.Loading = true;
@@ -24,8 +25,10 @@ export class MileageDialog {
 			Mileage:this.Car.Mileage,
 			Vin:this.Car.Vin
 		}).subscribe(x=> {
-			
 			this.diaRef.close();
-		})
+		},x => {
+			this.Loading = false;
+			this.ErrorMessage = "Milage is wrong";
+		});
 	}
 }

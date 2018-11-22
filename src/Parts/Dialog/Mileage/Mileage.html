@@ -4,6 +4,9 @@
 		<div>
 			<mat-form-field>
 				<input matInput name="Mileage" placeholder="Current Mileage" [(ngModel)]="Car.Mileage" type="number"/>
+				<mat-hint *ngIf="ErrorMessage">
+					<span>{{ErrorMessage}}</span>
+				</mat-hint>
 			</mat-form-field>
 			
 			<button matButton (click)="save()">Save</button>
