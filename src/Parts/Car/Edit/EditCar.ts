@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CarService, OwnedCarModel } from "src/Services/Api/Api";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
 	selector:'edit-car',
@@ -9,16 +9,24 @@ import { ActivatedRoute } from "@angular/router";
 export class EditCar implements OnInit {
 	constructor(
 		private carService:CarService,
-		private route:ActivatedRoute
+		private route:ActivatedRoute,
+		private router:Router
 	) { }
+	public Id:string;
 	public Car:OwnedCarModel;
 	public Loading:boolean = true;
 	
 	public ngOnInit() {
-		var Id = this.route.snapshot.paramMap.get("Id");
-		this.carService.getCar(Id).subscribe(x=> {
+		this.Id = this.route.snapshot.paramMap.get("Id");
+		this.carService.getCar(this.Id).subscribe(x=> {
 			this.Car = x;
 			this.Loading = false;
 		})
+	}
+	
+	public save() {
+		this.carService.updateCar(this.Id, this.Car).subscribe(x=> {
+			this.router.navigate([`/car/${this.Id}`])
+		});
 	}
 }

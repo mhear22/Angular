@@ -22,6 +22,11 @@ export class CarDetail implements OnInit{
 		this.update();
 	}
 	
+	public get Nickname() {
+		if(this.Car == null)
+			return "Car";
+		return `${this.Car.Base.Manufacturer.Name}`;
+	}
 	private update() {
 		var Id = this.route.snapshot.paramMap.get("Id");
 		this.carService.getCar(Id).subscribe(x=> {

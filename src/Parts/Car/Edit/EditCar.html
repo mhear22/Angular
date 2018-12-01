@@ -2,6 +2,16 @@
 	<div class="col-md-12">
 		<a routerLink="/car/{{Car.Vin}}">Back</a>
 	</div>
+	<form (ngSubmit)="save()">
+		<mat-form-field>
+			<input matInput required
+				type="text"
+				[(ngModel)]="Car.Nickname" 
+				placeholder="nickname"
+				[ngModelOptions]="{standalone:true}"/>
+		</mat-form-field>
+		<button mat-button type="submit">Update</button>
+	</form>
 </mat-card>
 <mat-card *ngIf="Loading">
 	<mat-spinner mode="indeterminate" color="primary"></mat-spinner>
