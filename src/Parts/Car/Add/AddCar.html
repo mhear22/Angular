@@ -23,6 +23,23 @@
 				[ngModelOptions]="{standalone:true}" />
 		</mat-form-field>
 		
+		<mat-form-field>
+			<mat-select placeholder="Year" [(value)]="createdYear">
+				<mat-option *ngFor="let year of years" [value]="year">
+					{{year}}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+		
+		
+		<mat-form-field>
+			<input matInput
+				type="number"
+				[(ngModel)]="currentMileage"
+				placeholder="Current Mileage"
+				[ngModelOptions]="{standalone:true}"
+			/>
+		</mat-form-field>
 		
 		<button mat-button type="submit">Submit</button>
 	</form>

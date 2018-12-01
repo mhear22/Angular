@@ -1236,6 +1236,8 @@ export class VinService {
 export interface CarCreateModel {
     Vin?: string | undefined;
     Nickname?: string | undefined;
+    ManufacturedDate?: Date | undefined;
+    CurrentMileage?: number | undefined;
 }
 
 export interface OwnedCarModel {

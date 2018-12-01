@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { DialogService } from 'src/Services/DialogService';
 import { ImageService } from 'src/Services/ImageService';
 import { LoginService } from 'src/Services/LoginService';
-import { MatDialogModule, MatCardModule, MatInputModule, MatProgressSpinnerModule, MatSidenavModule } from '@angular/material';
+import { MatDialogModule, MatCardModule, MatInputModule, MatProgressSpinnerModule, MatSidenavModule, MatSelectModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { Ng2Webstorage } from "ngx-webstorage";
@@ -73,6 +73,7 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		MatInputModule,
 		MatProgressSpinnerModule,
 		MatSidenavModule,
+		MatSelectModule
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy},
