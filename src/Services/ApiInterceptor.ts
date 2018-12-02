@@ -13,8 +13,9 @@ export class ApiInterceptor implements HttpInterceptor {
 		var authReq = req.clone({
 			headers:req.headers.set("apikey", ServiceBase.ApiKey)
 		});
-		return next.handle(authReq).pipe(catchError((err) => {
-			this.router.navigate(['/login']);
+		return next.handle(authReq).pipe(catchError((err:HttpErrorResponse) => {
+			if(err.status == 401)
+				this.router.navigate(['/login']);
 			return throwError(err);
 		}));
 	}

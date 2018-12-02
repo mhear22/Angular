@@ -9,6 +9,9 @@
 			<mat-form-field>
 				<input matInput name="password" placeholder="Password" [(ngModel)]="password" type="password" (keyup.enter)="Login()" />
 			</mat-form-field>
+			<mat-hint *ngIf="error">
+				<span>{{error}}</span>
+			</mat-hint>
 		</div>
 		
 		<button (click)="Login()" matButton>Login</button>

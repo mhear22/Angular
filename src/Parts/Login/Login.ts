@@ -10,6 +10,7 @@ import { LoginService } from '../../Services/LoginService';
 export class LoginForm {
 	username:string = "";
 	password:string = "";
+	error:string = null;
 	IsLoading:boolean = false;
 	constructor(private _loginService: LoginService, private router: Router) { }
 	
@@ -22,6 +23,7 @@ export class LoginForm {
 			this.IsLoading = false;
 			this.router.navigate(['/home']);
 		}, error => {
+			this.error = error;
 			this.IsLoading = false;
 		});
 	}
