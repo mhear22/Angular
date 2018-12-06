@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
-import { CarService, OwnedCarModel } from "src/Services/Api/Api";
+import { CarService, OwnedCarModel, MileageService, MileageRecordingModel } from "src/Services/Api/Api";
 import { ActivatedRoute } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { DialogService } from "src/Services/DialogService";
@@ -13,10 +13,13 @@ export class CarDetail implements OnInit{
 		private carService:CarService,
 		private route:ActivatedRoute,
 		private viewContainerRef: ViewContainerRef,
-		private dialogService:DialogService
+		private dialogService:DialogService,
+		private mileageService:MileageService
 	) { }
 	
 	public Car: OwnedCarModel;
+	public Mileage: MileageRecordingModel[];
+	
 	public Loading:boolean = true;
 	public ngOnInit() {
 		this.update();
@@ -32,6 +35,9 @@ export class CarDetail implements OnInit{
 		this.carService.getCar(Id).subscribe(x=> {
 			this.Car = x;
 			this.Loading = false;
+			this.mileageService.getMileage(x.Vin).subscribe(x=>{
+				this.Mileage = x;
+			})
 		});
 	}
 	
