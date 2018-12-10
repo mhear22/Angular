@@ -20,6 +20,29 @@ export class CarDetail implements OnInit{
 	public Car: OwnedCarModel;
 	public Mileage: MileageRecordingModel[];
 	
+	public chartSettings: any = {
+		view:[
+			700,
+			400
+		],
+		data:[]
+		//data:[
+		//	{
+		//		name:"Car",
+		//		series:[
+		//			{
+		//				name:"2010",
+		//				value:1000
+		//			},
+		//			{
+		//				name:"2015",
+		//				value:2000
+		//			}
+		//		]
+		//	}
+		//]
+	};
+	
 	public Loading:boolean = true;
 	public ngOnInit() {
 		this.update();
@@ -37,6 +60,15 @@ export class CarDetail implements OnInit{
 			this.Loading = false;
 			this.mileageService.getMileage(x.Vin).subscribe(x=>{
 				this.Mileage = x;
+				this.chartSettings.data[0] = {
+					name:"Car",
+					series:x.map(z=> {
+						return {
+							name:z.Year,
+							value:Number(z.Recording)
+						};
+					})
+				}
 			})
 		});
 	}
