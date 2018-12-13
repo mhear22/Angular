@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewContainerRef } from "@angular/core";
-import { CarService, OwnedCarModel, MileageService, MileageRecordingModel } from "src/Services/Api/Api";
+import { Component, OnInit, ViewContainerRef, Inject } from "@angular/core";
+import { CarService, OwnedCarModel, MileageService, MileageRecordingModel, API_BASE_URL } from "src/Services/Api/Api";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { DialogService } from "src/Services/DialogService";
@@ -15,7 +15,8 @@ export class CarDetail implements OnInit{
 		private router:Router,
 		private viewContainerRef: ViewContainerRef,
 		private dialogService:DialogService,
-		private mileageService:MileageService
+		private mileageService:MileageService,
+		@Inject(API_BASE_URL) public ApiUrl?: string
 	) { }
 	
 	public Car: OwnedCarModel;
