@@ -9,7 +9,7 @@
 		</div>
 		<div style="clear: both;"></div>
 		Mileage: {{Car.Mileage}} Kilometers <button mat-button (click)="updateMileage()">Update</button>
-		<div>
+		<div *ngIf="chartSettings.data">
 			<ngx-charts-line-chart
 				[results]="chartSettings.data"
 				[xAxis]="true"

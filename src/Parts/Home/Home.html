@@ -2,7 +2,12 @@
 	<div *ngIf="Cars?.length>0">
 		<h1>Cars</h1>
 		<div class="car" *ngFor="let car of Cars">
-			Your {{car.Base.Manufacturer.Name}} from {{car.Base.CountryOfOrigin.Name}}
+			<span *ngIf="!car.Nickname">
+				Your {{car.Base.Manufacturer.Name}} from {{car.Base.CountryOfOrigin.Name}}
+			</span>
+			<span *ngIf="car.Nickname">
+				{{car.Nickname}}
+			</span>
 			
 			<div class="buttons" routerLink="/car/{{car.Vin}}">
 				<i class="fa fa-chevron-right"></i>
@@ -11,7 +16,7 @@
 	</div>
 	<div *ngIf="Cars?.length==0">
 		<div>
-			Looks like you havent Added a Car Yet
+			Looks like you do not have any cars yet
 		</div>
 		
 	</div>

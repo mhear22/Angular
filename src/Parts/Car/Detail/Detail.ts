@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { CarService, OwnedCarModel, MileageService, MileageRecordingModel } from "src/Services/Api/Api";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { DialogService } from "src/Services/DialogService";
 
@@ -12,6 +12,7 @@ export class CarDetail implements OnInit{
 	constructor(
 		private carService:CarService,
 		private route:ActivatedRoute,
+		private router:Router,
 		private viewContainerRef: ViewContainerRef,
 		private dialogService:DialogService,
 		private mileageService:MileageService
@@ -70,6 +71,8 @@ export class CarDetail implements OnInit{
 					})
 				}
 			})
+		},() => {
+			this.router.navigate([`/home`]);
 		});
 	}
 	
