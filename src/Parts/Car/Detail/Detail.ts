@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, Inject } from "@angular/core";
+import { Component, OnInit, ViewContainerRef, Inject, ViewChild, ElementRef, HostListener } from "@angular/core";
 import { CarService, OwnedCarModel, MileageService, MileageRecordingModel, API_BASE_URL } from "src/Services/Api/Api";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
@@ -19,29 +19,20 @@ export class CarDetail implements OnInit{
 		@Inject(API_BASE_URL) public ApiUrl?: string
 	) { }
 	
+	@ViewChild("chartcontainer")
+	chartContainer:ElementRef;
+	
+	@HostListener('window:resize')
+	resize() {
+		this.chartSettings.view[0] = this.chartContainer.nativeElement.offsetWidth;
+	}
+	
 	public Car: OwnedCarModel;
 	public Mileage: MileageRecordingModel[];
 	
 	public chartSettings: any = {
-		view:[
-			700,
-			400
-		],
-		data:[
-			{
-				name:"Car",
-				series:[
-					//{
-					//	name:"2010",
-					//	value:1000
-					//},
-					//{
-					//	name:"2015",
-					//	value:2000
-					//}
-				]
-			}
-		]
+		view:[ 700, 400 ],
+		data:[]
 	};
 	
 	public Loading:boolean = true;
@@ -70,6 +61,7 @@ export class CarDetail implements OnInit{
 						}
 					})
 				}
+				this.resize();
 				Object.assign(this.chartSettings, {data:[data]});
 			})
 		},() => {
