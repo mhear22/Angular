@@ -27,22 +27,21 @@ export class CarDetail implements OnInit{
 			700,
 			400
 		],
-		data:[]
-		//data:[
-		//	{
-		//		name:"Car",
-		//		series:[
-		//			{
-		//				name:"2010",
-		//				value:1000
-		//			},
-		//			{
-		//				name:"2015",
-		//				value:2000
-		//			}
-		//		]
-		//	}
-		//]
+		data:[
+			{
+				name:"Car",
+				series:[
+					//{
+					//	name:"2010",
+					//	value:1000
+					//},
+					//{
+					//	name:"2015",
+					//	value:2000
+					//}
+				]
+			}
+		]
 	};
 	
 	public Loading:boolean = true;
@@ -62,15 +61,16 @@ export class CarDetail implements OnInit{
 			this.Loading = false;
 			this.mileageService.getMileage(x.Vin).subscribe(x=>{
 				this.Mileage = x;
-				this.chartSettings.data[0] = {
+				var data = {
 					name:"Car",
 					series:x.map(z=> {
 						return {
-							name:z.Year,
+							name:z.Year+"",
 							value:Number(z.Recording)
-						};
+						}
 					})
 				}
+				Object.assign(this.chartSettings, {data:[data]});
 			})
 		},() => {
 			this.router.navigate([`/home`]);

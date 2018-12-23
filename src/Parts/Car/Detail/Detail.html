@@ -6,7 +6,7 @@
 		<div class="edit-links">
 			<a style="float:right" (click)="delete()">Delete</a>
 			<a style="float:right" routerLink="/car/{{Car.Vin}}/edit">Edit</a>
-			<a style="float:right" href="{{ApiUrl}}/gen/carservice/pdf">Print</a>
+			<a style="float:right" target="_blank" href="{{ApiUrl}}/gen/carservice/pdf">Print</a>
 		</div>
 		<div style="clear: both;"></div>
 		Mileage: {{Car.Mileage}} Kilometers <button mat-button (click)="updateMileage()">Update</button>
