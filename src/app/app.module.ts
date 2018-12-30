@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { DialogService } from 'src/Services/DialogService';
 import { ImageService } from 'src/Services/ImageService';
 import { LoginService } from 'src/Services/LoginService';
-import { MatDialogModule, MatCardModule, MatInputModule, MatProgressSpinnerModule, MatSidenavModule, MatSelectModule } from '@angular/material';
+import { MatDialogModule, MatCardModule, MatInputModule, MatProgressSpinnerModule, MatSidenavModule, MatSelectModule, MatButtonModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { Ng2Webstorage } from "ngx-webstorage";
@@ -32,6 +32,7 @@ import { EditCar } from 'src/Parts/Car/Edit/EditCar';
 import { MileageDialog } from 'src/Parts/Dialog/Mileage/Mileage';
 import { DeleteCarDialog } from 'src/Parts/Dialog/DeleteCar/DeleteCar';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { GraphingService } from 'src/Services/GraphingService';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -65,6 +66,7 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		HttpModule,
 		FormsModule,
 		MatDialogModule,
+		MatButtonModule,
 		BrowserAnimationsModule,
 		Ng2Webstorage,
 		RouterModule.forRoot(routes),
@@ -81,6 +83,7 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		DialogService,
 		ImageService,
 		LoginService,
+		GraphingService,
 		{ provide:Api.API_BASE_URL, useValue:"http://localhost:5000" },
 		{ provide:HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi:true}
 	].concat(keys),

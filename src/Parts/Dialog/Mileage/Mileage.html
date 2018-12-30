@@ -9,7 +9,14 @@
 				</mat-hint>
 			</mat-form-field>
 			
-			<button matButton (click)="save()">Save</button>
+			<div *ngIf="advanced">
+				<mat-form-field>
+					<input matInput name="Date" placeholder="Recording Date" [(ngModel)]="RecordingDate" type="date"/>
+				</mat-form-field>
+			</div>
+			
+			<button mat-button color="primary" (click)="save()">Save</button>
+			<button mat-button (click)="advanced=!advanced">Advanced</button>
 		</div>
 	</div>
 	<div *ngIf="Loading">

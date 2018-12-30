@@ -3,6 +3,7 @@ import { CarService, OwnedCarModel, MileageService, MileageRecordingModel, API_B
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { DialogService } from "src/Services/DialogService";
+import { GraphingService } from "src/Services/GraphingService";
 
 @Component({
 	selector:'car',
@@ -16,6 +17,7 @@ export class CarDetail implements OnInit{
 		private viewContainerRef: ViewContainerRef,
 		private dialogService:DialogService,
 		private mileageService:MileageService,
+		private graphingService:GraphingService,
 		@Inject(API_BASE_URL) public ApiUrl?: string
 	) { }
 	
@@ -50,17 +52,9 @@ export class CarDetail implements OnInit{
 		this.carService.getCar(Id).subscribe(x=> {
 			this.Car = x;
 			this.Loading = false;
-			this.mileageService.getMileage(x.Vin).subscribe(x=>{
-				this.Mileage = x;
-				var data = {
-					name:"Car",
-					series:x.map(z=> {
-						return {
-							name:z.Year+"",
-							value:Number(z.Recording)
-						}
-					})
-				}
+			this.mileageService.getMileage(x.Vin).subscribe(mil=>{
+				this.Mileage = mil;
+				var data = this.graphingService.BestFitPointsToGraph(mil);
 				this.resize();
 				Object.assign(this.chartSettings, {data:[data]});
 			})
