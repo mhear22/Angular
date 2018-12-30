@@ -24,6 +24,10 @@ dashboard, home, login, profile, settings, Signup, app-root, upload-file-dialog 
 	margin: 0;
 }
 
+.spacer {
+	margin-top: 15px !important;
+}
+
 input, mat-input {
 	width: 100%;
 }

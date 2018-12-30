@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { DialogService } from "src/Services/DialogService";
 import { GraphingService } from "src/Services/GraphingService";
+import { chartModel } from "src/Models/ChartModel";
 
 @Component({
 	selector:'car',
@@ -32,10 +33,7 @@ export class CarDetail implements OnInit{
 	public Car: OwnedCarModel;
 	public Mileage: MileageRecordingModel[];
 	
-	public chartSettings: any = {
-		view:[ 700, 400 ],
-		data:[]
-	};
+	public chartSettings: chartModel = new chartModel();
 	
 	public Loading:boolean = true;
 	public ngOnInit() {
