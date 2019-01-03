@@ -16,7 +16,6 @@
 			</h4>
 			<h6 style="float:right;">Current: {{Car.Mileage}}KM</h6>
 			<div style="clear: both;"></div>
-			<button mat-button color="primary" style="float:right;" (click)="dataMode=!dataMode">Show Data Points</button>
 			<div *ngIf="chartSettings.data" #chartcontainer>
 				<ngx-charts-line-chart
 					[results]="chartSettings.data"
@@ -26,8 +25,6 @@
 				></ngx-charts-line-chart>
 			</div>
 		</div>
-		
-
 	</div>
 </mat-card>
 

@@ -12,6 +12,8 @@ export class GraphingCalculator {
 	getNextPoint(element:MileageRecordingModel):MileageRecordingModel {
 		var year = element.Year;
 		var next = this.Points.filter(x=>x.Year > year)[0];
+		if(next == null)
+			return this.Points[this.Points.length - 1];
 		return next;
 	}
 	getPreviousPoint(element:MileageRecordingModel):MileageRecordingModel {
@@ -30,6 +32,9 @@ export class GraphingCalculator {
 		var currentOffset = year.Year - last.Year
 		
 		var part = offset/yearOffset;
+		if(isNaN(part)) {
+			return Number(last.Recording);
+		}
 		
 		return currentOffset * part + Number(last.Recording);
 	}
