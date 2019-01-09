@@ -24,9 +24,9 @@ export class EditCar implements OnInit {
 		this.carService.getCar(this.Id).subscribe(x=> {
 			this.Car = x;
 			this.Loading = false;
-			this.mileageService.getMileage(this.Car.Vin).subscribe(points=> {
-				this.points = points;
-			});
+			//this.mileageService.getMileage(this.Car.Vin).subscribe(points=> {
+			//	this.points = points;
+			//});
 		});
 	}
 	

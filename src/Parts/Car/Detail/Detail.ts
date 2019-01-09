@@ -40,6 +40,12 @@ export class CarDetail implements OnInit{
 		this.update();
 	}
 	
+	public addMaintenanceItem() {
+		this.dialogService.AddServiceItem(this.viewContainerRef, this.Car).subscribe(() => {
+			this.update();
+		});
+	}
+	
 	public get Nickname() {
 		if(this.Car == null)
 			return "Car";

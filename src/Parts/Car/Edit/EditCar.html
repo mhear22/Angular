@@ -11,12 +11,13 @@
 				placeholder="Nickname"
 				[ngModelOptions]="{standalone:true}"/>
 		</mat-form-field>
-		
-		<div class="data-points">
-			<div *ngFor="let point of points">
-				On {{point.Year}}, {{point.Recording}} was recorded
+		<!--
+			<div class="data-points">
+				<div *ngFor="let point of points">
+					On {{point.Year}}, {{point.Recording}} was recorded
+				</div>
 			</div>
-		</div>
+		-->
 		
 		<button class="spacer" mat-button type="submit">Update</button>
 	</form>

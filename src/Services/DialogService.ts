@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { MileageDialog } from 'src/Parts/Dialog/Mileage/Mileage';
 import { OwnedCarModel } from './Api/Api';
 import { DeleteCarDialog } from 'src/Parts/Dialog/DeleteCar/DeleteCar';
+import { ServiceItemDialog } from 'src/Parts/Dialog/ServiceItem/ServiceItem';
 
 
 @Injectable()
@@ -34,6 +35,14 @@ export class DialogService extends ServiceBase {
 	
 	public DeleteCar(viewContainerRef:ViewContainerRef, car:OwnedCarModel):Observable<void> {
 		var ref = this.mdDialog.open(DeleteCarDialog, {
+			data:car,
+			viewContainerRef:viewContainerRef
+		});
+		return ref.afterClosed();
+	}
+	
+	public AddServiceItem(viewContainerRef:ViewContainerRef, car:OwnedCarModel):Observable<void> {
+		var ref = this.mdDialog.open(ServiceItemDialog, {
 			data:car,
 			viewContainerRef:viewContainerRef
 		});
