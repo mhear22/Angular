@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef, Inject, ViewChild, ElementRef, HostListener } from "@angular/core";
-import { CarService, OwnedCarModel, MileageService, MileageRecordingModel, API_BASE_URL } from "src/Services/Api/Api";
+import { CarService, OwnedCarModel, MileageService, MileageRecordingModel, API_BASE_URL, ComponentServiceService, ServiceItem } from "src/Services/Api/Api";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { DialogService } from "src/Services/DialogService";
@@ -10,7 +10,7 @@ import { chartModel } from "src/Models/ChartModel";
 	selector:'car',
 	templateUrl:'./Detail.html'
 })
-export class CarDetail implements OnInit{
+export class CarDetail implements OnInit {
 	constructor(
 		private carService:CarService,
 		private route:ActivatedRoute,
@@ -19,6 +19,7 @@ export class CarDetail implements OnInit{
 		private dialogService:DialogService,
 		private mileageService:MileageService,
 		private graphingService:GraphingService,
+		private componentService:ComponentServiceService,
 		@Inject(API_BASE_URL) public ApiUrl?: string
 	) { }
 	
@@ -30,6 +31,7 @@ export class CarDetail implements OnInit{
 		this.chartSettings.view[0] = this.chartContainer.nativeElement.offsetWidth;
 	}
 	
+	private comps: ServiceItem[];
 	public Car: OwnedCarModel;
 	public Mileage: MileageRecordingModel[];
 	
@@ -62,6 +64,10 @@ export class CarDetail implements OnInit{
 				this.resize();
 				Object.assign(this.chartSettings, {data:[data]});
 			})
+			
+			this.componentService.getParts(x.Vin).subscribe(parts => {
+				this.comps = parts;
+			});
 		},() => {
 			this.router.navigate([`/home`]);
 		});

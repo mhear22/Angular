@@ -34,6 +34,7 @@ import { DeleteCarDialog } from 'src/Parts/Dialog/DeleteCar/DeleteCar';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { GraphingService } from 'src/Services/GraphingService';
 import { ServiceItemDialog } from 'src/Parts/Dialog/ServiceItem/ServiceItem';
+import { ServiceDetail } from 'src/Parts/ServiceItems/Detail/Detail';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -55,7 +56,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		CarDetail,
 		EditCar,
 		DeleteCarDialog,
-		ServiceItemDialog
+		ServiceItemDialog,
+		ServiceDetail
 	],
 	entryComponents:[
 		UploadFileDialog,

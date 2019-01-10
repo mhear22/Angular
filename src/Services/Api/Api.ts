@@ -413,8 +413,64 @@ export class ComponentServiceService {
     /**
      * @return Success
      */
+    getPart(vin: string, id: string): Observable<ServiceItemModel> {
+        let url_ = this.baseUrl + "/car/{Vin}/part/{Id}";
+        if (vin === undefined || vin === null)
+            throw new Error("The parameter 'vin' must be defined.");
+        url_ = url_.replace("{Vin}", encodeURIComponent("" + vin)); 
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{Id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetPart(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetPart(<any>response_);
+                } catch (e) {
+                    return <Observable<ServiceItemModel>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<ServiceItemModel>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetPart(response: HttpResponseBase): Observable<ServiceItemModel> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <ServiceItemModel>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<ServiceItemModel>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
     deletePart(vin: string, id: string): Observable<void> {
-        let url_ = this.baseUrl + "/car/{Vin}/parts/{Id}";
+        let url_ = this.baseUrl + "/car/{Vin}/part/{Id}";
         if (vin === undefined || vin === null)
             throw new Error("The parameter 'vin' must be defined.");
         url_ = url_.replace("{Vin}", encodeURIComponent("" + vin)); 
@@ -516,7 +572,7 @@ export class ComponentServiceService {
     /**
      * @return Success
      */
-    getRepeatTypes(): Observable<ServiceTypeDto[]> {
+    getRepeatTypes(): Observable<RepeatTypeDto[]> {
         let url_ = this.baseUrl + "/repeattypes";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -535,14 +591,14 @@ export class ComponentServiceService {
                 try {
                     return this.processGetRepeatTypes(<any>response_);
                 } catch (e) {
-                    return <Observable<ServiceTypeDto[]>><any>_observableThrow(e);
+                    return <Observable<RepeatTypeDto[]>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<ServiceTypeDto[]>><any>_observableThrow(response_);
+                return <Observable<RepeatTypeDto[]>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetRepeatTypes(response: HttpResponseBase): Observable<ServiceTypeDto[]> {
+    protected processGetRepeatTypes(response: HttpResponseBase): Observable<RepeatTypeDto[]> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -552,7 +608,7 @@ export class ComponentServiceService {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : <ServiceTypeDto[]>JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = _responseText === "" ? null : <RepeatTypeDto[]>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -560,7 +616,7 @@ export class ComponentServiceService {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<ServiceTypeDto[]>(<any>null);
+        return _observableOf<RepeatTypeDto[]>(<any>null);
     }
 }
 
@@ -1740,12 +1796,30 @@ export interface PageOfOwnedCarModel {
 export interface ServiceItem {
     Id?: string | undefined;
     ServiceTypeId?: string | undefined;
+    ServiceType?: string | undefined;
     Description?: string | undefined;
     RepeatingTypeId?: string | undefined;
+    RepeatingType?: string | undefined;
     RepeatingFrequency?: string | undefined;
 }
 
+export interface ServiceItemModel {
+    RepeatingFrequency?: string | undefined;
+    RepeatingTypeId?: string | undefined;
+    ServiceTypeId?: string | undefined;
+    Description?: string | undefined;
+    Id?: string | undefined;
+    RepeatingType?: string | undefined;
+    ServiceType?: string | undefined;
+    LastServiceMileage?: string | undefined;
+}
+
 export interface ServiceTypeDto {
+    Id?: string | undefined;
+    Name?: string | undefined;
+}
+
+export interface RepeatTypeDto {
     Id?: string | undefined;
     Name?: string | undefined;
 }

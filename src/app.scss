@@ -18,3 +18,23 @@ $mat-app-warn: mat-palette($mat-red);
 $app-theme: mat-light-theme($mat-app-primary, $mat-app-accent, $mat-app-warn);
 @include angular-material-theme($app-theme);
 @import './vendor.scss';
+
+@mixin box() {
+	padding: 15px;
+	border:1px solid gainsboro;
+	box-sizing: border-box;
+	position: relative;
+	//width: 100%;
+	
+	.buttons {
+		position: absolute;
+		right: 0;
+		top:0;
+		bottom: 0;
+		padding: 15px;
+		&:hover {
+			background-color: gainsboro;
+			cursor: pointer;
+		}
+	}
+}

@@ -7,6 +7,7 @@ import { LoginForm } from './Parts/Login/Login';
 import { AddCar } from './Parts/Car/Add/AddCar';
 import { CarDetail } from './Parts/Car/Detail/Detail';
 import { EditCar } from './Parts/Car/Edit/EditCar';
+import { ServiceDetail } from './Parts/ServiceItems/Detail/Detail';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,5 +18,6 @@ export const routes: Routes = [
 	{ path: 'settings', component: Settings },
 	{ path: 'add-car', component:AddCar },
 	{ path: 'car/:Id', component:CarDetail },
-	{ path:'car/:Id/edit',component:EditCar }
+	{ path:'car/:Id/edit',component:EditCar },
+	{ path:'car/:Id/part/:PartId', component: ServiceDetail}
 ]

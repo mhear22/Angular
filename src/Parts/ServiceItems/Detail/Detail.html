@@ -1,0 +1,23 @@
+<mat-card *ngIf="!Loading">
+	<div class="col-md-12">
+		<h2 style="float:left;">
+			{{Part.ServiceType}}
+		</h2>
+	</div>
+	<div style="clear:both;"></div>
+	
+	<div>
+		Last change {{Part.LastServiceMileage}}KM
+	</div>
+	
+	<div>
+		Should change every {{Part.RepeatingFrequency}}
+		<span *ngIf="Part.RepeatingTypeId=='mileage'">KM</span>
+		<span *ngIf="Part.RepeatingTypeId=='age'">Year(s)</span>
+	</div>
+	
+</mat-card>
+
+<mat-card *ngIf="Loading">
+	<mat-spinner mode="indeterminate" color="primary"></mat-spinner>
+</mat-card>

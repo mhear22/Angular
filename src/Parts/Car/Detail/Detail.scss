@@ -1,3 +1,5 @@
+@import "../../../app.scss";
+
 .car {
 	overflow: hidden;
 	margin-bottom: 15px;
@@ -6,5 +8,10 @@
 		a {
 			padding-left: 10px;
 		}
+	}
+	
+	.service-item {
+		@include box();
+		margin: 5px;
 	}
 }
