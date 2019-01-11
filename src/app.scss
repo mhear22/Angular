@@ -32,6 +32,7 @@ $app-theme: mat-light-theme($mat-app-primary, $mat-app-accent, $mat-app-warn);
 		top:0;
 		bottom: 0;
 		padding: 15px;
+		
 		&:hover {
 			background-color: gainsboro;
 			cursor: pointer;

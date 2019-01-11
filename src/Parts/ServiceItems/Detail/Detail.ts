@@ -30,4 +30,10 @@ export class ServiceDetail implements OnInit {
 			this.Loading = false;
 		});
 	}
+	
+	private CompleteServiceItem() {
+		this.Loading = true;
+		
+		
+	}
 }

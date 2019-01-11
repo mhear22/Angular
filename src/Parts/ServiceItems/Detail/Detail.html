@@ -16,6 +16,12 @@
 		<span *ngIf="Part.RepeatingTypeId=='age'">Year(s)</span>
 	</div>
 	
+	<div>
+		<button mat-button (click)="CompleteServiceItem()">
+			Complete Work
+		</button>
+	</div>
+	
 </mat-card>
 
 <mat-card *ngIf="Loading">
