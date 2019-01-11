@@ -5,15 +5,31 @@
 			<img *ngIf="ProfileImageUrl" class="profile-image" (click)="UploadImage()" [src]="ProfileImageUrl" />
 			<h2>Profile</h2>
 		</div>
-		<input matInput placeholder="Username" [(ngModel)]="CurrentUser.Username" type="text"/>
-		<input matInput placeholder="Email" [(ngModel)]="CurrentUser.EmailAddress" type="text"/>
-		<button (click)="Update()">Update</button>
-	</mat-card-content>
-</mat-card>
+		<mat-form-field>
+			<input matInput placeholder="Username" [(ngModel)]="CurrentUser.Username" type="text"/>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="Email" [(ngModel)]="CurrentUser.EmailAddress" type="text"/>
+		</mat-form-field>
+		<button matButton (click)="Update()">Update</button>
 
-<mat-card>
-	<h3 class="title">Change Password</h3>
-	<input matInput placeholder="Old Password" [(ngModel)]="OldPassword"/>
-	<input matInput placeholder="New Password" [(ngModel)]="NewPassword"/>
-	<button (click)="ChangePassword()">Change Password</button>
+		<div></div>
+
+		<h3 class="title">Change Password</h3>
+		<mat-form-field>
+			<input matInput placeholder="Old Password" [(ngModel)]="OldPassword"/>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="New Password" [(ngModel)]="NewPassword"/>
+		</mat-form-field>
+		<button matButton (click)="ChangePassword()">Change Password</button>
+		
+		<div></div>
+		
+		<div>
+			<button (click)="onPay()">
+				Add
+			</button>
+		</div>
+	</mat-card-content>
 </mat-card>

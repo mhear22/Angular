@@ -1309,6 +1309,73 @@ export class MileageService {
 }
 
 @Injectable()
+export class PaymentService {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    /**
+     * @param model (optional) 
+     * @return Success
+     */
+    processPayment(model: PaymentModel | null | undefined): Observable<PaymentModel> {
+        let url_ = this.baseUrl + "/payments";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processProcessPayment(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processProcessPayment(<any>response_);
+                } catch (e) {
+                    return <Observable<PaymentModel>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PaymentModel>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processProcessPayment(response: HttpResponseBase): Observable<PaymentModel> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <PaymentModel>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PaymentModel>(<any>null);
+    }
+}
+
+@Injectable()
 export class SessionsService {
     private http: HttpClient;
     private baseUrl: string;
@@ -1965,6 +2032,11 @@ export interface MileageModel {
 export interface MileageRecordingModel {
     Year?: number | undefined;
     Recording?: string | undefined;
+}
+
+export interface PaymentModel {
+    Token?: string | undefined;
+    Amount?: string | undefined;
 }
 
 export interface LoginModel {
