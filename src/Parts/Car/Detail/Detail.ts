@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewContainerRef, Inject, ViewChild, ElementRef, HostListener } from "@angular/core";
-import { CarService, OwnedCarModel, MileageService, MileageRecordingModel, API_BASE_URL, ComponentServiceService, ServiceItem } from "src/Services/Api/Api";
+import { CarService, OwnedCarModel, MileageService, MileageRecordingModel, API_BASE_URL, ComponentServiceService, ServiceItem, EmailService } from "src/Services/Api/Api";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { DialogService } from "src/Services/DialogService";
 import { GraphingService } from "src/Services/GraphingService";
 import { chartModel } from "src/Models/ChartModel";
+import { ServiceBase } from "src/Services/ServiceBase";
 
 @Component({
 	selector:'car',
@@ -20,6 +21,7 @@ export class CarDetail implements OnInit {
 		private mileageService:MileageService,
 		private graphingService:GraphingService,
 		private componentService:ComponentServiceService,
+		private emailService:EmailService,
 		@Inject(API_BASE_URL) public ApiUrl?: string
 	) { }
 	
@@ -31,9 +33,16 @@ export class CarDetail implements OnInit {
 		this.chartSettings.view[0] = this.chartContainer.nativeElement.offsetWidth;
 	}
 	
+	private get ApiKey() {
+		return ServiceBase.ApiKey;
+	}
+	
+	
+	
 	private comps: ServiceItem[];
 	public Car: OwnedCarModel;
 	public Mileage: MileageRecordingModel[];
+	private SendingTest:boolean = false;
 	
 	public chartSettings: chartModel = new chartModel();
 	
@@ -46,6 +55,13 @@ export class CarDetail implements OnInit {
 		this.dialogService.AddServiceItem(this.viewContainerRef, this.Car).subscribe(() => {
 			this.update();
 		});
+	}
+	
+	public sendTestEmail() {
+		this.SendingTest = true;
+		this.emailService.sendTestEmail(this.Car.Vin).subscribe(() => {
+			this.SendingTest = false;
+		})
 	}
 	
 	public get Nickname() {

@@ -6,7 +6,9 @@
 		<div class="edit-links">
 			<a style="float:right" (click)="delete()">Delete</a>
 			<a style="float:right" routerLink="/car/{{Car.Vin}}/edit">Edit</a>
-			<a style="float:right" target="_blank" href="{{ApiUrl}}/gen/carservice/pdf?vin={{Car.Vin}}">Print</a>
+			<a style="float:right" target="_blank" href="{{ApiUrl}}/gen/carservice/pdf?vin={{Car.Vin}}&apikey={{ApiKey}}">Print</a>
+			<span style="float:right;" *ngIf="SendingTest">Sending...</span>
+			<a style="float:right" *ngIf="!SendingTest" (click)="sendTestEmail()" href="javascript:;">Email Me</a>
 		</div>
 		<div style="clear: both;"></div>
 		<div>
