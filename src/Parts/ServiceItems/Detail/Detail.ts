@@ -34,6 +34,11 @@ export class ServiceDetail implements OnInit {
 	private CompleteServiceItem() {
 		this.Loading = true;
 		
-		
+		this.componentService.completeWork(this.Id, this.PartId, {
+			CurrentMiles:"0"
+		}).subscribe(() => {
+			this.Loading = false;
+			this.update();
+		});
 	}
 }

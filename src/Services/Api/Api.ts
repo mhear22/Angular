@@ -618,6 +618,64 @@ export class ComponentServiceService {
         }
         return _observableOf<RepeatTypeDto[]>(<any>null);
     }
+
+    /**
+     * @param model (optional) 
+     * @return Success
+     */
+    completeWork(vin: string, id: string, model: PartCompleteModel | null | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/car/{Vin}/part/{Id}/complete";
+        if (vin === undefined || vin === null)
+            throw new Error("The parameter 'vin' must be defined.");
+        url_ = url_.replace("{Vin}", encodeURIComponent("" + vin)); 
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{Id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCompleteWork(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCompleteWork(<any>response_);
+                } catch (e) {
+                    return <Observable<void>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<void>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processCompleteWork(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return _observableOf<void>(<any>null);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<void>(<any>null);
+    }
 }
 
 @Injectable()
@@ -1812,6 +1870,7 @@ export interface ServiceItemModel {
     RepeatingType?: string | undefined;
     ServiceType?: string | undefined;
     LastServiceMileage?: string | undefined;
+    LastServiceTime?: Date | undefined;
 }
 
 export interface ServiceTypeDto {
@@ -1822,6 +1881,10 @@ export interface ServiceTypeDto {
 export interface RepeatTypeDto {
     Id?: string | undefined;
     Name?: string | undefined;
+}
+
+export interface PartCompleteModel {
+    CurrentMiles?: string | undefined;
 }
 
 export interface UserModel {
