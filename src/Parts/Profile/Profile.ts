@@ -43,10 +43,10 @@ export class Profile implements OnInit {
 			locale:'auto',
 			token:token=> {
 				this.paymentService.processPayment({
-					Amount:"10",
+					Amount:"100",
 					Token:token
 				}).subscribe(x => {
-					alert(x);
+					
 				});
 			}
 		});
@@ -80,9 +80,10 @@ export class Profile implements OnInit {
 	
 	public onPay() {
 		this.handler.open({
-			name:"Test",
+			name:"Test Sub",
 			excerpt:'Test info',
-			amount:"10"
+			amount:"100",
+			description:""
 		});
 	}
 }
