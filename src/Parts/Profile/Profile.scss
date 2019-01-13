@@ -1,0 +1,36 @@
+@import '../../app';
+
+.profile-container {
+	height: 100px;
+	margin-bottom: 15px;
+}
+
+.profile-image {
+	border-radius: 50%;
+	height: 100px;
+	margin-right: 25px;
+	width: 100px;
+	float: left;
+}
+
+.payment-item {
+	margin:5px;
+	padding: 5px;
+	border: 1px solid gainsboro;
+	position: relative;
+	height: 300px;
+	
+	#price {
+		right: 0;
+		top: 0;
+		position: absolute;
+		padding: 5px;
+		font-weight: bold;
+	}
+	
+	button {
+		position: absolute;
+		bottom: 0;
+		padding: 5px;
+	}
+}
