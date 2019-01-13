@@ -4,7 +4,7 @@ import { LoginService } from '../../Services/LoginService';
 import { DialogService } from '../../Services/DialogService';
 import { ImageService } from '../../Services/ImageService';
 import { environment } from 'src/environments/environment';
-import { PaymentService } from 'src/Services/Api/Api';
+import { PaymentService, PaymentPlanModel } from 'src/Services/Api/Api';
 
 @Component({
 	selector: 'Profile',
@@ -24,6 +24,7 @@ export class Profile implements OnInit {
 	public OldPassword: string;
 	public CurrentUser: UserModel = new UserModel(); 
 	public ProfileImageUrl:string = null;
+	public plans:PaymentPlanModel[];
 	
 	public ngOnInit() {
 		this.Refresh();
@@ -36,6 +37,10 @@ export class Profile implements OnInit {
 			if(data.ImageId) {
 				this.ProfileImageUrl = this.imageService.GetImageUrl(data.ImageId);
 			}
+		});
+		
+		this.paymentService.getPlans().subscribe(x=> {
+			this.plans = x;
 		});
 		
 		this.handler = StripeCheckout.configure({

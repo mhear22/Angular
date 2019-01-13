@@ -26,6 +26,26 @@
 		
 		<div></div>
 		
+		<div class="payment-plans">
+			<div class="col-md-3" *ngFor="let plan of plans">
+				<div class="payment-item">
+					<h3>
+						{{plan.Name}}
+					</h3>
+					<span id="price">{{plan.Amount}}</span>
+					<h6>
+						{{plan.Description}}
+					</h6>
+					<ul>
+						<li>Track parts</li>
+						<li>Keep a record of work done</li>
+					</ul>
+					
+					<button mat-button>Select</button>
+				</div>
+			</div>
+		</div>
+		
 		<div>
 			<button (click)="onPay()">
 				Add

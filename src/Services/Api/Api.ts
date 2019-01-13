@@ -1373,6 +1373,56 @@ export class PaymentService {
         }
         return _observableOf<PaymentModel>(<any>null);
     }
+
+    /**
+     * @return Success
+     */
+    getPlans(): Observable<PaymentPlanModel[]> {
+        let url_ = this.baseUrl + "/paymentplans";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetPlans(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetPlans(<any>response_);
+                } catch (e) {
+                    return <Observable<PaymentPlanModel[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PaymentPlanModel[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetPlans(response: HttpResponseBase): Observable<PaymentPlanModel[]> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <PaymentPlanModel[]>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PaymentPlanModel[]>(<any>null);
+    }
 }
 
 @Injectable()
@@ -2035,7 +2085,49 @@ export interface MileageRecordingModel {
 }
 
 export interface PaymentModel {
-    Token?: string | undefined;
+    Token?: TokenModel | undefined;
+    Amount?: string | undefined;
+}
+
+export interface TokenModel {
+    card?: CardModel | undefined;
+    client_ip?: string | undefined;
+    created?: number | undefined;
+    livemode?: boolean | undefined;
+    used?: boolean | undefined;
+    email?: string | undefined;
+    id?: string | undefined;
+    object?: string | undefined;
+    type?: string | undefined;
+}
+
+export interface CardModel {
+    brand?: string | undefined;
+    country?: string | undefined;
+    cvc_check?: string | undefined;
+    funding?: string | undefined;
+    id?: string | undefined;
+    last4?: string | undefined;
+    name?: string | undefined;
+    object?: string | undefined;
+    exp_month?: number | undefined;
+    exp_year?: number | undefined;
+    metadata?: any | undefined;
+    address_city?: any | undefined;
+    address_country?: any | undefined;
+    address_line1?: any | undefined;
+    address_line1_check?: any | undefined;
+    address_line2?: any | undefined;
+    address_state?: any | undefined;
+    address_zip?: any | undefined;
+    address_zip_check?: any | undefined;
+    dynamic_last4?: any | undefined;
+    tokenization_method?: any | undefined;
+}
+
+export interface PaymentPlanModel {
+    Name?: string | undefined;
+    Description?: string | undefined;
     Amount?: string | undefined;
 }
 
