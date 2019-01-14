@@ -11,7 +11,7 @@
 		<mat-form-field>
 			<input matInput placeholder="Email" [(ngModel)]="CurrentUser.EmailAddress" type="text"/>
 		</mat-form-field>
-		<button matButton (click)="Update()">Update</button>
+		<button mat-button (click)="Update()">Update</button>
 
 		<div></div>
 
@@ -22,28 +22,10 @@
 		<mat-form-field>
 			<input matInput placeholder="New Password" [(ngModel)]="NewPassword"/>
 		</mat-form-field>
-		<button matButton (click)="ChangePassword()">Change Password</button>
+		<button mat-button (click)="ChangePassword()">Change Password</button>
 		
-		<div></div>
-		
-		<div class="payment-plans">
-			<div class="col-md-3" *ngFor="let plan of plans">
-				<div class="payment-item">
-					<h3>
-						{{plan.Name}}
-					</h3>
-					<span id="price">{{plan.Amount}}</span>
-					<h6>
-						{{plan.Description}}
-					</h6>
-					<ul>
-						<li>Track parts</li>
-						<li>Keep a record of work done</li>
-					</ul>
-					
-					<button mat-button>Select</button>
-				</div>
-			</div>
+		<div>
+			<button mat-button routerLink="/plans">Change Plans</button>
 		</div>
 		
 		<div>

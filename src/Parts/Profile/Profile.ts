@@ -42,19 +42,6 @@ export class Profile implements OnInit {
 		this.paymentService.getPlans().subscribe(x=> {
 			this.plans = x;
 		});
-		
-		this.handler = StripeCheckout.configure({
-			key:environment.stripeKey,
-			locale:'auto',
-			token:token=> {
-				this.paymentService.processPayment({
-					Amount:"100",
-					Token:token
-				}).subscribe(x => {
-					
-				});
-			}
-		});
 	}
 	
 	public UploadImage() {
