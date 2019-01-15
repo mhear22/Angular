@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="!Loading">
 	<mat-card-content>
 		<div class="profile-container">
 			<img *ngIf="!ProfileImageUrl" class="profile-image" (click)="UploadImage()" src="http://placehold.it/200x200" />
@@ -24,14 +24,15 @@
 		</mat-form-field>
 		<button mat-button (click)="ChangePassword()">Change Password</button>
 		
-		<div>
-			<button mat-button routerLink="/plans">Change Plans</button>
-		</div>
+		<h3 class="title">Payment</h3>
 		
 		<div>
-			<button (click)="onPay()">
-				Add
-			</button>
+			<button mat-button routerLink="/plans">Change Plans</button>
+			<span *ngIf="CurrentUser.PlanNickname">Currently: {{CurrentUser.PlanNickname}}</span>
 		</div>
 	</mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="Loading">
+	<mat-spinner mode="indeterminate" color="primary"></mat-spinner>
 </mat-card>

@@ -2071,7 +2071,8 @@ export interface UserModel {
     Username?: string | undefined;
     EmailAddress?: string | undefined;
     ImageId?: string | undefined;
-    PaymentPlanId?: string | undefined;
+    PlanId?: string | undefined;
+    PlanNickname?: string | undefined;
 }
 
 export interface MileageModel {
@@ -2144,7 +2145,8 @@ export interface CreateUserModel {
     Username?: string | undefined;
     EmailAddress?: string | undefined;
     ImageId?: string | undefined;
-    PaymentPlanId?: string | undefined;
+    PlanId?: string | undefined;
+    PlanNickname?: string | undefined;
 }
 
 export interface ChangePasswordModel {

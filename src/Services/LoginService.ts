@@ -3,9 +3,8 @@ import { Http } from '@angular/http';
 import { ServiceBase } from './ServiceBase';
 import { of, Observable } from 'rxjs';
 import { CreateUserModel } from '../Models/User/CreateUserModel';
-import { UserModel } from '../Models/User/UserModel';
 import { LocalStorageService } from 'ngx-webstorage';
-import { SessionsService, LoginModel, UsersService, ChangePasswordModel, CurrentUserService } from './Api/Api';
+import { SessionsService, LoginModel, UsersService, ChangePasswordModel, CurrentUserService, UserModel } from './Api/Api';
 
 @Injectable()
 export class LoginService extends ServiceBase {

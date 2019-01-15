@@ -1,10 +1,9 @@
 import { Component, ViewContainerRef, OnInit } from '@angular/core';
-import { UserModel } from '../../Models/User/UserModel';
 import { LoginService } from '../../Services/LoginService';
 import { DialogService } from '../../Services/DialogService';
 import { ImageService } from '../../Services/ImageService';
 import { environment } from 'src/environments/environment';
-import { PaymentService, PaymentPlanModel } from 'src/Services/Api/Api';
+import { PaymentService, PaymentPlanModel, UserModel } from 'src/Services/Api/Api';
 
 @Component({
 	selector: 'Profile',
@@ -19,10 +18,11 @@ export class Profile implements OnInit {
 		private paymentService:PaymentService
 	) {
 	}
-	private handler:any;
+	
+	public Loading:boolean = false;
 	public NewPassword: string;
 	public OldPassword: string;
-	public CurrentUser: UserModel = new UserModel(); 
+	public CurrentUser: UserModel;
 	public ProfileImageUrl:string = null;
 	public plans:PaymentPlanModel[];
 	
@@ -31,11 +31,12 @@ export class Profile implements OnInit {
 	}
 	
 	public Refresh() {
+		this.Loading = true;
 		this.UserService.GetCurrentUser().subscribe(result => {
-			var data = <UserModel>result;
-			this.CurrentUser = data;
-			if(data.ImageId) {
-				this.ProfileImageUrl = this.imageService.GetImageUrl(data.ImageId);
+			this.Loading = false;
+			this.CurrentUser = result;
+			if(result.ImageId) {
+				this.ProfileImageUrl = this.imageService.GetImageUrl(result.ImageId);
 			}
 		});
 		
@@ -67,15 +68,6 @@ export class Profile implements OnInit {
 			OldPassword: this.OldPassword
 		}).subscribe(x=>{
 			this.Refresh();
-		});
-	}
-	
-	public onPay() {
-		this.handler.open({
-			name:"Test Sub",
-			excerpt:'Test info',
-			amount:"100",
-			description:""
 		});
 	}
 }

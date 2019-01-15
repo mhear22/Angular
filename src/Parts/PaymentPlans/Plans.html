@@ -1,22 +1,29 @@
-<mat-card>
+<mat-card *ngIf="!Loading">
 	<div class="payment-plans">
-		<h2>Plans</h2>
+		<h2 style="float:left;">Plans</h2>
+		<span style="float:right;">Current Plan: <b>{{CurrentPlan}}</b></span>
+		<div style="clear:both;"></div>
 		<div class="col-md-3" *ngFor="let plan of plans">
 			<div class="payment-item">
 				<h3>
 					{{plan.Name}}
 				</h3>
-				<span id="price">{{plan.Amount}}</span>
+				<span id="price">${{plan.Amount/100}}</span>
 				<h6>
 					{{plan.Description}}
 				</h6>
 				<ul>
 					<li>Track parts</li>
 					<li>Keep a record of work done</li>
+					<li>Receive reminders when work needs to be done</li>
 				</ul>
 
-				<button mat-button>Select</button>
+				<button [disabled]="CurrentPlan == plan.Name" mat-button (click)="selected(plan)">Select</button>
 			</div>
 		</div>
 	</div>
+</mat-card>
+
+<mat-card *ngIf="Loading">
+	<mat-spinner mode="indeterminate" color="primary"></mat-spinner>
 </mat-card>
