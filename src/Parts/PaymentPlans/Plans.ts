@@ -1,8 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { PaymentService, PaymentPlanModel } from "src/Services/Api/Api";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
+import { PaymentService, PaymentPlanModel, UserModel } from "src/Services/Api/Api";
 import { environment } from "src/environments/environment";
 import { Router } from "@angular/router";
 import { LoginService } from "src/Services/LoginService";
+import { MatDialog } from "@angular/material";
+import { UnsubscribeDialog } from "../Dialog/Unsubscribe/Unsubscribe";
+import { DialogService } from "src/Services/DialogService";
 
 @Component({
 	selector:'payment-plans',
@@ -12,7 +15,9 @@ export class PaymentPlans implements OnInit {
 	constructor(
 		private paymentService:PaymentService,
 		private router:Router,
-		private loginService:LoginService
+		private loginService:LoginService,
+		private dialogService:DialogService,
+		private viewContainerRef: ViewContainerRef
 	) { }
 	
 	private plans:PaymentPlanModel[];
@@ -20,6 +25,7 @@ export class PaymentPlans implements OnInit {
 	private selectedPlan:PaymentPlanModel;
 	private Loading:boolean = false;
 	private CurrentPlan:string;
+	private currentUser:UserModel;
 	
 	public ngOnInit() { this.Refresh(); }
 	public Refresh() {
@@ -28,7 +34,6 @@ export class PaymentPlans implements OnInit {
 			this.plans = x;
 			this.Loading = false;
 		});
-		
 		
 		var data = {
 			key:environment.stripeKey,
@@ -46,11 +51,18 @@ export class PaymentPlans implements OnInit {
 		
 		var login = this.loginService.GetCurrentUser();
 		login.subscribe(x=> {
+			this.currentUser = x;
 			data.email = x.EmailAddress;
 			this.CurrentPlan = x.PlanNickname;
 			this.handler = StripeCheckout.configure(data)
 		},() => {
 			this.handler = StripeCheckout.configure(data)
+		});
+	}
+
+	public cancelSub() {
+		this.dialogService.Unsubscribe(this.viewContainerRef,this.currentUser.Id).subscribe(() => {
+			this.router.navigate(['/profile']); 
 		});
 	}
 	

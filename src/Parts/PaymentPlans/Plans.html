@@ -1,6 +1,9 @@
 <mat-card *ngIf="!Loading">
 	<div class="payment-plans">
 		<h2 style="float:left;">Plans</h2>
+		<span style="float:right; padding: 0 5px;">
+			<a href="javascript:;" (click)="cancelSub()">Cancel</a>
+		</span>
 		<span style="float:right;">Current Plan: <b>{{CurrentPlan}}</b></span>
 		<div style="clear:both;"></div>
 		<div class="col-md-3" *ngFor="let plan of plans">

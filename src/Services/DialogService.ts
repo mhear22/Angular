@@ -9,12 +9,23 @@ import { MileageDialog } from 'src/Parts/Dialog/Mileage/Mileage';
 import { OwnedCarModel } from './Api/Api';
 import { DeleteCarDialog } from 'src/Parts/Dialog/DeleteCar/DeleteCar';
 import { ServiceItemDialog } from 'src/Parts/Dialog/ServiceItem/ServiceItem';
+import { UnsubscribeDialog } from 'src/Parts/Dialog/Unsubscribe/Unsubscribe';
 
 
 @Injectable()
 export class DialogService extends ServiceBase {
 	constructor(protected http: Http, private mdDialog:MatDialog) {
 		super(http);
+	}
+	
+	public Unsubscribe(viewContainerRef: ViewContainerRef,UserId:string):Observable<void> {
+		var conf = new MatDialogConfig();
+		conf.viewContainerRef = viewContainerRef;
+		var ref = this.mdDialog.open(UnsubscribeDialog, {
+			data:UserId,
+			viewContainerRef:viewContainerRef
+		});
+		return ref.afterClosed();
 	}
 	
 	public SubmitFile(viewContainerRef: ViewContainerRef):Observable<ImageUploadResponse> {
