@@ -18,6 +18,8 @@
 			</h4>
 			<h6 style="float:right;">Current: {{Car.Mileage}}KM</h6>
 			<div style="clear: both;"></div>
+			<h6 style="float:right;">Mileage: {{estimatedMileage}}KM</h6>
+			<div style="clear: both;"></div>
 			<div style="overflow:hidden;" *ngIf="chartSettings.data" #chartcontainer>
 				<ngx-charts-line-chart
 					[results]="chartSettings.data"

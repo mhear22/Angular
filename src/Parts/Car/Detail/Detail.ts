@@ -43,6 +43,7 @@ export class CarDetail implements OnInit {
 	public Car: OwnedCarModel;
 	public Mileage: MileageRecordingModel[];
 	private SendingTest:boolean = false;
+	private estimatedMileage:string;
 	
 	public chartSettings: chartModel = new chartModel();
 	
@@ -71,9 +72,14 @@ export class CarDetail implements OnInit {
 	}
 	private update() {
 		var Id = this.route.snapshot.paramMap.get("Id");
+		
 		this.carService.getCar(Id).subscribe(x=> {
 			this.Car = x;
 			this.Loading = false;
+			
+			this.mileageService.getEstimatedMileage(x.Vin).subscribe(est => {
+				this.estimatedMileage = est;
+			});
 			this.mileageService.getMileage(x.Vin).subscribe(mil=>{
 				this.Mileage = mil;
 				var data = this.graphingService.BestFitPointsToGraph(mil);

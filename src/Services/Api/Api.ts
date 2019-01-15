@@ -1306,6 +1306,59 @@ export class MileageService {
         }
         return _observableOf<MileageRecordingModel[]>(<any>null);
     }
+
+    /**
+     * @return Success
+     */
+    getEstimatedMileage(vin: string): Observable<string> {
+        let url_ = this.baseUrl + "/car/mileage/{Vin}/current";
+        if (vin === undefined || vin === null)
+            throw new Error("The parameter 'vin' must be defined.");
+        url_ = url_.replace("{Vin}", encodeURIComponent("" + vin)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetEstimatedMileage(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetEstimatedMileage(<any>response_);
+                } catch (e) {
+                    return <Observable<string>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<string>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetEstimatedMileage(response: HttpResponseBase): Observable<string> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <string>JSON.parse(_responseText, this.jsonParseReviver);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<string>(<any>null);
+    }
 }
 
 @Injectable()
@@ -2132,8 +2185,8 @@ export interface MileageModel {
 }
 
 export interface MileageRecordingModel {
-    Year?: number | undefined;
     Recording?: string | undefined;
+    Year?: number | undefined;
 }
 
 export interface PaymentModel {
