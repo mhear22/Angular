@@ -7,4 +7,5 @@ export class HomeItemModel {
 	public Route?:string = null;
 	public Action?:any = null;
 	public Invert?:boolean = false;
+	public Disabled?:boolean = false;
 }

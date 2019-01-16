@@ -52,6 +52,7 @@ export class MenuBar {
 			Allowed:true,
 			RequiresLogin:true,
 			RequiresPlan:true,
+			Disabled:true
 		},
 		{
 			Name:"Sign Out",
@@ -98,6 +99,16 @@ export class MenuBar {
 			}
 			else {
 				x.Allowed = true;
+			}
+			
+			if(x.Disabled) {
+				x.Allowed = false;
+			}
+		});
+		
+		this.Items.forEach(x=> {
+			if(x.Name == "Sign In" && x.Allowed) {
+				x.Allowed = !this.IsLoggedIn;
 			}
 		});
 	}
