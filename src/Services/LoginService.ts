@@ -40,6 +40,7 @@ export class LoginService extends ServiceBase {
 	
 	private stillLive:boolean = false;
 	
+	public static IsSubscribed:boolean = false;
 	public IsLoggedIn(): boolean {
 		return ServiceBase.ApiKey !== "";
 	}
@@ -52,7 +53,13 @@ export class LoginService extends ServiceBase {
 	}
 	
 	public GetCurrentUser() {
-		return this.currentUserService.getCurrentUser();
+		var result = this.currentUserService.getCurrentUser();
+		result.subscribe(x=> {
+			LoginService.IsSubscribed = !!x.PlanNickname;
+		},() => {
+			LoginService.IsSubscribed = false;
+		});
+		return result;
 	}
 	
 	public GetUser(NameOrId:string) {

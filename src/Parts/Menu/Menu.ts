@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../Services/LoginService';
 import { ServiceBase } from '../../Services/ServiceBase';
-import { Observable } from 'rxjs';
+import { Observable, interval } from 'rxjs';
 import { HomeItemModel } from 'src/Models/HomeItemModel';
 import { PaymentService } from 'src/Services/Api/Api';
 
@@ -15,10 +15,9 @@ export class MenuBar {
 		private login: LoginService,
 		private router: Router
 	) {
-		this.Refresh();
-		ServiceBase.ApiKeyChange.subscribe(x=>{
-			this.IsLoggedIn = x;
-		});
+		interval(1000).subscribe(() => {
+			this.Check();
+		})
 	}
 	
 	private Items:HomeItemModel[] = [
@@ -81,16 +80,13 @@ export class MenuBar {
 			if(x.RequiresLogin && x.RequiresPlan) {
 				var IsLoggedIn = this.IsLoggedIn == true;
 				var IsSubscribed = this.IsSubscribed == true;
-				
 				result = IsLoggedIn && IsSubscribed;
-				
-				//result = !((!this.IsLoggedIn) || (!this.IsSubscribed));
 			}
 			else if(x.RequiresLogin) {
 				result = this.IsLoggedIn;
 			}
 			else if(x.RequiresPlan) {
-				
+				result = this.IsSubscribed;
 			}
 			
 			if(result != null) {
@@ -103,19 +99,22 @@ export class MenuBar {
 			else {
 				x.Allowed = true;
 			}
-			
 		});
 	}
 	
 	
-	IsLoggedIn: boolean = false; 
-	IsSubscribed: boolean = false;
+	
+	get IsLoggedIn(): boolean {
+		return this.login.IsLoggedIn();
+	};
+	get IsSubscribed(): boolean {
+		return LoginService.IsSubscribed;
+	}
 	
 	public Refresh():void {
-		this.IsLoggedIn = this.login.IsLoggedIn();
+		//this.IsLoggedIn = this.login.IsLoggedIn();
 		if(this.IsLoggedIn) {
 			this.login.GetCurrentUser().subscribe(x=> {
-				this.IsSubscribed = !!x.PlanNickname
 				this.Check();
 			},()=> {
 				this.Check();
