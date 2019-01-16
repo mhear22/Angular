@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService, OwnedCarModel } from 'src/Services/Api/Api';
 import { LoginService } from 'src/Services/LoginService';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'home',
@@ -10,7 +11,8 @@ import { LoginService } from 'src/Services/LoginService';
 export class Home implements OnInit {
 	constructor(
 		private CarService: CarService,
-		private LoginService: LoginService
+		private LoginService: LoginService,
+		private router:Router
 	) { }
 
 	public Cars: OwnedCarModel[];
@@ -25,6 +27,11 @@ export class Home implements OnInit {
 					this.Loading = false;
 					this.Cars = carlist.Items;
 				});
+			});
+			this.LoginService.GetCurrentUser().subscribe(x=>{
+				if(!x.PlanNickname) {
+					this.router.navigate(["/profile"]);
+				}
 			});
 		}
 		else {

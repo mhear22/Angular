@@ -6,6 +6,7 @@ import { DialogService } from "src/Services/DialogService";
 import { GraphingService } from "src/Services/GraphingService";
 import { chartModel } from "src/Models/ChartModel";
 import { ServiceBase } from "src/Services/ServiceBase";
+import { LoginService } from "src/Services/LoginService";
 
 @Component({
 	selector:'car',
@@ -22,6 +23,7 @@ export class CarDetail implements OnInit {
 		private graphingService:GraphingService,
 		private componentService:ComponentServiceService,
 		private emailService:EmailService,
+		private loginService:LoginService,
 		@Inject(API_BASE_URL) public ApiUrl?: string
 	) { }
 	
@@ -37,8 +39,6 @@ export class CarDetail implements OnInit {
 		return ServiceBase.ApiKey;
 	}
 	
-	
-	
 	private comps: ServiceItem[];
 	public Car: OwnedCarModel;
 	public Mileage: MileageRecordingModel[];
@@ -50,6 +50,11 @@ export class CarDetail implements OnInit {
 	public Loading:boolean = true;
 	public ngOnInit() {
 		this.update();
+		this.loginService.GetCurrentUser().subscribe(x=>{
+			if(!x.PlanNickname) {
+				this.router.navigate(["/profile"]);
+			}
+		});
 	}
 	
 	public addMaintenanceItem() {
