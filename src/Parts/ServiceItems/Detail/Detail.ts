@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ComponentServiceService } from "src/Services/Api/Api";
+import { DialogService } from "src/Services/DialogService";
 
 @Component({
 	selector:"service-detail",
@@ -9,12 +10,15 @@ import { ComponentServiceService } from "src/Services/Api/Api";
 export class ServiceDetail implements OnInit {
 	constructor(
 		private route:ActivatedRoute,
-		private componentService:ComponentServiceService
+		private componentService:ComponentServiceService,
+		private dialogService:DialogService,
+		private viewContainerRef: ViewContainerRef
 	) { }
 	
 	public ngOnInit() {
 		this.update();
 	}
+	
 	
 	private Id:string;
 	private PartId:string;
@@ -33,12 +37,13 @@ export class ServiceDetail implements OnInit {
 	
 	private CompleteServiceItem() {
 		this.Loading = true;
-		
-		this.componentService.completeWork(this.Id, this.PartId, {
-			CurrentMiles:"0"
-		}).subscribe(() => {
-			this.Loading = false;
-			this.update();
-		});
+		this.dialogService.VerifyMileage(this.viewContainerRef,this.Id).subscribe(x=> {
+			this.componentService.completeWork(this.Id, this.PartId, {
+				CurrentMiles:x
+			}).subscribe(() => {
+				this.Loading = false;
+				this.update();
+			});
+		})
 	}
 }

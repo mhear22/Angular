@@ -10,6 +10,7 @@ import { OwnedCarModel } from './Api/Api';
 import { DeleteCarDialog } from 'src/Parts/Dialog/DeleteCar/DeleteCar';
 import { ServiceItemDialog } from 'src/Parts/Dialog/ServiceItem/ServiceItem';
 import { UnsubscribeDialog } from 'src/Parts/Dialog/Unsubscribe/Unsubscribe';
+import { RequestMileageDialog } from 'src/Parts/Dialog/RequestMileage/requestMileage';
 
 
 @Injectable()
@@ -55,6 +56,14 @@ export class DialogService extends ServiceBase {
 	public AddServiceItem(viewContainerRef:ViewContainerRef, car:OwnedCarModel):Observable<void> {
 		var ref = this.mdDialog.open(ServiceItemDialog, {
 			data:car,
+			viewContainerRef:viewContainerRef
+		});
+		return ref.afterClosed();
+	}
+	
+	public VerifyMileage(viewContainerRef:ViewContainerRef, vin:string):Observable<string> {
+		var ref = this.mdDialog.open(RequestMileageDialog, {
+			data:vin,
 			viewContainerRef:viewContainerRef
 		});
 		return ref.afterClosed();

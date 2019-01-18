@@ -37,6 +37,7 @@ import { ServiceItemDialog } from 'src/Parts/Dialog/ServiceItem/ServiceItem';
 import { ServiceDetail } from 'src/Parts/ServiceItems/Detail/Detail';
 import { PaymentPlans } from 'src/Parts/PaymentPlans/Plans';
 import { UnsubscribeDialog } from 'src/Parts/Dialog/Unsubscribe/Unsubscribe';
+import { RequestMileageDialog } from 'src/Parts/Dialog/RequestMileage/requestMileage';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -61,14 +62,16 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		ServiceItemDialog,
 		ServiceDetail,
 		PaymentPlans,
-		UnsubscribeDialog
+		UnsubscribeDialog,
+		RequestMileageDialog
 	],
 	entryComponents:[
 		UploadFileDialog,
 		MileageDialog,
 		DeleteCarDialog,
 		ServiceItemDialog,
-		UnsubscribeDialog
+		UnsubscribeDialog,
+		RequestMileageDialog
 	],
 	imports: [
 		BrowserModule,
