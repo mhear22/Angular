@@ -7,7 +7,7 @@ import { OwnedCarModel, ComponentServiceService, ServiceTypeDto, ServiceItem } f
 })
 export class ServiceItemDialog {
 	private Car:OwnedCarModel;
-	private Loading:boolean = false;
+	public Loading:boolean = false;
 	private repeats:ServiceTypeDto[];
 	private repeating:string;
 	private repeatingFrequency:string;

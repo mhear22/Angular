@@ -16,10 +16,10 @@ export class MileageDialog {
 		
 	}
 	public advanced:boolean = false;
+	public Loading:boolean = false;
 	
 	private RecordingDate:Date;
 	private Car:OwnedCarModel;
-	private Loading:boolean = false;
 	private ErrorMessage:string = null;
 	
 	public save() {

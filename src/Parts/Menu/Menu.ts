@@ -20,7 +20,7 @@ export class MenuBar {
 		})
 	}
 	
-	private Items:HomeItemModel[] = [
+	public Items:HomeItemModel[] = [
 		{
 			Name:"Home",
 			IconClass:"fa fa-home",

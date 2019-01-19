@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
 	templateUrl:'./requestMileage.html'
 })
 export class RequestMileageDialog {
-	private currentMileage = "0";
+	public currentMileage = "0";
 	constructor(
 		private diaRef:MatDialogRef<string>,
 		private mileageService:MileageService,

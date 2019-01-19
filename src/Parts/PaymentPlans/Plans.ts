@@ -23,7 +23,7 @@ export class PaymentPlans implements OnInit {
 	private plans:PaymentPlanModel[];
 	private handler:any;
 	private selectedPlan:PaymentPlanModel;
-	private Loading:boolean = false;
+	public Loading:boolean = false;
 	private CurrentPlan:string;
 	private currentUser:UserModel;
 	

@@ -23,7 +23,7 @@ export class ServiceDetail implements OnInit {
 	private Id:string;
 	private PartId:string;
 	private Part:any;
-	private Loading:boolean = true;
+	public Loading:boolean = true;
 	
 	private update() {
 		this.Id = this.route.snapshot.paramMap.get("Id");
