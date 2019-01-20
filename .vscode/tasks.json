@@ -19,6 +19,12 @@
 			"problemMatcher": []
 		},
 		{
+			"label": "prod:serve",
+			"type": "shell",
+			"command":"ng serve --prod",
+			"problemMatcher":[]
+		},
+		{
 			"label": "genServices",
 			"type": "shell",
 			"command": "nswag run ./api.nswag",
