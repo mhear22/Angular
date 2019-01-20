@@ -21,8 +21,8 @@
 		{
 			"label": "prod:serve",
 			"type": "shell",
-			"command":"ng serve --prod",
-			"problemMatcher":[]
+			"command": "ng serve --prod",
+			"problemMatcher": []
 		},
 		{
 			"label": "genServices",

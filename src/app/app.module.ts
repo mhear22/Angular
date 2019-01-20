@@ -8,7 +8,7 @@ import { LoginService } from 'src/Services/LoginService';
 import { MatDialogModule, MatCardModule, MatInputModule, MatProgressSpinnerModule, MatSidenavModule, MatSelectModule, MatButtonModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
-import { Ng2Webstorage } from "ngx-webstorage";
+import { NgxWebstorageModule } from "ngx-webstorage";
 import { RouterModule } from '@angular/router';
 import { routes } from 'src/routes';
 import { LoginForm } from 'src/Parts/Login/Login';
@@ -81,7 +81,7 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		MatDialogModule,
 		MatButtonModule,
 		BrowserAnimationsModule,
-		Ng2Webstorage,
+		NgxWebstorageModule.forRoot({}),
 		RouterModule.forRoot(routes),
 		FileUploadModule,
 		MatCardModule,
