@@ -38,6 +38,8 @@ import { ServiceDetail } from 'src/Parts/ServiceItems/Detail/Detail';
 import { PaymentPlans } from 'src/Parts/PaymentPlans/Plans';
 import { UnsubscribeDialog } from 'src/Parts/Dialog/Unsubscribe/Unsubscribe';
 import { RequestMileageDialog } from 'src/Parts/Dialog/RequestMileage/requestMileage';
+import { Angulartics2Module } from "angulartics2";
+import { Angulartics2GoogleGlobalSiteTag } from "angulartics2/gst";
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -89,7 +91,13 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		MatProgressSpinnerModule,
 		MatSidenavModule,
 		MatSelectModule,
-		NgxChartsModule
+		NgxChartsModule,
+		Angulartics2Module.forRoot({
+			gst:{
+				trackingIds:['UA-90319263-2'],
+				anonymizeIp:true
+			}
+		})
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy},
