@@ -109,7 +109,7 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		GraphingService,
 		{
 			provide:Api.API_BASE_URL,
-			useValue:(environment.production)?"":"http://localhost:5000"
+			useValue:(environment.production)?"https://api.mechie.net":"http://localhost:5000"
 		},
 		{ provide:HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi:true}
 	].concat(keys),
