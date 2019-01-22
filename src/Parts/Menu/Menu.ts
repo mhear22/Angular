@@ -73,7 +73,11 @@ export class MenuBar {
 			RequiresPlan:false,
 			Invert:true
 		}
-	];
+	].map(x=>{
+		if(x.Action == null)
+			x.Action = () => {}
+		return x;
+	});
 	
 	public Check():void {
 		this.Items.forEach(x=> {
