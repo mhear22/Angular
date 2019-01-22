@@ -40,6 +40,7 @@ import { UnsubscribeDialog } from 'src/Parts/Dialog/Unsubscribe/Unsubscribe';
 import { RequestMileageDialog } from 'src/Parts/Dialog/RequestMileage/requestMileage';
 import { Angulartics2Module } from "angulartics2";
 import { Angulartics2GoogleGlobalSiteTag } from "angulartics2/gst";
+import { environment } from 'src/environments/environment';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -96,7 +97,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 			gst:{
 				trackingIds:['UA-90319263-2'],
 				anonymizeIp:true
-			}
+			},
+			developerMode:environment.production
 		})
 	],
 	providers: [
@@ -105,7 +107,10 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		ImageService,
 		LoginService,
 		GraphingService,
-		{ provide:Api.API_BASE_URL, useValue:"http://localhost:5000" },
+		{
+			provide:Api.API_BASE_URL,
+			useValue:(environment.production)?"":"http://localhost:5000"
+		},
 		{ provide:HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi:true}
 	].concat(keys),
 	bootstrap: [AppComponent],
