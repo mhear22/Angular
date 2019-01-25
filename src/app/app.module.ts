@@ -42,6 +42,7 @@ import { Angulartics2Module } from "angulartics2";
 import { Angulartics2GoogleGlobalSiteTag } from "angulartics2/gst";
 import { environment } from 'src/environments/environment';
 import { TermsOfService } from 'src/Parts/TOS/tos';
+import { Verified } from 'src/Parts/Verified/Verified';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -68,7 +69,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		PaymentPlans,
 		UnsubscribeDialog,
 		RequestMileageDialog,
-		TermsOfService
+		TermsOfService,
+		Verified
 	],
 	entryComponents:[
 		UploadFileDialog,
