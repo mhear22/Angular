@@ -10,20 +10,13 @@ import { NgModel } from '@angular/forms';
 	providers: [ LoginService ]
 })
 export class Signup {
-	public email:any = "";
-	public password:any = "";
-	public username:any = "";
+	public accepted:boolean = false;
+	public model:CreateUserModel = new CreateUserModel();
 	
 	constructor(private login:LoginService, private router: Router) { }
 	public Submit() {
-		var model = new CreateUserModel();
-		model.EmailAddress = this.email;
-		model.Password = this.password;
-		model.Username = this.username;
-		this.login.CreateUser(model).subscribe(
-			result => {
-				this.router.navigate(['/login']);
-			}
-		)
+		this.login.CreateUser(this.model).subscribe(() => {
+			this.router.navigate(['/login']);
+		});
 	}
 }

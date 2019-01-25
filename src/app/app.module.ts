@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { DialogService } from 'src/Services/DialogService';
 import { ImageService } from 'src/Services/ImageService';
 import { LoginService } from 'src/Services/LoginService';
-import { MatDialogModule, MatCardModule, MatInputModule, MatProgressSpinnerModule, MatSidenavModule, MatSelectModule, MatButtonModule } from '@angular/material';
+import { MatDialogModule, MatCardModule, MatInputModule, MatProgressSpinnerModule, MatSidenavModule, MatSelectModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { NgxWebstorageModule } from "ngx-webstorage";
@@ -41,6 +41,7 @@ import { RequestMileageDialog } from 'src/Parts/Dialog/RequestMileage/requestMil
 import { Angulartics2Module } from "angulartics2";
 import { Angulartics2GoogleGlobalSiteTag } from "angulartics2/gst";
 import { environment } from 'src/environments/environment';
+import { TermsOfService } from 'src/Parts/TOS/tos';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -66,7 +67,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		ServiceDetail,
 		PaymentPlans,
 		UnsubscribeDialog,
-		RequestMileageDialog
+		RequestMileageDialog,
+		TermsOfService
 	],
 	entryComponents:[
 		UploadFileDialog,
@@ -99,7 +101,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 				anonymizeIp:true
 			},
 			developerMode:environment.production
-		})
+		}),
+		MatCheckboxModule
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -1,23 +1,28 @@
 <mat-card class="col-md-6 col-md-offset-3">
 	<div>
 		<mat-form-field>
-			<input matInput type="text" [(ngModel)]="username" name="username" placeholder="Username" />
+			<input matInput type="text" [(ngModel)]="model.Username" name="username" placeholder="Username" />
 		</mat-form-field>
 	</div>
 	<div>
 		<mat-form-field>
-			<input matInput type="text" [(ngModel)]="email" name="email" placeholder="Email" />
+			<input matInput type="text" [(ngModel)]="model.EmailAddress" name="email" placeholder="Email" />
 		</mat-form-field>
 	</div>
 	<div>
 		<mat-form-field>
-			<input matInput type="password" [(ngModel)]="password" name="pass" placeholder="Password" />
+			<input matInput type="password" [(ngModel)]="model.Password" name="pass" placeholder="Password" />
 		</mat-form-field>
 	</div>
 	<div>
-		<mat-form-field>
-			<input matInput type="submit" (click)="Submit()" style="display:none;" />
-		</mat-form-field>
+		<mat-checkbox [(ngModel)]="accepted">
+			Accept
+		</mat-checkbox>
+		<span routerLink="/terms-of-service" style="padding:0 5px;">
+			<a>Terms and Conditions</a>
+		</span>
 	</div>
-	<button (click)="Submit()" name="submit" matButton>Sign up</button>
+	<button [disabled]="!accepted" (click)="Submit()" name="submit" mat-button>
+		Sign up
+	</button>
 </mat-card>
