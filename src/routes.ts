@@ -11,9 +11,10 @@ import { PaymentPlans } from './Parts/PaymentPlans/Plans';
 import { TermsOfService } from './Parts/TOS/tos';
 import { Verified } from './Parts/Verified/Verified';
 import { Dashboard } from './Parts/Dashboard/Dashboard';
+import { Home } from './Parts/Home/Home';
 
 export const routes: Routes = [
-	{ path: '', redirectTo: 'home', pathMatch: 'full' },
+	//{ path: '', redirectTo: 'home', pathMatch: 'full' },
 	{ path: 'login', component: LoginForm },
 	{ path: 'home', component:  Dashboard },
 	{ path: 'signup', component: Signup },
@@ -25,5 +26,6 @@ export const routes: Routes = [
 	{ path:'car/:Id/part/:PartId', component: ServiceDetail },
 	{ path:'plans', component:PaymentPlans },
 	{ path:'terms-of-service', component: TermsOfService },
-	{ path:'verified', component: Verified }
+	{ path:'verified', component: Verified },
+	{ path: '', component: Home }
 ]

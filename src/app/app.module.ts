@@ -42,6 +42,7 @@ import { environment } from 'src/environments/environment';
 import { TermsOfService } from 'src/Parts/TOS/tos';
 import { Verified } from 'src/Parts/Verified/Verified';
 import { Dashboard } from 'src/Parts/Dashboard/Dashboard';
+import { Home } from 'src/Parts/Home/Home';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -68,7 +69,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		RequestMileageDialog,
 		TermsOfService,
 		Verified,
-		Dashboard
+		Dashboard,
+		Home
 	],
 	entryComponents:[
 		UploadFileDialog,

@@ -4,7 +4,7 @@ import { LoginService } from 'src/Services/LoginService';
 import { Router } from '@angular/router';
 
 @Component({
-	selector: 'home',
+	selector: 'dashboard',
 	templateUrl: './Dashboard.html',
 	providers: []
 })
