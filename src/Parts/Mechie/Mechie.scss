@@ -1,0 +1,39 @@
+@import '../../app.scss';
+
+.base {
+	.header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1;
+		height: 60px;
+		background-color: $app-primary-dark;
+		overflow: hidden;
+		padding: 10px;
+		
+		button {
+			margin: 0 5px;
+			float: right;
+		}
+	}
+	
+	mat-card {
+		margin-bottom: 50px;
+	}
+	
+	.splash-title {
+		text-align: center;
+		color:white;
+		margin: 50px 0;
+	}
+	
+	.header-spacer {
+		width:100%;
+		height: 60px;
+	}
+	
+	.body {
+		height: 100px;
+	}
+}

@@ -40,7 +40,7 @@ export class MenuBar {
 		{
 			Name:"Profile",
 			IconClass:"fa fa-user",
-			Route:"profile",
+			Route:"/profile",
 			Allowed:true,
 			RequiresLogin:true,
 			RequiresPlan:false,

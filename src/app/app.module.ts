@@ -43,6 +43,8 @@ import { TermsOfService } from 'src/Parts/TOS/tos';
 import { Verified } from 'src/Parts/Verified/Verified';
 import { Dashboard } from 'src/Parts/Dashboard/Dashboard';
 import { Home } from 'src/Parts/Home/Home';
+import { Mechie } from 'src/Parts/Mechie/Mechie';
+import { FoldRouter } from 'src/Parts/FoldRouter/FoldRouter';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -70,7 +72,9 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		TermsOfService,
 		Verified,
 		Dashboard,
-		Home
+		Home,
+		Mechie,
+		FoldRouter,
 	],
 	entryComponents:[
 		UploadFileDialog,

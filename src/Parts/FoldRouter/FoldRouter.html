@@ -1,0 +1,20 @@
+<div class="header-container">
+	<div class="nav-icon-container" (click)="start.toggle()">
+		<hamburger [open]="start.opened"></hamburger>
+	</div>
+	<header-bar class="col-md-11"></header-bar>
+</div>
+<div class="sidenav">
+	<mat-sidenav-container>
+		<mat-sidenav #start mode="over" opened="false">
+			<menu></menu>
+		</mat-sidenav>
+		<mat-sidenav-content>
+			<div class="col-md-8 col-md-offset-2">
+				<router-outlet></router-outlet>
+			</div>
+		</mat-sidenav-content>
+	</mat-sidenav-container>
+</div>
+<div class="cover-page">
+</div>
