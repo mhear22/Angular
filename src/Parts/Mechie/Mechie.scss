@@ -18,6 +18,22 @@
 		}
 	}
 	
+	.left-side, .right-side {
+		width: 50%;
+		padding: 15px;
+	}
+	
+	.left-side {
+		float: left;
+		text-align: right;
+	}
+	
+	.right-side {
+		float: right;
+		text-align: left;
+	}
+	
+	
 	mat-card {
 		margin-bottom: 50px;
 	}

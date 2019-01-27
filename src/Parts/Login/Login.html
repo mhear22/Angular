@@ -14,8 +14,8 @@
 			</mat-hint>
 		</div>
 		
-		<button (click)="Login()" matButton>Login</button>
-		<a routerLink="/signup">No Account?</a>
+		<button (click)="Login()" mat-raised-button class="mat-accent">Login</button>
+		<a style="margin:0 10px;" routerLink="/signup">No Account?</a>
 	</div>
 	
 	<div *ngIf="IsLoading">
