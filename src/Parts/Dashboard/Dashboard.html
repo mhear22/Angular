@@ -1,1 +1,41 @@
-{{Id}}
+<mat-card class="home-card" *ngIf="!Loading">
+	<div *ngIf="Cars?.length>0">
+		<h1>Cars</h1>
+		<div class="car" *ngFor="let car of Cars">
+			<span *ngIf="!car.Nickname">
+				Your {{car.Base.Manufacturer.Name}} from {{car.Base.CountryOfOrigin.Name}}
+			</span>
+			<span *ngIf="car.Nickname">
+				{{car.Nickname}}
+			</span>
+			
+			<span style="float:right;padding-right:50px; color:gray;">
+				{{car.EstimatedCurrentMileage}}KM
+			</span>
+			
+			<div class="buttons" routerLink="/car/{{car.Vin}}">
+				<i class="fa fa-chevron-right"></i>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="Cars?.length==0">
+		<div>
+			Looks like you do not have any cars yet
+		</div>
+		
+	</div>
+	
+	<div style="text-align:center;">
+		<button mat-button routerLink="/add-car">
+			Add A Car
+		</button>
+	</div>
+</mat-card>
+
+<mat-card *ngIf="Loading && LoggedIn">
+	<mat-spinner mode="indeterminate" color="primary"></mat-spinner>
+</mat-card>
+
+<mat-card *ngIf="!LoggedIn">
+	You Should Sign In
+</mat-card>

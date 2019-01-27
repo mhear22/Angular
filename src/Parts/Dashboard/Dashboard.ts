@@ -1,29 +1,41 @@
-import { Component, Inject, Input, OnInit, OnDestroy } from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { CarService, OwnedCarModel } from 'src/Services/Api/Api';
+import { LoginService } from 'src/Services/LoginService';
+import { Router } from '@angular/router';
 
 @Component({
-	selector: 'dashboard',
+	selector: 'home',
 	templateUrl: './Dashboard.html',
+	providers: []
 })
+export class Dashboard implements OnInit {
+	constructor(
+		private CarService: CarService,
+		private LoginService: LoginService,
+		private router:Router
+	) { }
 
-export class Dashboard implements OnInit, OnDestroy {
-	@Input() Id: string;
-	private sub: Subscription;
-	
-	constructor(private activatedRoute: ActivatedRoute) { }
-	
-	public click() {
-		alert(this.Id);
-	}
-	
-	ngOnInit() {
-		this.sub = this.activatedRoute.params.subscribe(((x:any) => {
-			this.Id = x['Id'];
-		}))
-	}
-	
-	ngOnDestroy() {
-		this.sub.unsubscribe();
+	public Cars: OwnedCarModel[];
+	public LoggedIn = true;
+	public Loading = true;
+
+	public ngOnInit() {
+		var isLoggedIn = this.LoginService.IsLoggedIn();
+		if (isLoggedIn) {
+			this.LoginService.GetCurrentUser().subscribe(currentUser => {
+				this.CarService.getForUser(currentUser.Id).subscribe(carlist => {
+					this.Loading = false;
+					this.Cars = carlist.Items;
+				});
+			});
+			this.LoginService.GetCurrentUser().subscribe(x=>{
+				if(!x.PlanNickname) {
+					this.router.navigate(["/profile"]);
+				}
+			});
+		}
+		else {
+			this.LoggedIn = false;
+		}
 	}
 }

@@ -12,8 +12,6 @@ import { NgxWebstorageModule } from "ngx-webstorage";
 import { RouterModule } from '@angular/router';
 import { routes } from 'src/routes';
 import { LoginForm } from 'src/Parts/Login/Login';
-import { Dashboard } from 'src/Parts/Dashboard/Dashboard';
-import { Home } from 'src/Parts/Home/Home';
 import { Signup } from 'src/Parts/Signup/Signup';
 import { Header } from 'src/Parts/Header/Header';
 import { MenuBar } from 'src/Parts/Menu/Menu';
@@ -43,6 +41,7 @@ import { Angulartics2GoogleGlobalSiteTag } from "angulartics2/gst";
 import { environment } from 'src/environments/environment';
 import { TermsOfService } from 'src/Parts/TOS/tos';
 import { Verified } from 'src/Parts/Verified/Verified';
+import { Dashboard } from 'src/Parts/Dashboard/Dashboard';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -50,8 +49,6 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 	declarations: [
 		AppComponent,
 		LoginForm,
-		Dashboard,
-		Home,
 		Signup,
 		Header,
 		MenuBar,
@@ -70,7 +67,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		UnsubscribeDialog,
 		RequestMileageDialog,
 		TermsOfService,
-		Verified
+		Verified,
+		Dashboard
 	],
 	entryComponents:[
 		UploadFileDialog,
