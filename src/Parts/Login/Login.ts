@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../Services/LoginService';
+import { CurrentUserService } from 'src/Services/Api/Api';
 
 @Component({
 	selector: 'login',
@@ -12,7 +13,10 @@ export class LoginForm {
 	password:string = "";
 	error:string = null;
 	IsLoading:boolean = false;
-	constructor(private _loginService: LoginService, private router: Router) { }
+	constructor(
+		private _loginService: LoginService,
+		private router: Router
+	) { }
 	
 	public Login() {
 		this.IsLoading = true;
@@ -20,8 +24,13 @@ export class LoginForm {
 			Password: this.password,
 			Username: this.username
 		}).subscribe(result => {
-			this.IsLoading = false;
-			this.router.navigate(['/home']);
+			this._loginService.GetCurrentUser().subscribe(user=> {
+				this.IsLoading = false;
+				this.router.navigate(['/home']);
+			}, error => {
+				this.error = error;
+				this.IsLoading = false
+			});
 		}, error => {
 			this.error = error;
 			this.IsLoading = false;
