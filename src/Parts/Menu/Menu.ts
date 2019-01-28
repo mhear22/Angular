@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../Services/LoginService';
 import { ServiceBase } from '../../Services/ServiceBase';
@@ -10,7 +10,7 @@ import { PaymentService } from 'src/Services/Api/Api';
 	selector: 'menu',
 	templateUrl: './Menu.html'
 })
-export class MenuBar {
+export class MenuBar implements OnInit {
 	constructor(
 		private login: LoginService,
 		private router: Router
@@ -18,6 +18,10 @@ export class MenuBar {
 		interval(1000).subscribe(() => {
 			this.Check();
 		})
+	}
+	
+	public ngOnInit() {
+		this.Refresh();
 	}
 	
 	public Items:HomeItemModel[] = [
