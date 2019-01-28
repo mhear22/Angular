@@ -12,6 +12,8 @@ export class ServiceItemDialog {
 	private repeating:string;
 	private repeatingFrequency:string;
 	
+	private error:any;
+	
 	private types:ServiceTypeDto[];
 	private typeId:string;
 	
@@ -37,6 +39,9 @@ export class ServiceItemDialog {
 		this.Loading = true;
 		this.service.addPart(this.Car.Vin,this.item).subscribe(() => {
 			this.diaRef.close();
+		}, error => {
+			this.Loading = false;
+			this.error = error;
 		});
 	}
 	
