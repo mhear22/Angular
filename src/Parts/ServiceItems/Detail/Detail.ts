@@ -29,21 +29,22 @@ export class ServiceDetail implements OnInit {
 		this.Id = this.route.snapshot.paramMap.get("Id");
 		this.PartId = this.route.snapshot.paramMap.get("PartId");
 		
-		this.componentService.getPart(this.Id, this.PartId).subscribe(x=> {
-			this.Part = x;
-			this.Loading = false;
-		});
+		
+		//this.componentService.getPart(this.Id, this.PartId).subscribe(x=> {
+		//	this.Part = x;
+		//	this.Loading = false;
+		//});
 	}
 	
 	private CompleteServiceItem() {
 		this.Loading = true;
 		this.dialogService.VerifyMileage(this.viewContainerRef,this.Id).subscribe(x=> {
-			this.componentService.completeWork(this.Id, this.PartId, {
-				CurrentMiles:x
-			}).subscribe(() => {
-				this.Loading = false;
-				this.update();
-			});
+			//this.componentService.completeWork(this.Id, this.PartId, {
+			//	CurrentMiles:x
+			//}).subscribe(() => {
+			//	this.Loading = false;
+			//	this.update();
+			//});
 		})
 	}
 }

@@ -13,5 +13,11 @@
 	.service-item {
 		@include box();
 		margin: 5px;
+		
+		.service-item-status {
+			float: right;
+			margin-right: 30px;
+			color: gray;
+		}
 	}
 }

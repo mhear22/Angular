@@ -4,13 +4,13 @@
 		
 		<form (ngSubmit)="save()">
 			<mat-form-field>
-				<mat-select placeholder="Service Type" [(value)]="item.ServiceTypeId">
+				<mat-select placeholder="Service Type" [(value)]="ServiceTypeId">
 					<mat-option *ngFor="let item of types" [value]="item.Id">
 						{{item.Name}}
 					</mat-option>
 				</mat-select>
 			</mat-form-field>
-			
+			<!--
 			<div>
 				<h6>Reminders</h6>
 				
@@ -36,7 +36,7 @@
 				</div>
 				
 			</div>
-			
+		-->
 			<button class="spacer" mat-button type="submit">Add</button>
 		</form>
 		

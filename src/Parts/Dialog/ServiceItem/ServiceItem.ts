@@ -1,6 +1,6 @@
 import { Component, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { OwnedCarModel, ComponentServiceService, ServiceTypeDto, ServiceItem } from "src/Services/Api/Api";
+import { OwnedCarModel, ComponentServiceService, ServiceTypeDto, WorkItemService } from "src/Services/Api/Api";
 
 @Component({
 	templateUrl:'./ServiceItem.html'
@@ -17,27 +17,31 @@ export class ServiceItemDialog {
 	private types:ServiceTypeDto[];
 	private typeId:string;
 	
-	private item:ServiceItem = {};
+	public ServiceTypeId:string;
 	
 	constructor(
 		private diaRef:MatDialogRef<void>,
 		@Inject(MAT_DIALOG_DATA) public data:OwnedCarModel,
-		private service:ComponentServiceService
+		private service:WorkItemService,
+		private componentService:ComponentServiceService
 	) {
 		this.Car = data;
-		
-		service.getRepeatTypes().subscribe((x) => {
+		componentService.getRepeatTypes().subscribe((x) => {
 			this.repeats = x;
 		});
 		
-		service.getTypes().subscribe((x) => {
+		componentService.getTypes().subscribe((x) => {
 			this.types = x;
 		});
 	}
 	
 	save() {
 		this.Loading = true;
-		this.service.addPart(this.Car.Vin,this.item).subscribe(() => {
+		
+		this.service.createWorkItem({
+			ServiceTypeId: this.ServiceTypeId,
+			Vin: this.Car.Vin
+		}).subscribe(() => {
 			this.diaRef.close();
 		}, error => {
 			this.Loading = false;

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef, Inject, ViewChild, ElementRef, HostListener } from "@angular/core";
-import { CarService, OwnedCarModel, MileageService, MileageRecordingModel, API_BASE_URL, ComponentServiceService, ServiceItem, EmailService } from "src/Services/Api/Api";
+import { CarService, OwnedCarModel, MileageService, MileageRecordingModel, API_BASE_URL, EmailService, ReceiptModel } from "src/Services/Api/Api";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { DialogService } from "src/Services/DialogService";
@@ -21,7 +21,6 @@ export class CarDetail implements OnInit {
 		private dialogService:DialogService,
 		private mileageService:MileageService,
 		private graphingService:GraphingService,
-		private componentService:ComponentServiceService,
 		private emailService:EmailService,
 		private loginService:LoginService,
 		@Inject(API_BASE_URL) public ApiUrl?: string
@@ -39,7 +38,7 @@ export class CarDetail implements OnInit {
 		return ServiceBase.ApiKey;
 	}
 	
-	private comps: ServiceItem[];
+	private comps: ReceiptModel[];
 	public Car: OwnedCarModel;
 	public Mileage: MileageRecordingModel[];
 	private SendingTest:boolean = false;
@@ -92,7 +91,8 @@ export class CarDetail implements OnInit {
 				Object.assign(this.chartSettings, {data:[data]});
 			})
 			
-			this.componentService.getParts(x.Vin).subscribe(parts => {
+			
+			this.carService.getParts(x.Vin).subscribe(parts => {
 				this.comps = parts;
 			});
 		},() => {
