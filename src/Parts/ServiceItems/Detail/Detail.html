@@ -6,14 +6,14 @@
 	</div>
 	<div style="clear:both;"></div>
 	
-	<div>
-		Last change {{Part.LastServiceMileage}}KM at {{Part.LastServiceTime}}
+	<div *ngIf="Part.LastChange">
+		Last change {{Part.LastChange.Mileage}}KM at {{Part.LastChange.Date}}
 	</div>
 	
 	<div>
-		Should change every {{Part.RepeatingFrequency}}
-		<span *ngIf="Part.RepeatingTypeId=='mileage'">KM</span>
-		<span *ngIf="Part.RepeatingTypeId=='age'">Year(s)</span>
+		Should change every {{Part.RepeatFrequency}}
+		<span *ngIf="Part.RepeatTypeId=='mileage'">KM</span>
+		<span *ngIf="Part.RepeatTypeId=='age'">Year(s)</span>
 	</div>
 	
 	<div>
