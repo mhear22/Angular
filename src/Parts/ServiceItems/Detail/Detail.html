@@ -10,7 +10,7 @@
 		Last change {{Part.LastChange.Mileage}}KM at {{Part.LastChange.Date}}
 	</div>
 	
-	<div>
+	<div *ngIf="Part.RepeatTypeId">
 		Should change every {{Part.RepeatFrequency}}
 		<span *ngIf="Part.RepeatTypeId=='mileage'">KM</span>
 		<span *ngIf="Part.RepeatTypeId=='age'">Year(s)</span>
