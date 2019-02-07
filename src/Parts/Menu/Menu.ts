@@ -30,7 +30,7 @@ export class MenuBar implements OnInit {
 			IconClass:"fa fa-home",
 			Route:"/home",
 			RequiresLogin:true,
-			RequiresPlan:true,
+			RequiresPlan:false,
 			Allowed:true
 		},
 		{

@@ -5,7 +5,7 @@
 		<form (ngSubmit)="save()">
 			<mat-form-field>
 				<mat-select placeholder="Service Type" [(value)]="ServiceTypeId">
-					<mat-option *ngFor="let item of types" [value]="item.Id">
+					<mat-option *ngFor="let item of types" [disabled]="!item.Enabled" [value]="item.Id">
 						{{item.Name}}
 					</mat-option>
 				</mat-select>

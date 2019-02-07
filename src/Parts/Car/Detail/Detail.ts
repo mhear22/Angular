@@ -49,11 +49,6 @@ export class CarDetail implements OnInit {
 	public Loading:boolean = true;
 	public ngOnInit() {
 		this.update();
-		this.loginService.GetCurrentUser().subscribe(x=>{
-			if(!x.PlanNickname) {
-				this.router.navigate(["/profile"]);
-			}
-		});
 	}
 	
 	public addMaintenanceItem() {

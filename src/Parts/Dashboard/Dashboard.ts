@@ -29,9 +29,9 @@ export class Dashboard implements OnInit {
 				});
 			});
 			this.LoginService.GetCurrentUser().subscribe(x=>{
-				if(!x.PlanNickname) {
-					this.router.navigate(["/profile"]);
-				}
+				//if(!x.PlanNickname) {
+				//	this.router.navigate(["/profile"]);
+				//}
 			});
 		}
 		else {

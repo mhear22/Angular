@@ -1,6 +1,6 @@
 import { Component, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { OwnedCarModel, ComponentServiceService, ServiceTypeDto, WorkItemService } from "src/Services/Api/Api";
+import { OwnedCarModel, ComponentServiceService, ServiceTypeModel, WorkItemService } from "src/Services/Api/Api";
 
 @Component({
 	templateUrl:'./ServiceItem.html'
@@ -8,13 +8,13 @@ import { OwnedCarModel, ComponentServiceService, ServiceTypeDto, WorkItemService
 export class ServiceItemDialog {
 	private Car:OwnedCarModel;
 	public Loading:boolean = false;
-	private repeats:ServiceTypeDto[];
+	private repeats:ServiceTypeModel[];
 	private repeating:string;
 	private repeatingFrequency:string;
 	
 	private error:any;
 	
-	private types:ServiceTypeDto[];
+	private types:ServiceTypeModel[];
 	private typeId:string;
 	
 	public ServiceTypeId:string;

@@ -358,7 +358,7 @@ export class ComponentServiceService {
     /**
      * @return Success
      */
-    getTypes(): Observable<ServiceTypeDto[]> {
+    getTypes(): Observable<ServiceTypeModel[]> {
         let url_ = this.baseUrl + "/parttypes";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -377,14 +377,14 @@ export class ComponentServiceService {
                 try {
                     return this.processGetTypes(<any>response_);
                 } catch (e) {
-                    return <Observable<ServiceTypeDto[]>><any>_observableThrow(e);
+                    return <Observable<ServiceTypeModel[]>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<ServiceTypeDto[]>><any>_observableThrow(response_);
+                return <Observable<ServiceTypeModel[]>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetTypes(response: HttpResponseBase): Observable<ServiceTypeDto[]> {
+    protected processGetTypes(response: HttpResponseBase): Observable<ServiceTypeModel[]> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -394,7 +394,7 @@ export class ComponentServiceService {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : <ServiceTypeDto[]>JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = _responseText === "" ? null : <ServiceTypeModel[]>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -402,13 +402,13 @@ export class ComponentServiceService {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<ServiceTypeDto[]>(<any>null);
+        return _observableOf<ServiceTypeModel[]>(<any>null);
     }
 
     /**
      * @return Success
      */
-    getRepeatTypes(): Observable<RepeatTypeDto[]> {
+    getRepeatTypes(): Observable<RepeatTypeModel[]> {
         let url_ = this.baseUrl + "/repeattypes";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -427,14 +427,14 @@ export class ComponentServiceService {
                 try {
                     return this.processGetRepeatTypes(<any>response_);
                 } catch (e) {
-                    return <Observable<RepeatTypeDto[]>><any>_observableThrow(e);
+                    return <Observable<RepeatTypeModel[]>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<RepeatTypeDto[]>><any>_observableThrow(response_);
+                return <Observable<RepeatTypeModel[]>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetRepeatTypes(response: HttpResponseBase): Observable<RepeatTypeDto[]> {
+    protected processGetRepeatTypes(response: HttpResponseBase): Observable<RepeatTypeModel[]> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -444,7 +444,7 @@ export class ComponentServiceService {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : <RepeatTypeDto[]>JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = _responseText === "" ? null : <RepeatTypeModel[]>JSON.parse(_responseText, this.jsonParseReviver);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -452,7 +452,7 @@ export class ComponentServiceService {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<RepeatTypeDto[]>(<any>null);
+        return _observableOf<RepeatTypeModel[]>(<any>null);
     }
 }
 
@@ -2417,12 +2417,13 @@ export interface ServiceReceiptModel {
     Mileage?: string | undefined;
 }
 
-export interface ServiceTypeDto {
+export interface ServiceTypeModel {
     Id?: string | undefined;
     Name?: string | undefined;
+    Enabled?: boolean | undefined;
 }
 
-export interface RepeatTypeDto {
+export interface RepeatTypeModel {
     Id?: string | undefined;
     Name?: string | undefined;
 }
