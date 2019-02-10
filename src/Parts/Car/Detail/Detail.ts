@@ -31,7 +31,10 @@ export class CarDetail implements OnInit {
 	
 	@HostListener('window:resize')
 	resize() {
-		this.chartSettings.view[0] = this.chartContainer.nativeElement.offsetWidth;
+		try {
+			this.chartSettings.view[0] = this.chartContainer.nativeElement.offsetWidth;
+		}
+		catch {}
 	}
 	
 	private get ApiKey() {

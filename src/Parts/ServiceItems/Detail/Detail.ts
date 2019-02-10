@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ComponentServiceService, WorkItemService, ReceiptModel } from "src/Services/Api/Api";
 import { DialogService } from "src/Services/DialogService";
 
@@ -10,6 +10,7 @@ import { DialogService } from "src/Services/DialogService";
 export class ServiceDetail implements OnInit {
 	constructor(
 		private route:ActivatedRoute,
+		private router:Router,
 		private dialogService:DialogService,
 		private viewContainerRef: ViewContainerRef,
 		private workItemService:WorkItemService
@@ -31,6 +32,12 @@ export class ServiceDetail implements OnInit {
 		this.workItemService.getItem(this.PartId).subscribe(x=> {
 			this.Part = x;
 			this.Loading = false;
+		});
+	}
+	
+	private delete() {
+		this.workItemService.deleteWorkItem(this.PartId).subscribe(x=> {
+			this.router.navigate(['/car/' + this.Id]);
 		});
 	}
 	

@@ -1,10 +1,21 @@
-.freq-container {
-	position: relative;
+.service-item {
+	width:400px;
+	max-width: 100%;
+	.freq-container {
+		position: relative;
+		
+		.freq-type {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			top: 25%;
+		}
+	}
 	
-	.freq-type {
-		position: absolute;
-		right: 0;
-		bottom: 0;
-		top: 25%;
+	mat-button-toggle-group {
+		
+		mat-button-toggle {
+			
+		}
 	}
 }
