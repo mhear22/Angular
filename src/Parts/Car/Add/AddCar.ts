@@ -1,23 +1,36 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { VinService, CarModel, CarService, CarCreateModel } from "src/Services/Api/Api";
 import { Router } from "@angular/router";
+import { LoginService } from 'src/Services/LoginService';
 
 @Component({
 	selector:'add-car',
 	templateUrl:'./AddCar.html'
 })
-export class AddCar {
+export class AddCar implements OnInit {
 	public vin:string;
 	public Car:CarModel;
 	public nickname:string;
 	public createdYear:number;
 	public currentMileage:number;
 	
+	public Loading:boolean = true;
+	
 	constructor(
 		private vinService:VinService,
 		private carService:CarService,
-		private router:Router
+		private router:Router,
+		private UserService: LoginService
 	) { }
+	
+	ngOnInit() {
+		this.UserService.GetCurrentUser().subscribe(x=> {
+			if(!x.PlanNickname) {
+				
+			}
+			this.Loading = false;
+		});
+	}
 	
 	get years() {
 		var oldYear = 1980;

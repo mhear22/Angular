@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="!Loading">
 	<h2>Add a Car</h2>
 	<div>
 		To find a vin it will be punched into the car. Some models have them inside the door frame, under the bonnet or on the windscreen
@@ -47,4 +47,8 @@
 		
 		<button mat-button type="submit">Submit</button>
 	</form>
+</mat-card>
+
+<mat-card *ngIf="Loading">
+	<mat-spinner mode="indeterminate" color="primary"></mat-spinner>
 </mat-card>
