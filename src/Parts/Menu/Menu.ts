@@ -146,10 +146,11 @@ export class MenuBar implements OnInit {
 	
 	public Logout() {
 		try{
-			this.login.Logout();
+			this.login.Logout().subscribe(() => {
+				this.router.navigate(['/']);
+				this.Refresh();
+			});
 		}
 		catch (ex) { }
-		this.router.navigate(['/home']);
-		this.Refresh();
 	}
 }

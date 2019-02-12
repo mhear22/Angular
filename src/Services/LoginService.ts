@@ -27,11 +27,11 @@ export class LoginService extends ServiceBase {
 	
 	public Login(model: LoginModel): Observable<string> {
 		var query = this.sessionsService.login(model);
-		query.subscribe(result => {
+		return query.map(result => {
 			this.local.store("api_key", result);
 			ServiceBase.ApiKey = result;
+			return result;
 		});
-		return query;
 	}
 	
 	public ChangePassword(Id: string, RequestModel: ChangePasswordModel) {
@@ -47,7 +47,7 @@ export class LoginService extends ServiceBase {
 	
 	public Logout() {
 		var result = this.sessionsService.logout(ServiceBase.ApiKey);
-		result.subscribe(result => {
+		result.map(result => {
 			this.local.clear("api_key");
 			ServiceBase.ApiKey = "";
 		});
@@ -56,10 +56,9 @@ export class LoginService extends ServiceBase {
 	
 	public GetCurrentUser() {
 		var result = this.currentUserService.getCurrentUser();
-		result.subscribe(x=> {
+		result.map(x=> {
 			LoginService.IsSubscribed = !!x.PlanNickname;
-		},() => {
-			LoginService.IsSubscribed = false;
+			return x;
 		});
 		return result;
 	}
