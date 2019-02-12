@@ -5,8 +5,21 @@
 				Mechie
 			</a>
 		</div>
-		<button mat-raised-button class="mat-accent" routerLink="/login">Login</button>
-		<button mat-raised-button routerLink="/signup">Sign Up</button>
+		<div *ngIf="!loggedIn">
+			<button mat-raised-button class="mat-accent" routerLink="/login">Login</button>
+			<button mat-raised-button routerLink="/signup">Sign Up</button>
+		</div>
+		<div *ngIf="loggedIn">
+			<button mat-raised-button [hidden]="signoutLoading" (click)="signOut()">
+				<span *ngIf="!signoutLoading">
+					Sign Out
+				</span>
+				<span *ngIf="signoutLoading">
+					<i class="fa fa-refresh"></i>
+				</span>
+			</button>
+			<button mat-raised-button class="mat-accent" routerLink="/home">Get Started</button>
+		</div>
 	</div>
 	<div class="header-spacer"></div>
 	

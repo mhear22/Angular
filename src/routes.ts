@@ -21,7 +21,7 @@ export const routes: Routes = [
 		path:'',
 		component: FoldRouter,
 		children:[
-			{ path: 'login', component: LoginForm},
+			{ path: 'login', component: LoginForm },
 			{ path: 'login', component: LoginForm },
 			{ path: 'home', component:  Dashboard },
 			{ path: 'signup', component: Signup },

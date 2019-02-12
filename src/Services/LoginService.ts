@@ -46,10 +46,12 @@ export class LoginService extends ServiceBase {
 	}
 	
 	public Logout() {
-		this.sessionsService.logout(ServiceBase.ApiKey).subscribe(result => {
+		var result = this.sessionsService.logout(ServiceBase.ApiKey);
+		result.subscribe(result => {
 			this.local.clear("api_key");
 			ServiceBase.ApiKey = "";
 		});
+		return result;
 	}
 	
 	public GetCurrentUser() {
