@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { VinService, CarModel, CarService, CarCreateModel } from "src/Services/Api/Api";
 import { Router } from "@angular/router";
 import { LoginService } from 'src/Services/LoginService';
+import { DialogService } from 'src/Services/DialogService';
 
 @Component({
 	selector:'add-car',
@@ -20,15 +21,23 @@ export class AddCar implements OnInit {
 		private vinService:VinService,
 		private carService:CarService,
 		private router:Router,
-		private UserService: LoginService
+		private UserService: LoginService,
+		private dialogService:DialogService,
+		private viewContainerRef: ViewContainerRef
 	) { }
 	
 	ngOnInit() {
-		this.UserService.GetCurrentUser().subscribe(x=> {
-			if(!x.PlanNickname) {
-				
-			}
-			this.Loading = false;
+		this.UserService.GetCurrentUser().subscribe(currentUsers=> {
+			this.carService.getForUser(currentUsers.Id).subscribe(cars=> {
+				var TooManyCars = cars.Count >= 2;
+				var hasPlan = !!currentUsers.PlanNickname;
+				if(TooManyCars && !hasPlan) {
+					this.dialogService.RemindToSignUp(this.viewContainerRef).subscribe(x=> {
+						
+					});
+				}
+				this.Loading = false;
+			});
 		});
 	}
 	

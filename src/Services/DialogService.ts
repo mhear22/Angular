@@ -11,12 +11,22 @@ import { DeleteCarDialog } from 'src/Parts/Dialog/DeleteCar/DeleteCar';
 import { ServiceItemDialog } from 'src/Parts/Dialog/ServiceItem/ServiceItem';
 import { UnsubscribeDialog } from 'src/Parts/Dialog/Unsubscribe/Unsubscribe';
 import { RequestMileageDialog } from 'src/Parts/Dialog/RequestMileage/requestMileage';
+import { PaymentReminderDialog } from 'src/Parts/Dialog/PaymentReminder/PaymentReminder';
 
 
 @Injectable()
 export class DialogService extends ServiceBase {
 	constructor(protected http: Http, private mdDialog:MatDialog) {
 		super(http);
+	}
+	
+	public RemindToSignUp(viewContainerRef:ViewContainerRef):Observable<void> {
+		var conf = new MatDialogConfig();
+		conf.viewContainerRef = viewContainerRef;
+		var ref = this.mdDialog.open(PaymentReminderDialog, {
+			viewContainerRef:viewContainerRef
+		});
+		return ref.afterClosed();
 	}
 	
 	public Unsubscribe(viewContainerRef: ViewContainerRef,UserId:string):Observable<void> {

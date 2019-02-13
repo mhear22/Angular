@@ -45,6 +45,7 @@ import { Dashboard } from 'src/Parts/Dashboard/Dashboard';
 import { Home } from 'src/Parts/Home/Home';
 import { Mechie } from 'src/Parts/Mechie/Mechie';
 import { FoldRouter } from 'src/Parts/FoldRouter/FoldRouter';
+import { PaymentReminderDialog } from 'src/Parts/Dialog/PaymentReminder/PaymentReminder';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -75,6 +76,7 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		Home,
 		Mechie,
 		FoldRouter,
+		PaymentReminderDialog
 	],
 	entryComponents:[
 		UploadFileDialog,
@@ -82,7 +84,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		DeleteCarDialog,
 		ServiceItemDialog,
 		UnsubscribeDialog,
-		RequestMileageDialog
+		RequestMileageDialog,
+		PaymentReminderDialog
 	],
 	imports: [
 		BrowserModule,
