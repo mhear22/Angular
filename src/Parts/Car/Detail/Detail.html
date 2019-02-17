@@ -35,17 +35,10 @@
 
 					<span>
 						{{item.ServiceType}}
-						<i *ngIf="item.Repeating" class="fa fa-repeat"></i>
 					</span>
 					
 					<span *ngIf="item.Repeating" class="service-item-status">
-						{{(item.LastChange)?'Last change:':''}} 
-						<span *ngIf="item.RepeatType=='Mileage'">
-							{{((item.LastChange)?item.LastChange.Mileage:'') + "KM"}}
-						</span>
-						<span *ngIf="item.RepeatType=='Age'">
-							{{(item.LastChange)?item.LastChange.Date:''}}
-						</span>
+						<i class="fa fa-repeat"></i>
 					</span>
 					
 					<div class="buttons" routerLink="/car/{{Car.Vin}}/part/{{item.Id}}">
