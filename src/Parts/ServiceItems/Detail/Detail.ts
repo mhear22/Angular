@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ComponentServiceService, WorkItemService, ReceiptModel } from "src/Services/Api/Api";
+import { ComponentServiceService, WorkItemService, ReceiptModel, CarService, OwnedCarModel, MileageService } from "src/Services/Api/Api";
 import { DialogService } from "src/Services/DialogService";
 
 @Component({
@@ -13,7 +13,8 @@ export class ServiceDetail implements OnInit {
 		private router:Router,
 		private dialogService:DialogService,
 		private viewContainerRef: ViewContainerRef,
-		private workItemService:WorkItemService
+		private workItemService:WorkItemService,
+		private mileageService:MileageService
 	) { }
 	
 	public ngOnInit() {
@@ -24,6 +25,7 @@ export class ServiceDetail implements OnInit {
 	private PartId:string;
 	private Part:ReceiptModel;
 	public Loading:boolean = true;
+	public Car:OwnedCarModel = {};
 	
 	private update() {
 		this.Id = this.route.snapshot.paramMap.get("Id");
@@ -32,6 +34,10 @@ export class ServiceDetail implements OnInit {
 		this.workItemService.getItem(this.PartId).subscribe(x=> {
 			this.Part = x;
 			this.Loading = false;
+		});
+		
+		this.mileageService.getEstimatedMileage(this.Id).subscribe(x=> {
+			this.Car.EstimatedCurrentMileage=x;
 		});
 	}
 	

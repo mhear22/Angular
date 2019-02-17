@@ -47,6 +47,7 @@ import { Mechie } from 'src/Parts/Mechie/Mechie';
 import { FoldRouter } from 'src/Parts/FoldRouter/FoldRouter';
 import { PaymentReminderDialog } from 'src/Parts/Dialog/PaymentReminder/PaymentReminder';
 import { MomentFilter } from 'src/Services/MomentFilter';
+import { ToFixedFilter } from 'src/Services/toFixedPipe';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -78,7 +79,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		Mechie,
 		FoldRouter,
 		PaymentReminderDialog,
-		MomentFilter
+		MomentFilter,
+		ToFixedFilter
 	],
 	entryComponents:[
 		UploadFileDialog,

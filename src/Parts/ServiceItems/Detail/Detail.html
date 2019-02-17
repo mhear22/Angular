@@ -30,8 +30,7 @@
 		<h3>History</h3>
 		
 		<div *ngIf="Part.LastChange">
-			Last change {{Part.LastChange.Mileage}}KM 
-			 {{Part.LastChange.Date|moment}}
+			Last change was {{Car.EstimatedCurrentMileage - Part.LastChange.Mileage|toFixed}}KM and {{Part.LastChange.Date|moment}}
 		</div>
 	</div>
 	
