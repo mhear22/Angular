@@ -11,7 +11,7 @@ export class ApiInterceptor implements HttpInterceptor {
 	
 	intercept(req:HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		var authReq = req.clone({
-			headers:req.headers.set("apikey", ServiceBase.ApiKey)
+			headers:req.headers.set("apikey", ServiceBase.ApiKey).set('timezone',(-(new Date().getTimezoneOffset()/60)).toString())
 		});
 		return next.handle(authReq).pipe(catchError((err:HttpErrorResponse) => {
 			if(err.status == 401)
