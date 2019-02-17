@@ -3,26 +3,45 @@
 		<h2 style="float:left;">
 			{{Part.ServiceType}}
 		</h2>
-	</div>
-	<button mat-button (click)="delete()">Stop Tracking</button>
-	<div style="clear:both;"></div>
-	
-	<div *ngIf="Part.LastChange">
-		Last change {{Part.LastChange.Mileage}}KM at {{Part.LastChange.Date}}
-	</div>
-	
-	<div *ngIf="Part.RepeatTypeId">
-		Should change every {{Part.RepeatFrequency}}
-		<span *ngIf="Part.RepeatTypeId=='mileage'">KM</span>
-		<span *ngIf="Part.RepeatTypeId=='age'">Year(s)</span>
+		
+		<button style="float:right; font-size:20px;" mat-button [matMenuTriggerFor]="menu">
+			<i class="fa fa-ellipsis-v"></i>
+		</button>
+		<mat-menu #menu="matMenu">
+			<button mat-button (click)="delete()">
+				Delete {{Part.ServiceType}}
+			</button>
+		</mat-menu>
 	</div>
 	
-	<div>
-		<button mat-button (click)="CompleteServiceItem()">
+	
+	<div class="col-md-12 spacer">
+		<h3>Reminders</h3>
+		
+		<div *ngIf="Part.RepeatTypeId">
+			Change every {{Part.RepeatFrequency}}
+			<span *ngIf="Part.RepeatTypeId=='mileage'">KM</span>
+			<span *ngIf="Part.RepeatTypeId=='age'">Year(s)</span>
+		</div>
+	</div>
+	
+	
+	<div class="col-md-12 spacer">
+		<h3>History</h3>
+		
+		<div *ngIf="Part.LastChange">
+			Last change {{Part.LastChange.Mileage}}KM 
+			 {{Part.LastChange.Date|moment}}
+		</div>
+	</div>
+	
+	<div class="col-md-12 spacer">
+		<button style="width:100%;" mat-button (click)="CompleteServiceItem()">
 			Complete Work
 		</button>
 	</div>
-	
+
+	<div style="clear:both;"></div>
 </mat-card>
 
 <mat-card *ngIf="Loading">

@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { DialogService } from 'src/Services/DialogService';
 import { ImageService } from 'src/Services/ImageService';
 import { LoginService } from 'src/Services/LoginService';
-import { MatDialogModule, MatCardModule, MatInputModule, MatProgressSpinnerModule, MatSidenavModule, MatSelectModule, MatButtonModule, MatCheckboxModule, MatDividerModule, MatButtonToggleModule, MatButtonToggleGroup, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatDialogModule, MatCardModule, MatInputModule, MatProgressSpinnerModule, MatSidenavModule, MatSelectModule, MatButtonModule, MatCheckboxModule, MatDividerModule, MatButtonToggleModule, MatButtonToggleGroup, MatDatepickerModule, MatNativeDateModule, MatMenuModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { NgxWebstorageModule } from "ngx-webstorage";
@@ -46,6 +46,7 @@ import { Home } from 'src/Parts/Home/Home';
 import { Mechie } from 'src/Parts/Mechie/Mechie';
 import { FoldRouter } from 'src/Parts/FoldRouter/FoldRouter';
 import { PaymentReminderDialog } from 'src/Parts/Dialog/PaymentReminder/PaymentReminder';
+import { MomentFilter } from 'src/Services/MomentFilter';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -76,7 +77,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		Home,
 		Mechie,
 		FoldRouter,
-		PaymentReminderDialog
+		PaymentReminderDialog,
+		MomentFilter
 	],
 	entryComponents:[
 		UploadFileDialog,
@@ -108,6 +110,7 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		MatButtonToggleModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
+		MatMenuModule,
 		Angulartics2Module.forRoot({
 			gst:{
 				trackingIds:['UA-90319263-2'],

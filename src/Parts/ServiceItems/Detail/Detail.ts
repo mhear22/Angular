@@ -36,6 +36,7 @@ export class ServiceDetail implements OnInit {
 	}
 	
 	private delete() {
+		return;
 		this.workItemService.deleteWorkItem(this.PartId).subscribe(x=> {
 			this.router.navigate(['/car/' + this.Id]);
 		});
