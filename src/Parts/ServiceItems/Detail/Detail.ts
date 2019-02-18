@@ -15,7 +15,10 @@ export class ServiceDetail implements OnInit {
 		private viewContainerRef: ViewContainerRef,
 		private workItemService:WorkItemService,
 		private mileageService:MileageService
-	) { }
+	) {
+		this.Id = this.route.snapshot.paramMap.get("Id");
+		this.PartId = this.route.snapshot.paramMap.get("PartId");
+	}
 	
 	public ngOnInit() {
 		this.update();
@@ -29,8 +32,7 @@ export class ServiceDetail implements OnInit {
 	public Receipts:ServiceReceiptModel[];
 	
 	private update() {
-		this.Id = this.route.snapshot.paramMap.get("Id");
-		this.PartId = this.route.snapshot.paramMap.get("PartId");
+		this.Loading = true;
 		
 		this.workItemService.getItem(this.PartId).subscribe(x=> {
 			this.Part = x;
@@ -51,6 +53,16 @@ export class ServiceDetail implements OnInit {
 		this.workItemService.deleteWorkItem(this.PartId).subscribe(x=> {
 			this.router.navigate(['/car/' + this.Id]);
 		});
+	}
+	
+	private disableRepeat() {
+		this.workItemService.deleteRepeat(this.PartId).subscribe(x=>{
+			this.update();
+		});
+	}
+	
+	private setupRepeat() {
+		this.dialogService;
 	}
 	
 	private CompleteServiceItem() {

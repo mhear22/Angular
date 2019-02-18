@@ -15,6 +15,12 @@
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.mat-menu-content {
+	button {
+		width: 100%;
+	}
+}
+
 body, html {
 	background-color: $app-primary;
 	color: $app-primary-text;

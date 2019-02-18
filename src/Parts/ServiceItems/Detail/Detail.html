@@ -11,17 +11,24 @@
 			<button mat-button (click)="delete()">
 				Delete {{Part.ServiceType}}
 			</button>
+			<mat-divider></mat-divider>
+			<button mat-button (click)="disableRepeat()" *ngIf="Part.RepeatTypeId">
+				Stop Repeating
+			</button>
+			<button mat-button (click)="setupRepeat()" *ngIf="!Part.RepeatTypeId">
+				Setup Reminders
+			</button>
 		</mat-menu>
+		<div style="clear:both;"></div>
 	</div>
 	
 	
-	<div class="col-md-12 spacer">
+	<div class="col-md-12 spacer" *ngIf="Part.RepeatTypeId">
 		<h3>Reminders</h3>
-		
 		<div *ngIf="Part.RepeatTypeId">
 			Change every {{Part.RepeatFrequency}}
 			<span *ngIf="Part.RepeatTypeId=='mileage'">KM</span>
-			<span *ngIf="Part.RepeatTypeId=='age'">Year(s)</span>
+			<span *ngIf="Part.RepeatTypeId=='age'">Month(s)</span>
 		</div>
 	</div>
 	

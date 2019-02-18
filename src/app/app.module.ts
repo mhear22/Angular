@@ -48,6 +48,7 @@ import { FoldRouter } from 'src/Parts/FoldRouter/FoldRouter';
 import { PaymentReminderDialog } from 'src/Parts/Dialog/PaymentReminder/PaymentReminder';
 import { MomentFilter } from 'src/Services/MomentFilter';
 import { ToFixedFilter } from 'src/Services/toFixedPipe';
+import { SetupRepeatDialog } from 'src/Parts/Dialog/SetupRepeat/SetupRepeatDialog';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -80,7 +81,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		FoldRouter,
 		PaymentReminderDialog,
 		MomentFilter,
-		ToFixedFilter
+		ToFixedFilter,
+		SetupRepeatDialog
 	],
 	entryComponents:[
 		UploadFileDialog,
@@ -89,7 +91,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		ServiceItemDialog,
 		UnsubscribeDialog,
 		RequestMileageDialog,
-		PaymentReminderDialog
+		PaymentReminderDialog,
+		SetupRepeatDialog
 	],
 	imports: [
 		BrowserModule,

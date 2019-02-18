@@ -1,0 +1,115 @@
+<div class="service-item-dialog">
+	<div *ngIf="!Loading">
+		<h3>What work did you do?</h3>
+		
+		<form (ngSubmit)="save()">
+			<mat-form-field>
+				<mat-select placeholder="Service Type" [(value)]="ServiceTypeId">
+					<mat-option *ngFor="let item of types" [disabled]="!item.Enabled" [value]="item.Id">
+						{{item.Name}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+			
+			
+			<div>
+				Remind me based on:
+			</div>
+			<mat-button-toggle-group #rgroup="matButtonToggleGroup" (change)="repeatGroup=rgroup.value">
+				<mat-button-toggle value="age">
+					Age
+				</mat-button-toggle>
+				<mat-button-toggle value="mileage">
+					Distance
+				</mat-button-toggle>
+			</mat-button-toggle-group>
+			
+			<div *ngIf="rgroup.value=='age'">
+				<div>
+					How often?
+				</div>
+				<mat-button-toggle-group #agegroup="matButtonToggleGroup" (change)="ageGroup=agegroup.value">
+					<mat-button-toggle value="12">
+						Anually
+					</mat-button-toggle>
+					<mat-button-toggle value="6">
+						Every 6 months
+					</mat-button-toggle>
+					<mat-button-toggle value="">
+						Custom
+					</mat-button-toggle>
+				</mat-button-toggle-group>
+				<div *ngIf="agegroup.value==''">
+					<mat-form-field>
+						<input
+							[(ngModel)]="ageManual"
+							matInput
+							name="months"
+							placeholder="Months"
+							type="number"
+						/>
+					</mat-form-field>
+				</div>
+				
+				<div>
+					Starting
+				</div>
+				<mat-button-toggle-group #agestartgroup="matButtonToggleGroup" (change)="ageStartGroup=agestartgroup.value">
+					<mat-button-toggle value="now">
+						Right now
+					</mat-button-toggle>
+					<mat-button-toggle value="offset">
+						Later
+					</mat-button-toggle>
+				</mat-button-toggle-group>
+				
+				<div *ngIf="agestartgroup.value=='offset'">
+					<mat-form-field>
+						<input
+							matInput
+							(dateChange)="startDate=$event.value"
+							placeholder="What day is your rego going to be due next"
+							[matDatepicker]="startdate"
+						/>
+						<mat-datepicker-toggle matSuffix [for]="startdate"></mat-datepicker-toggle>
+						<mat-datepicker touchUi #startdate></mat-datepicker>
+					</mat-form-field>
+				</div>
+			</div>
+			
+			<div *ngIf="rgroup.value=='mileage'">
+				<div>How Often?</div>
+				<mat-button-toggle-group #distancegroup="matButtonToggleGroup">
+					<mat-button-toggle value="10000">
+						10,000km
+					</mat-button-toggle>
+					<mat-button-toggle value="100000">
+						100,000km
+					</mat-button-toggle>
+					<mat-button-toggle value="">
+						Custom
+					</mat-button-toggle>
+				</mat-button-toggle-group>
+				<div *ngIf="distancegroup.value==''">
+					<mat-form-field>
+						<input
+							[(ngModel)]="distanceManual"
+							matInput
+							type="number"
+							name="distance"
+							placeholder="Kilometers"
+							/>
+					</mat-form-field>
+				</div>
+			</div>
+			
+			<div style="clear:both;"></div>
+			
+			<button style="margin-top:15px;" class="spacer" mat-raised-button class="mat-accent" type="submit">Add</button>
+		</form>
+		
+	</div>
+	<div *ngIf="Loading">
+		<mat-spinner mode="indeterminate" color="primary"></mat-spinner>
+	</div>
+</div>
