@@ -29,6 +29,12 @@
 			"type": "shell",
 			"command": "nswag run ./api.nswag",
 			"problemMatcher": []
+		},
+		{
+			"label": "publish",
+			"type": "shell",
+			"command": "npm run publish",
+			"problemMatcher": []
 		}
 	]
 }
