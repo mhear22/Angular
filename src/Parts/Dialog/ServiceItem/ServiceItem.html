@@ -11,18 +11,19 @@
 				</mat-select>
 			</mat-form-field>
 			
-			
-			<div>
-				Remind me based on:
+			<div [hidden]="!ServiceTypeId">
+				<div>
+					Remind me based on:
+				</div>
+				<mat-button-toggle-group #rgroup="matButtonToggleGroup" (change)="repeatGroup=rgroup.value">
+					<mat-button-toggle value="age">
+						Age
+					</mat-button-toggle>
+					<mat-button-toggle value="mileage">
+						Distance
+					</mat-button-toggle>
+				</mat-button-toggle-group>
 			</div>
-			<mat-button-toggle-group #rgroup="matButtonToggleGroup" (change)="repeatGroup=rgroup.value">
-				<mat-button-toggle value="age">
-					Age
-				</mat-button-toggle>
-				<mat-button-toggle value="mileage">
-					Distance
-				</mat-button-toggle>
-			</mat-button-toggle-group>
 			
 			<div *ngIf="rgroup.value=='age'">
 				<div>

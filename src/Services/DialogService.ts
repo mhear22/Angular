@@ -12,6 +12,7 @@ import { ServiceItemDialog } from 'src/Parts/Dialog/ServiceItem/ServiceItem';
 import { UnsubscribeDialog } from 'src/Parts/Dialog/Unsubscribe/Unsubscribe';
 import { RequestMileageDialog } from 'src/Parts/Dialog/RequestMileage/requestMileage';
 import { PaymentReminderDialog } from 'src/Parts/Dialog/PaymentReminder/PaymentReminder';
+import { SetupRepeatDialog } from 'src/Parts/Dialog/SetupRepeat/SetupRepeatDialog';
 
 
 @Injectable()
@@ -20,23 +21,25 @@ export class DialogService extends ServiceBase {
 		super(http);
 	}
 	
-	public RemindToSignUp(viewContainerRef:ViewContainerRef):Observable<void> {
+	private SetupDialog(data,ref:ViewContainerRef, userData:any = null) {
 		var conf = new MatDialogConfig();
-		conf.viewContainerRef = viewContainerRef;
-		var ref = this.mdDialog.open(PaymentReminderDialog, {
-			viewContainerRef:viewContainerRef
-		});
-		return ref.afterClosed();
+		conf.viewContainerRef = ref;
+		if(userData)
+			conf.data = userData
+		var resp = this.mdDialog.open(data,conf);
+		return resp.afterClosed();
+	}
+	
+	public SetupRepeaterOnServiceItem(viewContainerRef:ViewContainerRef):Observable<void> {
+		return this.SetupDialog(SetupRepeatDialog, viewContainerRef);
+	}
+	
+	public RemindToSignUp(viewContainerRef:ViewContainerRef):Observable<void> {
+		return this.SetupDialog(PaymentReminderDialog, viewContainerRef);
 	}
 	
 	public Unsubscribe(viewContainerRef: ViewContainerRef,UserId:string):Observable<void> {
-		var conf = new MatDialogConfig();
-		conf.viewContainerRef = viewContainerRef;
-		var ref = this.mdDialog.open(UnsubscribeDialog, {
-			data:UserId,
-			viewContainerRef:viewContainerRef
-		});
-		return ref.afterClosed();
+		return this.SetupDialog(UnsubscribeDialog, viewContainerRef, UserId)
 	}
 	
 	public SubmitFile(viewContainerRef: ViewContainerRef):Observable<ImageUploadResponse> {
@@ -48,34 +51,18 @@ export class DialogService extends ServiceBase {
 	}
 	
 	public UpdateMileage(viewContainerRef:ViewContainerRef,car:OwnedCarModel):Observable<void> {
-		var ref = this.mdDialog.open(MileageDialog,{
-			data:car,
-			viewContainerRef:viewContainerRef
-		});
-		return ref.afterClosed();
+		return this.SetupDialog(MileageDialog, viewContainerRef, car);
 	}
 	
 	public DeleteCar(viewContainerRef:ViewContainerRef, car:OwnedCarModel):Observable<void> {
-		var ref = this.mdDialog.open(DeleteCarDialog, {
-			data:car,
-			viewContainerRef:viewContainerRef
-		});
-		return ref.afterClosed();
+		return this.SetupDialog(DeleteCarDialog, viewContainerRef, car);
 	}
 	
 	public AddServiceItem(viewContainerRef:ViewContainerRef, car:OwnedCarModel):Observable<void> {
-		var ref = this.mdDialog.open(ServiceItemDialog, {
-			data:car,
-			viewContainerRef:viewContainerRef
-		});
-		return ref.afterClosed();
+		return this.SetupDialog(ServiceItemDialog, viewContainerRef, car);
 	}
 	
 	public VerifyMileage(viewContainerRef:ViewContainerRef, vin:string):Observable<string> {
-		var ref = this.mdDialog.open(RequestMileageDialog, {
-			data:vin,
-			viewContainerRef:viewContainerRef
-		});
-		return ref.afterClosed();
+		return this.SetupDialog(RequestMileageDialog, viewContainerRef, vin);
 	}
 }
