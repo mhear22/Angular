@@ -33,7 +33,7 @@
 		{
 			"label": "publish",
 			"type": "shell",
-			"command": "npm run publish",
+			"command": "npm run release && aws s3 rm s3://www.mechie.net --recursive && aws s3 cp dist/AngSix/ s3://www.mechie.net --recursive",
 			"problemMatcher": []
 		}
 	]

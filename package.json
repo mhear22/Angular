@@ -8,9 +8,7 @@
 	"release":"ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-	"e2e": "ng e2e",
-	"prepublish": "npm run release && aws s3 rm s3://www.mechie.net --recursive",
-	"publish": "aws s3 cp dist/AngSix/ s3://www.mechie.net --recursive"
+	"e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
