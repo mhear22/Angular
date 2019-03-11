@@ -2,6 +2,13 @@ version: 0.2
 
 phases:
     install:
-        - npm install
+        commands:
+            - npm install
     build:
-        - npm run release
+        commands:
+            - npm run release
+            - zip -r dist.zip dist/AngSix/
+
+artifacts:
+    files:
+        dist.zip
