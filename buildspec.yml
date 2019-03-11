@@ -9,6 +9,9 @@ phases:
         commands:
             - ng build --prod
             - zip -r dist.zip dist/AngSix/
+    post_build:
+        commands:
+            - aws s3 rm s3://www.mechie.net --recursive
 
 artifacts:
     files:
