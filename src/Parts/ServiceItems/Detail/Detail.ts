@@ -62,7 +62,9 @@ export class ServiceDetail implements OnInit {
 	}
 	
 	private setupRepeat() {
-		this.dialogService;
+		this.dialogService.SetupRepeater(this.viewContainerRef, this.Part).subscribe(x=> {
+			this.update();
+		})
 	}
 	
 	private CompleteServiceItem() {

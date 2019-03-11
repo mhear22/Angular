@@ -20,6 +20,8 @@ export class ServiceItemDialog {
 	
 	private error:any;
 	
+	private rgroup:any = {};
+	
 	private types:ServiceTypeModel[];
 	private typeId:string;
 	

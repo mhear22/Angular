@@ -6,7 +6,7 @@ import { UploadFileDialog } from '../Parts/Dialog/Upload/Upload';
 import { ImageUploadResponse } from '../Models/ImageUploadResponse';
 import { Observable } from 'rxjs';
 import { MileageDialog } from 'src/Parts/Dialog/Mileage/Mileage';
-import { OwnedCarModel } from './Api/Api';
+import { OwnedCarModel, ReceiptModel } from './Api/Api';
 import { DeleteCarDialog } from 'src/Parts/Dialog/DeleteCar/DeleteCar';
 import { ServiceItemDialog } from 'src/Parts/Dialog/ServiceItem/ServiceItem';
 import { UnsubscribeDialog } from 'src/Parts/Dialog/Unsubscribe/Unsubscribe';
@@ -30,8 +30,8 @@ export class DialogService extends ServiceBase {
 		return resp.afterClosed();
 	}
 	
-	public SetupRepeaterOnServiceItem(viewContainerRef:ViewContainerRef):Observable<void> {
-		return this.SetupDialog(SetupRepeatDialog, viewContainerRef);
+	public SetupRepeater(viewContainerRef:ViewContainerRef, ServiceTypeId:ReceiptModel):Observable<void> {
+		return this.SetupDialog(SetupRepeatDialog, viewContainerRef, ServiceTypeId);
 	}
 	
 	public RemindToSignUp(viewContainerRef:ViewContainerRef):Observable<void> {
@@ -43,11 +43,7 @@ export class DialogService extends ServiceBase {
 	}
 	
 	public SubmitFile(viewContainerRef: ViewContainerRef):Observable<ImageUploadResponse> {
-		var conf = new MatDialogConfig();
-		conf.viewContainerRef = viewContainerRef;
-		
-		var ref = this.mdDialog.open(UploadFileDialog, conf);
-		return ref.afterClosed();
+		return this.SetupDialog(UploadFileDialog,viewContainerRef);
 	}
 	
 	public UpdateMileage(viewContainerRef:ViewContainerRef,car:OwnedCarModel):Observable<void> {
