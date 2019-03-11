@@ -6,7 +6,7 @@ phases:
             - npm install
     build:
         commands:
-            - npm run release
+            - ng build --prod
             - zip -r dist.zip dist/AngSix/
 
 artifacts:
