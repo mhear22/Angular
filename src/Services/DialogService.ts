@@ -13,6 +13,7 @@ import { UnsubscribeDialog } from 'src/Parts/Dialog/Unsubscribe/Unsubscribe';
 import { RequestMileageDialog } from 'src/Parts/Dialog/RequestMileage/requestMileage';
 import { PaymentReminderDialog } from 'src/Parts/Dialog/PaymentReminder/PaymentReminder';
 import { SetupRepeatDialog } from 'src/Parts/Dialog/SetupRepeat/SetupRepeatDialog';
+import { RecieveFeedbackDialog } from 'src/Parts/Dialog/RecieveFeedback/RecieveFeedback';
 
 
 @Injectable()
@@ -60,5 +61,9 @@ export class DialogService extends ServiceBase {
 	
 	public VerifyMileage(viewContainerRef:ViewContainerRef, vin:string):Observable<string> {
 		return this.SetupDialog(RequestMileageDialog, viewContainerRef, vin);
+	}
+	
+	public RecieveFeedback(viewContainerRef: ViewContainerRef, Context:any):Observable<void> {
+		return this.SetupDialog(RecieveFeedbackDialog,viewContainerRef, Context)
 	}
 }

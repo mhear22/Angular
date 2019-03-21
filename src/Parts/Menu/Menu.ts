@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../Services/LoginService';
 import { ServiceBase } from '../../Services/ServiceBase';
 import { Observable, interval } from 'rxjs';
 import { HomeItemModel } from 'src/Models/HomeItemModel';
 import { PaymentService } from 'src/Services/Api/Api';
+import { DialogService } from 'src/Services/DialogService';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
 	selector: 'menu',
@@ -13,7 +15,10 @@ import { PaymentService } from 'src/Services/Api/Api';
 export class MenuBar implements OnInit {
 	constructor(
 		private login: LoginService,
-		private router: Router
+		private router: Router,
+		private dialogService: DialogService,
+		private viewContainerRef: ViewContainerRef,
+		//private activatedRoute: Route
 	) {
 		interval(1000).subscribe(() => {
 			this.Check();
@@ -76,6 +81,18 @@ export class MenuBar implements OnInit {
 			RequiresLogin:false,
 			RequiresPlan:false,
 			Invert:true
+		},
+		{
+			Name:"Feedback",
+			IconClass:"",
+			Action:() => {
+				this.dialogService.RecieveFeedback(this.viewContainerRef,{}).subscribe(()=>{
+					
+				});
+			},
+			Allowed:true,
+			RequiresLogin:false,
+			RequiresPlan:false
 		}
 	].map(x=>{
 		if(x.Action == null)
