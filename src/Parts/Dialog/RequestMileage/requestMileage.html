@@ -1,11 +1,14 @@
 <div>
 	Please make sure that the mileage is up to date
+	
 	<mat-form-field>
+		
+		
 		<input matInput required
-			type="text"
-			[(ngModel)]="currentMileage"
-			placeholder="Mileage"
-			[ngModelOptions]="{standalone:true}"
+		type="text"
+		[(ngModel)]="currentMileage"
+		placeholder="Mileage"
+		[ngModelOptions]="{standalone:true}"
 		/>
 	</mat-form-field>
 	<button mat-button (click)="save()">Save</button>

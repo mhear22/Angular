@@ -1,6 +1,12 @@
 <div (click)="Check()">
 	<div *ngFor="let item of Items">
-		<mat-card *ngIf="item.Allowed" routerLink="{{item.Route}}" (click)="item.Action()">
+		<mat-card *ngIf="item.Allowed && item.Route" routerLink="{{item.Route}}" (click)="item.Action()">
+			<h3>
+				<i *ngIf="item.IconClass" [ngClass]="item.IconClass" ></i>
+				{{item.Name}}
+			</h3>
+		</mat-card>
+		<mat-card *ngIf="item.Allowed && !item.Route" (click)="item.Action()">
 			<h3>
 				<i *ngIf="item.IconClass" [ngClass]="item.IconClass" ></i>
 				{{item.Name}}

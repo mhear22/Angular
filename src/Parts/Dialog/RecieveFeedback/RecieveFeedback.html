@@ -1,3 +1,13 @@
 <div>
 	<h3>How can we help?</h3>
+	<mat-form-field>
+		<textarea
+			matInput
+			placeholder="Whats the problem?"
+			mat-autosize
+			mat-autosize-min-rows="3"
+			[(ngModel)]="Message">
+		</textarea>
+	</mat-form-field>
+	<button mat-button (click)="save()">Send</button>
 </div>

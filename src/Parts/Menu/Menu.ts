@@ -138,8 +138,6 @@ export class MenuBar implements OnInit {
 		});
 	}
 	
-	
-	
 	get IsLoggedIn(): boolean {
 		return this.login.IsLoggedIn();
 	};
