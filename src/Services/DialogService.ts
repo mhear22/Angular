@@ -22,8 +22,7 @@ export class DialogService extends ServiceBase {
 		super(http);
 	}
 	
-	private SetupDialog(data,ref:ViewContainerRef, userData:any = null) {
-		var conf = new MatDialogConfig();
+	private SetupDialog(data,ref:ViewContainerRef, userData:any = null, conf = new MatDialogConfig()) {
 		conf.viewContainerRef = ref;
 		if(userData)
 			conf.data = userData
@@ -36,7 +35,10 @@ export class DialogService extends ServiceBase {
 	}
 	
 	public RemindToSignUp(viewContainerRef:ViewContainerRef):Observable<void> {
-		return this.SetupDialog(PaymentReminderDialog, viewContainerRef);
+		var config = new MatDialogConfig();
+		config.disableClose = true;
+		config.hasBackdrop = true;
+		return this.SetupDialog(PaymentReminderDialog, viewContainerRef,null, config);
 	}
 	
 	public Unsubscribe(viewContainerRef: ViewContainerRef,UserId:string):Observable<void> {

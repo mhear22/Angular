@@ -14,6 +14,7 @@ export class AddCar implements OnInit {
 	public nickname:string;
 	public createdYear:number;
 	public currentMileage:number;
+	public nextService:string;
 	
 	public Loading:boolean = true;
 	
@@ -68,7 +69,8 @@ export class AddCar implements OnInit {
 			var model:CarCreateModel = {
 				Nickname: this.nickname,
 				Vin: this.vin,
-				CurrentMileage:this.currentMileage
+				CurrentMileage:this.currentMileage,
+				NextService:new Date(this.nextService)
 			}
 			if(this.createdYear) {
 				var date = new Date();

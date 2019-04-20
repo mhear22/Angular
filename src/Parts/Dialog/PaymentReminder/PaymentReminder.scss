@@ -1,0 +1,6 @@
+@import "../../../app.scss";
+
+.link {
+	@include box();
+	width: 100%;
+}
