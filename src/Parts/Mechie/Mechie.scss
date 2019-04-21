@@ -18,21 +18,21 @@
 		}
 	}
 	
-	.left-side, .right-side {
-		width: 50%;
+	i {
+		color:gainsboro;
+		font-size: 200px;
+	}
+	
+	.col-md-6 {
+		text-align: center;
 		padding: 15px;
 	}
 	
-	.left-side {
-		float: left;
-		text-align: right;
+	@media(min-width:992px) {
+		.flip {
+			float: right;
+		}
 	}
-	
-	.right-side {
-		float: right;
-		text-align: left;
-	}
-	
 	
 	mat-card {
 		margin-bottom: 50px;
