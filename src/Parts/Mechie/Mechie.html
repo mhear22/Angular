@@ -27,6 +27,7 @@
 		<div class="splash-title">
 			<h1>Mechie</h1>
 			<h4>Keep track of all of your Automotive needs</h4>
+			<button mat-raised-button class="mat-accent" style="margin-top:15px;">Sign Up</button>
 		</div>
 		
 		
@@ -40,7 +41,7 @@
 					<div>
 						We will track each and every part of your car.
 						Wondering how old your turbo is?
-						We can tell you to the kilometer.
+						We can track it down to the kilometer.
 					</div>
 				</div>
 			</div>
@@ -69,8 +70,42 @@
 					</div>
 				</div>
 			</div>
-			
-			
 		</mat-card>
+		
+		<div class="splash-title">
+			<h2>How does it work</h2>
+		</div>
+		
+		<mat-card style="overflow:hidden;">
+			<div class="col-md-4">
+				<i class="fa fa-vcard-o"></i>
+				<p>
+					Give us some info about your pride and joy
+				</p>
+			</div>
+			
+			<div class="col-md-4">
+				<i class="fa fa-laptop"></i>
+				<p>
+					We will show you analyitics about the car
+				</p>
+			</div>
+			
+			<div class="col-md-4">
+				<i class="fa fa-exclamation-triangle"></i>
+				<p>
+					When its coming close to service time or a part is potentially wearing out we will alert you
+				</p>
+			</div>
+		</mat-card>
+	</div>
+	<div style="clear:both;"></div>
+	<div class="footer">
+		<div class="col-md-6">
+			<a routerLink="/terms-of-service">Terms Of Service</a>
+		</div>
+		<div class="col-md-6">
+			<a (click)="feedback()">Send us Feedback</a>
+		</div>
 	</div>
 </div>
