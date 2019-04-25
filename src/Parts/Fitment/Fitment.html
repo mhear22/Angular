@@ -1,0 +1,33 @@
+<mat-card class="fitment-page">
+	<div class="col-sm-6">
+		<mat-form-field>
+			<mat-select [(value)]="wheelModel.StudCount" placeholder="Stud Count">
+				<mat-option [value]="4">4</mat-option>
+				<mat-option [value]="5">5</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+	<div class="col-sm-6">
+		<mat-form-field>
+			<mat-select [(value)]="wheelModel.StudDiameter" placeholder="Stud Diameter">
+				<mat-option [value]="100">100</mat-option>
+				<mat-option [value]="112">112</mat-option>
+				<mat-option [value]="114.3">114.3</mat-option>
+				<mat-option [value]="120">120</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+	<div style="clear:both;"></div>
+	
+	<div class="stud-container">
+		<div class="stud-diagram">
+			{{wheelModel.StudDiameter}}
+		</div>
+		<div class="spoke" *ngFor="let item of Items()" [ngStyle]="PCDStyle(item)">
+			<div class="stud"></div>
+		</div>
+		<div class="stud-diameter"></div>
+	</div>
+	
+	<div style="clear:both;"></div>
+</mat-card>

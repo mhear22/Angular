@@ -11,9 +11,9 @@ import { PaymentPlans } from './Parts/PaymentPlans/Plans';
 import { TermsOfService } from './Parts/TOS/tos';
 import { Verified } from './Parts/Verified/Verified';
 import { Dashboard } from './Parts/Dashboard/Dashboard';
-import { Home } from './Parts/Home/Home';
 import { Mechie } from './Parts/Mechie/Mechie';
 import { FoldRouter } from './Parts/FoldRouter/FoldRouter';
+import { Fitment } from './Parts/Fitment/Fitment';
 
 export const routes: Routes = [
 	{ path:'', component: Mechie },
@@ -21,6 +21,7 @@ export const routes: Routes = [
 		path:'',
 		component: FoldRouter,
 		children:[
+			{ path:'fitment', component: Fitment},
 			{ path: 'login', component: LoginForm },
 			{ path: 'login', component: LoginForm },
 			{ path: 'home', component:  Dashboard },
@@ -33,7 +34,7 @@ export const routes: Routes = [
 			{ path: 'car/:Id/part/:PartId', component: ServiceDetail },
 			{ path: 'plans', component:PaymentPlans },
 			{ path: 'terms-of-service', component: TermsOfService },
-			{ path: 'verified', component: Verified },
+			{ path: 'verified', component: Verified }
 		]
 	},
 	

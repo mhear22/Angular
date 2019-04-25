@@ -50,6 +50,7 @@ import { MomentFilter } from 'src/Services/MomentFilter';
 import { ToFixedFilter } from 'src/Services/toFixedPipe';
 import { SetupRepeatDialog } from 'src/Parts/Dialog/SetupRepeat/SetupRepeatDialog';
 import { RecieveFeedbackDialog } from 'src/Parts/Dialog/RecieveFeedback/RecieveFeedback';
+import { Fitment } from 'src/Parts/Fitment/Fitment';
 
 var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(x=> { return Api[x]; });
 
@@ -84,7 +85,8 @@ var keys = Object.keys(Api).filter(x=> { return (x.includes("Service")); }).map(
 		MomentFilter,
 		ToFixedFilter,
 		SetupRepeatDialog,
-		RecieveFeedbackDialog
+		RecieveFeedbackDialog,
+		Fitment
 	],
 	entryComponents:[
 		UploadFileDialog,
