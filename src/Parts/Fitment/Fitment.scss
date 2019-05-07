@@ -14,19 +14,26 @@
 	}
 	
 	.stud-diameter {
-		margin: 50px;
+		margin: 0 50px;
 		width: 200px;
 		height: 200px;
 		border-radius: 100px;
 		border: 1px dashed black;
 	}
 	
+	.stud-centre {
+		width: 100%;
+		margin: auto;
+	}
+	
 	.stud-container {
+		margin: auto;
 		position: relative;
 		width: 300px;
 		height: 300px;
 		background-color: lightgray;
 		border-radius: 150px;
+		display: inline-block;
 	}
 	
 	.stud-diagram {
@@ -37,5 +44,9 @@
 		top:0;
 		height: 150px;
 		border-bottom-width: 0;
+	}
+	
+	.stud-diam {
+		padding: 50px 0;
 	}
 }

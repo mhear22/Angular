@@ -18,16 +18,18 @@
 		</mat-form-field>
 	</div>
 	<div style="clear:both;"></div>
-	
-	<div class="stud-container">
-		<div class="stud-diagram">
-			{{wheelModel.StudDiameter}}
+	<div class="stud-centre">
+		<div class="stud-container">
+			<div class="stud-diagram">
+				{{wheelModel.StudDiameter}}cm
+			</div>
+			<div class="spoke" *ngFor="let item of Items()" [ngStyle]="PCDStyle(item)">
+				<div class="stud"></div>
+			</div>
+			<div class="stud-diam">
+				<div class="stud-diameter"></div>
+			</div>
 		</div>
-		<div class="spoke" *ngFor="let item of Items()" [ngStyle]="PCDStyle(item)">
-			<div class="stud"></div>
-		</div>
-		<div class="stud-diameter"></div>
 	</div>
-	
 	<div style="clear:both;"></div>
 </mat-card>
