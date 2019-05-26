@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/Services/LoginService';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Angulartics2GoogleGlobalSiteTag } from 'angulartics2/gst';
-import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
 		angulartics:Angulartics2GoogleGlobalSiteTag,
 		private ar:ActivatedRoute
 	) {
-		angulartics.startTracking();
+		if(environment.production)
+			angulartics.startTracking();
 	}
 	private data:any;
 	ngOnInit() {
